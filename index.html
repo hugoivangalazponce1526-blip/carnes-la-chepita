@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Carnes La Chepita - Carnicería & Delivery en el Maule</title>
+  <meta content="Carnes La Chepita, más de 35 años de tradición familiar. La mejor carne de la Región del Maule directo a tu puerta en Curicó, Molina y Lontué." name="description">
+  
+  <!-- Favicon / Brand Symbol -->
+  <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/aida-public/AB6AXuCaU-weSGMTxW4DTD_8EzOwea_xYthnL-ixRvB8AnjnnEBiBC4D57EDxi9WIyCF2tp-pWMYLgMFeA62h70R-nuyPILFUhmssQeW9Cl2vqnvWUqOtuLlQlr71EPt6IMnFhaQ1fQrdpMnLPcJ2xM_IgQziPUh-Y3PskMb2sPQT399adv9gGV7Nca8mcXzT3wTRDKfISU1amcLwU5XgdTY7U2Vh9dIHdn45Vk_wVUcc5TJ9OBip74K-1hnOxbyzPMbqk_Z-7LzZMMy7nQ">
+
+  <!-- Mobile + SEO -->
+  <meta name="theme-color" content="#a5360d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.carneslachepita.cl">
+  <meta property="og:title"       content="Carnes La Chepita – Carnicería & Delivery en el Maule">
+  <meta property="og:description" content="Más de 35 años de tradición familiar. Cortes frescos y packs parrilleros con delivery a Curicó, Molina y Lontué.">
+  <meta property="og:image"       content="https://www.carneslachepita.cl/assets/mascota.jpg">
+
+  <!-- Preconnect to speed up font loading -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Fonts & Material Symbols -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  
+  <!-- Structured Schema for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ButcherShop",
+      "name": "Carnes La Chepita",
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCaU-weSGMTxW4DTD_8EzOwea_xYthnL-ixRvB8AnjnnEBiBC4D57EDxi9WIyCF2tp-pWMYLgMFeA62h70R-nuyPILFUhmssQeW9Cl2vqnvWUqOtuLlQlr71EPt6IMnFhaQ1fQrdpMnLPcJ2xM_IgQziPUh-Y3PskMb2sPQT399adv9gGV7Nca8mcXzT3wTRDKfISU1amcLwU5XgdTY7U2Vh9dIHdn45Vk_wVUcc5TJ9OBip74K-1hnOxbyzPMbqk_Z-7LzZMMy7nQ",
+      "url": "https://www.carneslachepita.cl",
+      "telephone": "+56954869712",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. 7 de Abril 2070, Lontué",
+        "addressLocality": "Molina",
+        "addressRegion": "Maule",
+        "addressCountry": "CL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -35.1158,
+        "longitude": -71.2828
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "20:00"
+      }
+    }
+  </script>
+
+  <!-- Tailwind Theme Customization -->
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#a5360d",        // Rojo Cárnico
+            "primary-light": "#d85a30",  // Rojo Vibrante
+            "secondary": "#855400",      // Amarillo Mostaza/Bronce
+            "secondary-light": "#ef9f27",// Amarillo Brillo
+            "background": "#fcf9f5",     // Bone White
+            "on-background": "#1c1c1a",  // Slate Charcoal
+            "outline": "#8c7169",
+            "outline-variant": "#e0c0b6",
+            "silver-skin": "#D3D1C7",
+            "slate-gray": "#2C2C2A",
+            "fresh-green": "#0F6E56",    // Éxito / Stock
+            "surface-dim": "#dcdad6",
+            "surface-container": "#f0edea",
+            "surface-container-lowest": "#ffffff"
+          },
+          fontFamily: {
+            display: ["Bebas Neue", "sans-serif"],
+            body: ["IBM Plex Sans", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin-mobile": "20px",
+            "margin-desktop": "48px",
+            "gutter": "16px"
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Styles for Editorial Brutalism & Interactive Elements -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      background-color: #fcf9f5;
+    }
+
+    /* Customize scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fcf9f5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #8c7169;
+      border: 3px solid #fcf9f5;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a5360d;
+    }
+
+    /* Brutalist solid borders and offset shadow style */
+    .brutalist-card {
+      border: 2px solid #1c1c1a;
+      box-shadow: 4px 4px 0px 0px #1c1c1a;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .brutalist-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px 0px #1c1c1a;
+    }
+    .brutalist-card:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px 0px #1c1c1a;
+    }
+
+    .brutalist-btn {
+      border: 2px solid #1c1c1a;
+      box-shadow: 3px 3px 0px 0px #1c1c1a;
+      transition: all 0.15s ease-out;
+    }
+    .brutalist-btn:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0px 0px #1c1c1a;
+    }
+    .brutalist-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0px 0px #1c1c1a;
+    }
+
+    /* Half-dashed separator lines */
+    .cut-dashed-border {
+      border-bottom: 2px dashed #8c7169;
+    }
+
+    /* Subtle texture overlays */
+    .noise-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+    }
+
+    /* Hide scrollbars for sliders and carousels */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Keyframe Animations */
+    @keyframes custom-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+    .animate-custom-pulse {
+      animation: custom-pulse 2s infinite ease-in-out;
+    }
+
+    @keyframes rotate-cow {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-8deg); }
+      75% { transform: rotate(8deg); }
+    }
+    .animate-cow {
+      animation: rotate-cow 3s infinite ease-in-out;
+    }
+
+    /* ── Material Symbols fill variant ── */
+    .font-fill-1 {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ── Mobile tap highlight removal ── */
+    button, a, [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    /* ── Floating mobile cart bar ── */
+    #mobile-cart-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 12px 20px;
+      background: rgba(252, 249, 245, 0.96);
+      backdrop-filter: blur(8px);
+      border-top: 2px solid #1c1c1a;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+    @media (min-width: 768px) {
+      #mobile-cart-bar { display: none; }
+    }
+
+    /* ── Fire burst on product click ── */
+    @keyframes fireBurst {
+      0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(var(--fx), var(--fy)) scale(0); opacity: 0; }
+    }
+    .fire-particle {
+      position: fixed;
+      border-radius: 50% 50% 30% 30%;
+      pointer-events: none;
+      z-index: 99998;
+      animation: fireBurst var(--fd, 0.55s) cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Active nav links */
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #a5360d;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* ── Transition: progress bar on top ── */
+    #nav-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #a5360d, #ef9f27);
+      z-index: 10000;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 8px rgba(165, 54, 13, 0.6);
+    }
+    #nav-progress.running {
+      opacity: 1;
+      width: 80%;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease;
+    }
+    #nav-progress.done {
+      opacity: 0;
+      width: 100%;
+      transition: width 0.15s ease, opacity 0.35s ease 0.1s;
+    }
+
+    /* ── Transition: catalog grid fade ── */
+    #catalog-container {
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    #catalog-container.fading {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    /* ── Transition: card stagger entrance ── */
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .card-enter {
+      animation: cardEnter 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* ── Transition: section scroll flash ── */
+    #section-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 9997;
+      pointer-events: none;
+      background: #fcf9f5;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+    #section-flash.show {
+      opacity: 0.45;
+    }
+
+    /* ── Fire Intro Splash ── */
+    #fire-intro {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: #0d0d0b;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.45s ease;
+    }
+    #fire-intro.out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #fire-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #fire-glow {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70%;
+      height: 220px;
+      background: radial-gradient(ellipse at center, rgba(255, 90, 10, 0.45) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: fireGlowPulse 0.25s ease-in-out infinite alternate;
+    }
+    @keyframes fireGlowPulse {
+      from { transform: translateX(-50%) scaleX(1);   opacity: 0.75; }
+      to   { transform: translateX(-50%) scaleX(1.08); opacity: 1; }
+    }
+    #fire-logo {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      text-shadow: 0 0 40px rgba(255, 120, 20, 0.9), 0 0 80px rgba(255, 60, 10, 0.5);
+      animation: logoBreath 0.4s ease-in-out infinite alternate;
+    }
+    @keyframes logoBreath {
+      from { transform: scale(1);    filter: brightness(1); }
+      to   { transform: scale(1.02); filter: brightness(1.15); }
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-body antialiased overflow-x-hidden">
+
+  <!-- Noise Background -->
+  <div class="noise-overlay fixed inset-0 z-[9999] pointer-events-none"></div>
+
+  <!-- Navigation transition elements -->
+  <div id="nav-progress"></div>
+  <div id="section-flash"></div>
+
+  <!-- Fire Intro Splash Screen -->
+  <div id="fire-intro">
+    <canvas id="fire-canvas"></canvas>
+    <div id="fire-glow"></div>
+    <div id="fire-logo">
+      <span style="font-family:'Bebas Neue',sans-serif; font-size:clamp(3rem,10vw,7rem); color:#fff; letter-spacing:-0.02em; line-height:1;">LA CHEPITA</span>
+      <span style="font-family:'IBM Plex Sans',sans-serif; font-size:0.7rem; color:#ef9f27; letter-spacing:0.3em; text-transform:uppercase; font-weight:600;">Desde 1990 &nbsp;·&nbsp; El mejor asado del Maule</span>
+    </div>
+  </div>
+
+  <!-- Header Section (Sticky) -->
+  <header class="fixed top-0 w-full z-40 bg-background/90 backdrop-blur-md border-b-2 border-on-background h-20 md:h-24 flex items-center transition-all duration-300">
+    <div class="max-w-7xl mx-auto w-full flex justify-between items-center px-margin-mobile md:px-margin-desktop">
+      
+      <!-- Logo Container -->
+      <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+
+        <!-- Circular brand logo: anillo rojo → anillo dorado → imagen -->
+        <div class="relative shrink-0 w-16 h-16 md:w-[4.75rem] md:h-[4.75rem] rounded-full
+                    shadow-[3px_3px_0px_0px_rgba(28,28,26,1)]
+                    group-hover:shadow-[4px_4px_0px_0px_rgba(28,28,26,1)]
+                    group-hover:scale-105
+                    transition-all duration-300">
+          <!-- Anillo exterior rojo -->
+          <div class="absolute inset-0 rounded-full bg-primary"></div>
+          <!-- Anillo interior dorado -->
+          <div class="absolute inset-[3px] rounded-full bg-secondary-light"></div>
+          <!-- Círculo negro + logo oficial -->
+          <div class="absolute inset-[6px] rounded-full overflow-hidden bg-black">
+            <img src="./assets/IMG_2599.jpg" alt="Logo La Chepita"
+                 class="w-full h-full object-cover"
+                 style="object-position: center center"
+                 loading="eager" fetchpriority="high">
+          </div>
+        </div>
+
+        <!-- Texto de marca -->
+        <div class="flex flex-col">
+          <span class="font-display text-2xl md:text-[1.75rem] tracking-tight text-primary leading-none">LA CHEPITA</span>
+          <span class="font-mono text-[8px] md:text-[9px] tracking-widest text-secondary font-bold uppercase leading-none mt-1">CARNICERÍA · DESDE 1990</span>
+        </div>
+
+      </div>
+
+      <!-- Desktop Nav Link Menu -->
+      <nav class="hidden md:flex gap-8 items-center font-display text-lg tracking-wider">
+        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#hero">Inicio</a>
+        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#productos">Catálogo</a>
+        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#nosotros">Nosotros</a>
+        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#zonas">Delivery</a>
+        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#testimonios">Clientes</a>
+      </nav>
+
+      <!-- Cart Button & Mobile Hamburger -->
+      <div class="flex items-center gap-3">
+        <!-- Floating Shopping Cart Trigger -->
+        <button onclick="toggleCart()" class="brutalist-btn bg-secondary-light text-on-background px-4 py-2.5 rounded font-display tracking-wider text-base flex items-center gap-2 relative">
+          <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
+          <span class="hidden sm:inline">MI PEDIDO</span>
+          <span id="cart-counter" class="bg-primary text-white text-xs font-sans font-bold w-5 h-5 rounded-full flex items-center justify-center border border-on-background">0</span>
+        </button>
+
+        <!-- Mobile Drawer Menu Trigger -->
+        <button onclick="toggleMobileMenu()" class="md:hidden brutalist-btn bg-white text-on-background p-2.5 rounded flex items-center justify-center">
+          <span id="menu-icon" class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Dropdown Navigation Menu -->
+  <div id="mobile-nav" class="fixed top-20 left-0 w-full bg-background border-b-2 border-on-background z-[35] flex flex-col items-center gap-4 py-6 shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:hidden transition-all duration-300 -translate-y-[150%] opacity-0 pointer-events-none">
+    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#hero">INICIO</a>
+    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#productos">PRODUCTOS</a>
+    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#nosotros">NOSOTROS</a>
+    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#zonas">DELIVERY</a>
+    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#testimonios">TESTIMONIOS</a>
+  </div>
+
+  <!-- Main Grid Layout -->
+  <main class="pt-20 md:pt-24 pb-24 md:pb-0">
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-[600px] md:h-[680px] flex items-center justify-center bg-on-background overflow-hidden" id="hero">
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img alt="Exhibición de carnicería premium en madera rústica" class="w-full h-full object-cover opacity-50 mix-blend-luminosity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArmZMJddQG1ER0_oKduQCU5fpVK2Y9uXzkfeLNqH13xARQyB7qkXjLeLjF0EFvfSDQWfQ2w9r50cvQe-uIpMQ3O48qYFZc9tC4GTQCMIQqpBJ96BfqdMvHP95QMaes8sYLazGuOpBpiF9i9ZXhV6Gi8486muO_nCLU4eqpV9EV8YgCXDGCbnsKOF2vCqNBMvFKckd4ViAwWV3iw8Gie-wnmrZQ62eUZnCfPFg6DjlcvBl6l_z5xmo8NjCpI4L2ez2oklIm6L5ALjw" loading="eager" fetchpriority="high" decoding="async">
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-t from-on-background via-on-background/60 to-transparent z-0"></div>
+
+      <!-- Main Headline Content -->
+      <div class="relative z-10 flex flex-col items-center text-center max-w-4xl px-margin-mobile md:px-margin-desktop gap-6">
+        <div class="inline-flex items-center gap-2 bg-primary/20 border border-primary-light/40 px-4 py-1.5 rounded-full backdrop-blur-md animate-custom-pulse">
+          <span class="material-symbols-outlined text-primary-light text-[18px] shrink-0 font-fill-1">local_fire_department</span>
+          <span class="font-mono text-xs text-white uppercase tracking-widest font-semibold">TRADICIÓN Y CALIDAD DESDE 1990</span>
+        </div>
+        
+        <h1 class="font-display text-[2rem] sm:text-5xl md:text-8xl text-white uppercase tracking-tight leading-none">
+          LA MEJOR CARNE DEL MAULE,<br><span class="text-secondary-light">DIRECTO A TU PUERTA</span>
+        </h1>
+        
+        <p class="text-white/80 font-sans text-base md:text-xl max-w-2xl leading-relaxed font-light">
+          Más de 35 años de tradición familiar. Elige tus cortes favoritos o packs parrilleros mensuales y los llevamos listos para cocinar en Curicó y Molina/Lontué.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
+          <a class="brutalist-card bg-primary text-white font-display text-xl md:text-2xl tracking-wider px-6 md:px-10 py-3 md:py-4 hover:bg-primary-light text-center" href="#productos">
+            VER EL CATÁLOGO
+          </a>
+          <a class="brutalist-card bg-transparent text-white border-2 border-white font-display text-xl md:text-2xl tracking-wider px-6 md:px-10 py-3 md:py-4 hover:bg-white/10 text-center" href="#zonas">
+            ZONAS DE DELIVERY
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Product Catalog -->
+    <section class="py-16 md:py-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto scroll-mt-20" id="productos">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-2">// PRODUCTOS FRESCOS</span>
+          <!-- El canvas se pega al fondo del texto con mix-blend-mode screen: negro = invisible, solo brilla el calor -->
+          <div class="relative">
+            <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Cortes &amp; Packs Parrilleros</h2>
+            <canvas id="ember-canvas" class="absolute bottom-0 left-0 w-full pointer-events-none"
+              style="height:42px; mix-blend-mode:screen;"></canvas>
+          </div>
+          <div class="w-24 h-1.5 bg-primary mt-2"></div>
+        </div>
+        
+        <!-- Category Filter Tabs (populated by JS from product data) -->
+        <div id="cat-tabs" class="flex gap-2 font-display text-base tracking-wider overflow-x-auto pb-2 shrink-0 no-scrollbar"></div>
+      </div>
+
+      <!-- Catalog Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="catalog-container">
+        <!-- Products will be generated dynamically by JavaScript -->
+      </div>
+    </section>
+
+    <!-- Banner "Diferenciadores" (Informational Bento) -->
+    <section class="py-12 bg-slate-gray text-white border-y-2 border-on-background px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Diff 1 -->
+        <div class="flex gap-4 items-start p-6 border-l-2 border-secondary-light bg-white/[0.02] rounded">
+          <span class="material-symbols-outlined text-secondary-light text-[36px] shrink-0 font-fill-1">delivery_dining</span>
+          <div>
+            <h3 class="font-display text-2xl tracking-wider uppercase mb-1">DELIVERY PROPIO</h3>
+            <p class="text-white/75 text-sm leading-relaxed">Repartimos en vehículos acondicionados para asegurar la cadena de frío. Despacho directo a tu hogar.</p>
+          </div>
+        </div>
+
+        <!-- Diff 2 -->
+        <div class="flex gap-4 items-start p-6 border-l-2 border-primary-light bg-white/[0.02] rounded">
+          <span class="material-symbols-outlined text-primary-light text-[36px] shrink-0 font-fill-1">verified</span>
+          <div>
+            <h3 class="font-display text-2xl tracking-wider uppercase mb-1">35 AÑOS DE CONFIANZA</h3>
+            <p class="text-white/75 text-sm leading-relaxed">Trayectoria familiar local. Conocemos a cada uno de nuestros clientes y seleccionamos solo la mejor calidad.</p>
+          </div>
+        </div>
+
+        <!-- Diff 3 -->
+        <div class="flex gap-4 items-start p-6 border-l-2 border-fresh-green bg-white/[0.02] rounded">
+          <span class="material-symbols-outlined text-fresh-green text-[36px] shrink-0 font-fill-1">workspace_premium</span>
+          <div>
+            <h3 class="font-display text-2xl tracking-wider uppercase mb-1">ESPECIALIDADES DEL MAULE</h3>
+            <p class="text-white/75 text-sm leading-relaxed">Cortes únicos difíciles de encontrar en cadenas: chunchules limpios, carpaccio de primer nivel y queso de cabeza artesanal.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Nosotros Section -->
+    <section class="py-16 md:py-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto scroll-mt-20" id="nosotros">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Story Column -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest block">// NUESTRA HISTORIA</span>
+          <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Más de 35 años uniendo a la mesa chilena</h2>
+          <div class="w-24 h-1.5 bg-primary rounded-full"></div>
+          
+          <p class="font-sans text-base md:text-lg leading-relaxed text-on-background/80">
+            Fundada en 1990 en la Región del Maule, **Carnes La Chepita** nació como una pequeña carnicería familiar dedicada a ofrecer cortes frescos y un trato cercano. Con el paso de las décadas, nos hemos consolidado como el punto de referencia parrillero en Curicó, Molina y Lontué.
+          </p>
+          
+          <div class="border-l-4 border-on-background pl-6 py-2 my-2 italic text-on-background/95 bg-surface-container/50 font-medium rounded-r">
+            "No vendemos carne procesada de cadena; trabajamos cortes seleccionados y preparados artesanalmente, garantizando frescura y sabor chileno tradicional en cada pedido."
+          </div>
+
+          <p class="font-sans text-base md:text-lg leading-relaxed text-on-background/80">
+            Hoy en día, combinamos nuestra atención de siempre en local con un sistema de delivery moderno y personalizado. Nuestra simpática mascota, **"La Vaquita"**, representa la alegría, el sabor y el cariño que ponemos en cada asado o cena familiar de nuestros vecinos.
+          </p>
+        </div>
+
+        <!-- Visual / Mascot Column -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="brutalist-card bg-surface-container w-full max-w-sm flex flex-col overflow-hidden">
+            <!-- Imagen mascota full-width -->
+            <div class="w-full overflow-hidden border-b-2 border-on-background">
+              <img src="./assets/mascota.jpg" alt="La Vaquita La Chepita" class="w-full h-auto object-cover transition-transform duration-700 hover:scale-105" loading="lazy" decoding="async">
+            </div>
+
+            <!-- Info bajo la imagen -->
+            <div class="p-6 flex flex-col items-center text-center gap-2">
+              <h3 class="font-display text-3xl uppercase text-primary leading-none">¡Venga a la Segura!</h3>
+              <span class="font-mono text-[10px] text-on-background/70 font-semibold uppercase tracking-widest">Mascota Oficial de la Casa</span>
+              <p class="text-sm text-on-background/80 leading-relaxed font-sans mt-1">
+                Síguenos en nuestro Instagram <a href="https://instagram.com/carneslachepita" target="_blank" class="text-primary-light font-bold hover:underline">@carneslachepita</a> para ver a nuestra vaquita en reels, recetas e imperdibles ofertas semanales.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Zonas de Despacho & Delivery -->
+    <section class="py-16 md:py-24 bg-surface-container border-y-2 border-on-background scroll-mt-20" id="zonas">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="text-center mb-16">
+          <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest block mb-2">// COBERTURA COMPLETA</span>
+          <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Comunas de Reparto &amp; Contactos</h2>
+          <div class="w-24 h-1.5 bg-primary mx-auto mt-2"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          
+          <!-- Zone 1: Curico -->
+          <div class="brutalist-card bg-background p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-6">
+                <span class="font-display text-2xl md:text-3xl uppercase text-primary tracking-wider">SECTOR CURICÓ</span>
+                <span class="bg-primary-light/10 text-primary border border-primary/20 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase shrink-0">DESPACHO REGULAR</span>
+              </div>
+              <p class="font-sans text-on-background/80 text-sm leading-relaxed mb-6">
+                Llegamos a todo el radio urbano de Curicó. Los pedidos se coordinan y despachan mediante nuestro WhatsApp dedicado.
+              </p>
+              
+              <!-- Contact Details -->
+              <div class="space-y-3 font-sans text-sm mb-8">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary font-fill-1 text-[20px]">call</span>
+                  <span class="font-bold text-on-background">WhatsApp Curicó:</span>
+                  <a href="https://wa.me/56954869712" target="_blank" class="text-primary-light hover:underline font-mono font-bold">+56 9 5486 9712</a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary font-fill-1 text-[20px]">schedule</span>
+                  <span class="font-bold text-on-background">Horario de Reparto:</span>
+                  <span class="text-on-background/85">Lunes a Sábado de 10:00 a 19:30</span>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/56954869712" target="_blank" class="brutalist-btn bg-fresh-green text-white font-display text-xl tracking-wider py-3.5 text-center flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[20px] font-fill-1">chat</span> ESCRIBIR A WHATSAPP
+            </a>
+          </div>
+
+          <!-- Zone 2: Molina / Lontue -->
+          <div class="brutalist-card bg-background p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-start justify-between gap-2 mb-6">
+                <span class="font-display text-2xl md:text-3xl uppercase text-secondary tracking-wider">MOLINA &amp; LONTUÉ</span>
+                <span class="bg-secondary-light/10 text-secondary border border-secondary/20 px-3 py-1 rounded-full text-xs font-mono font-semibold uppercase shrink-0">SECTOR LOCAL</span>
+              </div>
+              <p class="font-sans text-on-background/80 text-sm leading-relaxed mb-6">
+                Envíos express en Molina, Lontué y sectores aledaños. Puedes coordinar tu retiro directo en nuestro local en Lontué.
+              </p>
+              
+              <!-- Contact Details -->
+              <div class="space-y-3 font-sans text-sm mb-8">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary font-fill-1 text-[20px]">call</span>
+                  <span class="font-bold text-on-background">WhatsApp Molina/Lontué:</span>
+                  <a href="https://wa.me/56938841626" target="_blank" class="text-primary-light hover:underline font-mono font-bold">+56 9 3884 1626</a>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary font-fill-1 text-[20px]">location_on</span>
+                  <span class="font-bold text-on-background">Dirección Local:</span>
+                  <span class="text-on-background/85">Av. 7 de Abril 2070, Lontué</span>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://wa.me/56938841626" target="_blank" class="brutalist-btn bg-fresh-green text-white font-display text-xl tracking-wider py-3.5 text-center flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[20px] font-fill-1">chat</span> ESCRIBIR A WHATSAPP
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials (Social Proof) Section -->
+    <section class="py-16 md:py-24 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop scroll-mt-20" id="testimonios">
+      <div class="text-center mb-16">
+        <span class="font-mono text-xs text-secondary font-bold uppercase tracking-widest block mb-2">// TESTIMONIOS DE CLIENTES</span>
+        <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight">Voces de Nuestra Comunidad</h2>
+        <div class="w-24 h-1.5 bg-primary mx-auto mt-2"></div>
+      </div>
+
+      <!-- Testimonial Slider Grid -->
+      <div class="relative max-w-4xl mx-auto">
+        <!-- Inner wrapper -->
+        <div class="overflow-hidden no-scrollbar" id="carousel-outer">
+          <div class="flex transition-transform duration-500 ease-out" id="carousel-track">
+            
+            <!-- Slide 1 -->
+            <div class="w-full shrink-0 px-4">
+              <div class="brutalist-card bg-white p-8 md:p-12 relative">
+                <span class="absolute top-4 left-6 font-display text-[120px] text-silver-skin/25 leading-none select-none pointer-events-none">“</span>
+                <div class="flex text-secondary-light gap-0.5 mb-6">
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                </div>
+                <blockquote class="text-on-background font-sans text-base md:text-xl leading-relaxed mb-6 font-light">
+                  "El **Pack Familiar** salvó las comidas de nuestro mes completo. Las carnes son súper frescas, vienen muy bien selladas y el delivery llegó a la hora acordada en Curicó. Definitivamente volveremos a comprar."
+                </blockquote>
+                <div class="flex items-center gap-4 border-t-2 border-silver-skin/30 pt-6">
+                  <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center font-display text-xl text-primary font-bold">
+                    ME
+                  </div>
+                  <div>
+                    <h4 class="font-display text-lg tracking-wide uppercase leading-none text-on-background">MARÍA ELENA FUENTES</h4>
+                    <span class="font-mono text-[10px] text-on-background/60 uppercase">Cliente Habitual · Curicó</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="w-full shrink-0 px-4">
+              <div class="brutalist-card bg-white p-8 md:p-12 relative">
+                <span class="absolute top-4 left-6 font-display text-[120px] text-silver-skin/25 leading-none select-none pointer-events-none">“</span>
+                <div class="flex text-secondary-light gap-0.5 mb-6">
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                </div>
+                <blockquote class="text-on-background font-sans text-base md:text-xl leading-relaxed mb-6 font-light">
+                  "Los **Chunchules Frescos** de La Chepita son espectaculares. En serio, no hay carnicería ni supermercado en la zona que los entregue tan limpios y listos para tirar a la parrilla. Un siete la atención."
+                </blockquote>
+                <div class="flex items-center gap-4 border-t-2 border-silver-skin/30 pt-6">
+                  <div class="w-12 h-12 bg-secondary/10 border border-secondary/20 rounded-full flex items-center justify-center font-display text-xl text-secondary font-bold">
+                    JP
+                  </div>
+                  <div>
+                    <h4 class="font-display text-lg tracking-wide uppercase leading-none text-on-background">JUAN PABLO RIQUELME</h4>
+                    <span class="font-mono text-[10px] text-on-background/60 uppercase">Cliente Parrillero · Lontué</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="w-full shrink-0 px-4">
+              <div class="brutalist-card bg-white p-8 md:p-12 relative">
+                <span class="absolute top-4 left-6 font-display text-[120px] text-silver-skin/25 leading-none select-none pointer-events-none">“</span>
+                <div class="flex text-secondary-light gap-0.5 mb-6">
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                  <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
+                </div>
+                <blockquote class="text-on-background font-sans text-base md:text-xl leading-relaxed mb-6 font-light">
+                  "Siempre armamos el tercer tiempo de la liga amateur con el **Pack Pichanguero**. Trae de todo para el picoteo después de jugar. Además, es un orgullo comprarle a una marca del Maule con tanta historia."
+                </blockquote>
+                <div class="flex items-center gap-4 border-t-2 border-silver-skin/30 pt-6">
+                  <div class="w-12 h-12 bg-primary-light/10 border border-primary-light/20 rounded-full flex items-center justify-center font-display text-xl text-primary-light font-bold">
+                    CS
+                  </div>
+                  <div>
+                    <h4 class="font-display text-lg tracking-wide uppercase leading-none text-on-background">CARLOS SOTO GÓMEZ</h4>
+                    <span class="font-mono text-[10px] text-on-background/60 uppercase">Deportista Amateur · Molina</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-center gap-4 mt-8">
+          <button onclick="prevSlide()" class="brutalist-btn bg-white hover:bg-surface-container w-12 h-12 rounded-full flex items-center justify-center text-on-background shrink-0">
+            <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+          </button>
+          <button onclick="nextSlide()" class="brutalist-btn bg-white hover:bg-surface-container w-12 h-12 rounded-full flex items-center justify-center text-on-background shrink-0">
+            <span class="material-symbols-outlined text-[24px]">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Section -->
+  <footer class="bg-slate-gray border-t-4 border-on-background text-white pt-16 pb-8 px-margin-mobile md:px-margin-desktop">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 border-b-2 border-white/10 pb-12">
+      
+      <!-- Footer Brand Column -->
+      <div class="md:col-span-4 flex flex-col gap-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 relative bg-white border-2 border-on-background rounded-full flex items-center justify-center p-1 overflow-hidden shrink-0 shadow-[2px_2px_0px_0px_rgba(28,28,26,1)]">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaU-weSGMTxW4DTD_8EzOwea_xYthnL-ixRvB8AnjnnEBiBC4D57EDxi9WIyCF2tp-pWMYLgMFeA62h70R-nuyPILFUhmssQeW9Cl2vqnvWUqOtuLlQlr71EPt6IMnFhaQ1fQrdpMnLPcJ2xM_IgQziPUh-Y3PskMb2sPQT399adv9gGV7Nca8mcXzT3wTRDKfISU1amcLwU5XgdTY7U2Vh9dIHdn45Vk_wVUcc5TJ9OBip74K-1hnOxbyzPMbqk_Z-7LzZMMy7nQ" alt="Vaquita La Chepita Footer" class="w-full h-full object-contain" loading="lazy" decoding="async">
+          </div>
+          <span class="font-display text-3xl tracking-tight text-white leading-none">CARNES LA CHEPITA</span>
+        </div>
+        <p class="text-white/70 font-sans text-sm leading-relaxed max-w-sm">
+          Llevamos más de 35 años sirviendo con orgullo cortes de calidad de la zona parrillera del Maule. Delivery a tu mesa en Molina, Lontué y Curicó.
+        </p>
+        <div class="flex gap-3">
+          <a href="https://instagram.com/carneslachepita" target="_blank" class="brutalist-btn bg-white text-on-background w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary-light transition-colors shrink-0">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" class="w-5 h-5" alt="Instagram">
+          </a>
+          <a href="https://facebook.com/LachepitaCarnes" target="_blank" class="brutalist-btn bg-white text-on-background w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary-light transition-colors shrink-0">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg" class="w-5 h-5" alt="Facebook">
+          </a>
+          <a href="https://tiktok.com" target="_blank" class="brutalist-btn bg-white text-on-background w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary-light transition-colors shrink-0">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/tiktok.svg" class="w-5 h-5" alt="TikTok">
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="md:col-span-2 flex flex-col gap-4 font-sans text-sm">
+        <h4 class="font-display text-xl tracking-wider text-secondary-light uppercase">Navegación</h4>
+        <a href="#hero" class="text-white/70 hover:text-white transition-colors">Inicio</a>
+        <a href="#productos" class="text-white/70 hover:text-white transition-colors">Ver Catálogo</a>
+        <a href="#nosotros" class="text-white/70 hover:text-white transition-colors">Nuestra Historia</a>
+        <a href="#zonas" class="text-white/70 hover:text-white transition-colors">Zonas &amp; Contactos</a>
+      </div>
+
+      <!-- Schedule -->
+      <div class="md:col-span-3 flex flex-col gap-4 font-sans text-sm">
+        <h4 class="font-display text-xl tracking-wider text-secondary-light uppercase">Horario de Atención</h4>
+        <p class="text-white/70 leading-relaxed">
+          <span class="font-bold text-white block">Lunes a Sábado:</span>
+          09:00 - 20:00 hrs
+        </p>
+        <p class="text-white/70 leading-relaxed">
+          <span class="font-bold text-white block">Domingos:</span>
+          Cerrado (Familia y Asado)
+        </p>
+      </div>
+
+      <!-- Address / Map -->
+      <div class="md:col-span-3 flex flex-col gap-4 font-sans text-sm">
+        <h4 class="font-display text-xl tracking-wider text-secondary-light uppercase">Ubicación</h4>
+        <div class="flex items-start gap-2 text-white/70">
+          <span class="material-symbols-outlined text-[20px] text-primary-light shrink-0 font-fill-1">location_on</span>
+          <p>
+            Av. 7 de Abril 2070,<br>
+            Lontué, Molina, Región del Maule,<br>
+            Chile
+          </p>
+        </div>
+        <a href="https://maps.google.com/?q=Av.+7+de+Abril+2070,+Lontue" target="_blank" class="text-primary-light hover:underline font-bold text-xs uppercase tracking-widest mt-2 flex items-center gap-1">
+          VER EN GOOGLE MAPS <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono text-white/50">
+      <p>&copy; 2026 Carnes La Chepita. Todos los derechos reservados.</p>
+      <p>Diseño Web &amp; Conversión por <a href="https://hg-growthlab.cl" target="_blank" class="text-white/75 hover:text-white underline">HG Growth Lab</a></p>
+    </div>
+  </footer>
+
+  <!-- Mobile Floating Cart Bar -->
+  <div id="mobile-cart-bar">
+    <button onclick="toggleCart()" class="brutalist-btn w-full bg-primary text-white font-display text-xl tracking-wider py-3.5 flex items-center justify-center gap-3">
+      <span class="material-symbols-outlined text-[22px]">shopping_cart</span>
+      HACER PEDIDO
+      <span id="cart-counter-mobile" class="bg-white text-primary text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border border-primary">0</span>
+    </button>
+  </div>
+
+  <!-- Shopping Cart Sidebar (Drawer Slide-In) -->
+  <div id="cart-drawer" class="fixed inset-0 z-[100] pointer-events-none transition-all duration-300 opacity-0">
+    <!-- Backdrop Blur overlay -->
+    <div onclick="toggleCart()" class="absolute inset-0 bg-on-background/60 backdrop-blur-sm cursor-pointer" id="cart-backdrop"></div>
+
+    <!-- Drawer Panel -->
+    <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-background border-l-4 border-on-background shadow-2xl flex flex-col justify-between transition-transform duration-300 translate-x-full" id="cart-panel">
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b-2 border-on-background flex justify-between items-center bg-surface-container">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[28px]">shopping_basket</span>
+          <h3 class="font-display text-3xl uppercase tracking-wider text-on-background">Tu Pedido</h3>
+        </div>
+        <button onclick="toggleCart()" class="brutalist-btn bg-white hover:bg-surface-dim p-2 rounded flex items-center justify-center">
+          <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+      </div>
+
+      <!-- Drawer Scrollable List -->
+      <div class="p-6 overflow-y-auto flex-grow flex flex-col gap-4 no-scrollbar" id="cart-items-container">
+        <!-- Will be dynamically populated by JS -->
+      </div>
+
+      <!-- Drawer Checkout Form & Total -->
+      <div class="p-6 border-t-2 border-on-background bg-surface-container flex flex-col gap-4">
+        
+        <!-- Totals summary -->
+        <div class="space-y-2 font-sans text-sm">
+          <div class="flex justify-between text-on-background/70">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" class="font-mono font-bold">$0</span>
+          </div>
+          <div class="flex justify-between text-on-background/70">
+            <span>Costo de Despacho:</span>
+            <span id="cart-shipping" class="font-mono text-fresh-green font-bold">¡GRATIS!</span>
+          </div>
+          <div class="flex justify-between text-on-background text-lg border-t-2 border-silver-skin/30 pt-3 font-display tracking-wide uppercase font-bold">
+            <span>Total estimado:</span>
+            <span id="cart-total" class="font-mono text-primary">$0</span>
+          </div>
+        </div>
+
+        <!-- Checkout Fields Form -->
+        <div class="space-y-3 font-sans text-xs">
+          <!-- Client name -->
+          <div>
+            <label class="block font-bold text-on-background uppercase tracking-widest mb-1" for="client-name">Nombre Completo *</label>
+            <input type="text" id="client-name" required class="w-full border-2 border-on-background rounded p-2 focus:ring-0 focus:border-primary text-sm font-sans" placeholder="Ej: Juan Pérez">
+          </div>
+          
+          <!-- Client Address -->
+          <div>
+            <label class="block font-bold text-on-background uppercase tracking-widest mb-1" for="client-address">Dirección de Despacho *</label>
+            <input type="text" id="client-address" required class="w-full border-2 border-on-background rounded p-2 focus:ring-0 focus:border-primary text-sm font-sans" placeholder="Calle, número, departamento">
+          </div>
+
+          <!-- Comuna Router Selector -->
+          <div>
+            <label class="block font-bold text-on-background uppercase tracking-widest mb-1" for="client-city">Comuna / Ciudad *</label>
+            <select id="client-city" required class="w-full border-2 border-on-background rounded p-2 focus:ring-0 focus:border-primary text-sm font-sans">
+              <option value="" disabled selected>Selecciona tu ciudad...</option>
+              <option value="Curicó">Curicó</option>
+              <option value="Molina">Molina</option>
+              <option value="Lontué">Lontué</option>
+            </select>
+          </div>
+        </div>
+
+        <button onclick="sendOrderToWhatsApp()" class="brutalist-btn w-full bg-fresh-green hover:bg-emerald-700 text-white font-display text-2xl tracking-wider py-4 text-center flex items-center justify-center gap-3">
+          <span class="material-symbols-outlined text-[24px] font-fill-1">chat</span> ENVIAR PEDIDO POR WHATSAPP
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SVG heat-wave filter for the heading text shimmer -->
+  <svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <defs>
+      <filter id="heat-wave" x="-5%" y="-10%" width="110%" height="130%">
+        <feTurbulence type="turbulence" baseFrequency="0.013 0.04" numOctaves="2" result="wave">
+          <animate attributeName="baseFrequency"
+            values="0.011 0.037;0.016 0.046;0.011 0.037"
+            dur="3.5s" repeatCount="indefinite"/>
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="wave" scale="3"
+          xChannelSelector="R" yChannelSelector="G"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- Main JavaScript File -->
+  <script>
+    // ── Fire Intro Splash ──
+    (function () {
+      const intro  = document.getElementById("fire-intro");
+      const canvas = document.getElementById("fire-canvas");
+      const ctx    = canvas.getContext("2d");
+      let animId;
+
+      canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      function mkParticle(seedY) {
+        const spread = Math.min(window.innerWidth * 0.85, 900);
+        const cx     = window.innerWidth / 2;
+        const p = {
+          x:      cx + (Math.random() - 0.5) * spread,
+          y:      window.innerHeight + Math.random() * 60,
+          size:   Math.random() * 38 + 14,
+          speed:  Math.random() * 4.5 + 2,
+          alpha:  Math.random() * 0.65 + 0.35,
+          decay:  Math.random() * 0.009 + 0.005,
+          angle:  Math.random() * Math.PI * 2,
+          wiggle: (Math.random() - 0.5) * 0.09
+        };
+        if (seedY !== undefined) p.y -= seedY;
+        return p;
+      }
+
+      const isMobile = window.innerWidth < 768;
+      const particles = Array.from({ length: isMobile ? 90 : 220 }, (_, i) =>
+        mkParticle(Math.random() * window.innerHeight * 0.65)
+      );
+
+      function draw() {
+        ctx.fillStyle = "rgba(13,13,11,0.22)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+          g.addColorStop(0,    `rgba(255,225,70,${p.alpha})`);
+          g.addColorStop(0.28, `rgba(255,110,18,${p.alpha * 0.88})`);
+          g.addColorStop(0.65, `rgba(200,35,5,${p.alpha * 0.5})`);
+          g.addColorStop(1,    `rgba(80,5,0,0)`);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = g;
+          ctx.fill();
+
+          p.y     -= p.speed;
+          p.angle += p.wiggle;
+          p.x     += Math.sin(p.angle) * 1.3;
+          p.size  *= 0.984;
+          p.alpha -= p.decay;
+
+          if (p.alpha <= 0 || p.size < 2) particles[i] = mkParticle();
+        }
+        animId = requestAnimationFrame(draw);
+      }
+
+      draw();
+
+      // Bloquear scroll mientras el fuego está activo
+      document.documentElement.style.overflow = "hidden";
+
+      // Desaparece a los 2 segundos
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        intro.classList.add("out");
+        setTimeout(() => {
+          cancelAnimationFrame(animId);
+          intro.remove();
+          document.documentElement.style.overflow = "";
+        }, 460);
+      }, 2000);
+    })();
+
+    // ── Catalog Definition (datos semilla — migrados al administrador en admin.html) ──
+    const SEED_PRODUCTS = [
+      {
+        id: "pack-familiar",
+        title: "Pack Familiar Mensual",
+        category: "packs",
+        price: 29990,
+        unit: "pack",
+        description: "Solución integral de proteínas para el mes. Cortes seleccionados de vacuno de cocina, chuletas de cerdo y trutros de pollo.",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCMnAMTXqhWnvrntPT5QEWNO_1BisGFJ3KOnCwsCz91AdgjJBpgTKyHYGQWT641fMC9bTQViQn0E2KqWtZo3sn7CN65kRk-U4sJCJQkDY3nbr3wAZtI8W0YV4bsgsEVosxsJE-RMHn37TCchKsf8xx_M5msFn6XOz2I7BNtyJq572iedJAvhhV6M_Sy6YUG-JIUR2En7URi5WMIVOL8s_Dz2DoJlpR9qna1xglk4de365tVyojqH3X2pL7tCJSbPRhCPPwOT2kXzb8",
+        featured: true,
+        tag: "OFERTA RECOMENDADA",
+        visible: true
+      },
+      {
+        id: "pack-parrillero",
+        title: "Pack Parrillero Premium",
+        category: "packs",
+        price: 34990,
+        unit: "pack",
+        description: "Diseñado para asados de 5 a 6 personas. Incluye Lomo Liso o Vetado, pechuga de pollo deshuesada, longanizas artesanales de Molina y carbón.",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBb3joYehOPQfGhZoto1O4Ox0g91j43aTPnRoo1NaREFCez-xGsGjbidxE44Bb1UyKwrykQhBR8bKPwDNF3c4wRdrjw5xcp5j2RGlzoe4IGm3Uwi0E4tGny_DMLszMRE9url-GxFfiOvCG4ucRnwI-e1DikxD_GZ7wGyuKitRO_km6lmPwcN19zwiwWcGZamimtE49bYeDWE-h2WmqevXrpJ5ZVFf7v8FBQOg2SK_U6s3ZxbuR7flZzlGgTTZEMR6Kkw2Zm-t4MLYY",
+        featured: true,
+        tag: "MÁS VENDIDO",
+        visible: true
+      },
+      {
+        id: "pack-pichanguero",
+        title: "Pack Pichanguero Fútbol",
+        category: "packs",
+        price: 19990,
+        unit: "pack",
+        description: "Ideal para el picoteo y el tercer tiempo de fútbol amateur. Incluye chunchules listos para dorar, pulpa de cerdo picada y longanizones.",
+        image: "./assets/pichanguero.png",
+        featured: true,
+        tag: "TRADICIÓN CHILENA",
+        visible: true
+      },
+      {
+        id: "chunchules",
+        title: "Chunchules Frescos",
+        category: "cortes",
+        price: 12990,
+        unit: "kg",
+        description: "La especialidad más famosa de La Chepita. Frescos, limpios y cortados listos para asar. Textura crujiente garantizada.",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCjczSGCo6HdYVhu7XGFWGQOOx2jRzibhQBStL6BoucAn87RDuqjRE-Wss83ApGbb9rr1hjl7PG2Oa3bGi1WDMJasJKu5PhrSKJ5TGRvk3w8GARlw3C0U_kvcrFTEu0AjYaxxecAAw5NyVCbWD-ft7z2zsg7nGt-oD38Qdg_-QstU6IMbD0OWSeBuIplaYWO-Qj-HDE4Bkdyf2XQ-1JPCJjgysFBAo-9YoZrZutrN6nlnECtLhAsoEXeCr0Y_C46kzqEYJxewe1uPg",
+        featured: false,
+        tag: "NUESTRA FIRMA",
+        visible: true
+      },
+      {
+        id: "carpaccio",
+        title: "Carpaccio de Vacuno",
+        category: "cortes",
+        price: 8990,
+        unit: "porción",
+        description: "Corte extrafino de lomo seleccionado. Listo para emplatar y aderezar al estilo tradicional gourmet.",
+        image: "./assets/carpaccio.png",
+        featured: false,
+        tag: "EXCLUSIVO",
+        visible: true
+      },
+      {
+        id: "queso-cabeza",
+        title: "Queso de Cabeza Artesanal",
+        category: "cortes",
+        price: 5990,
+        unit: "500g",
+        description: "Receta tradicional de la casa con condimentos chilenos. Textura perfecta y sabor criollo tradicional.",
+        image: "./assets/queso_cabeza.png",
+        featured: false,
+        tag: "ARTESANAL",
+        visible: true
+      },
+      {
+        id: "hamburguesas",
+        title: "Hamburguesas Artesanales",
+        category: "cortes",
+        price: 7990,
+        unit: "pack (6u)",
+        description: "Hamburguesas 100% de carne de vacuno Chepita, sazonadas en local. Gruesas, extra jugosas y envasadas al vacío.",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAFnLoTB6PuhbE7Xfq0DZ2vpbfhO5gRHCTfVtdy6ZA3kloYZ4ayVYDgFYs_SDhID7SHx0VwLE2lcuYg-SVTvBhC_Bv05ZAB7MWREJamXQnI16y0ihUVK2D2Q7Lx2uE1wqi-9kbb1uw5vyuWi5-gxiFpx3RjqAR-cq8ZvhXXhXyR7MOdzylmsv-VzYIvtSnC57RreeenxO3C0n_Ow-fZNzvySf-V4IUteMX-EyTMnGOjyRFKqelh_Dk5DtJuHtfXOdOyb2fQwZBakhM",
+        featured: false,
+        tag: "LISTAS PARA LA PLANCHA",
+        visible: true
+      },
+      {
+        id: "vacuno-kilo",
+        title: "Cortes de Vacuno al Kilo",
+        category: "cortes",
+        price: 11990,
+        unit: "kg",
+        description: "Cortes a elección según disponibilidad (Lomo Vetado, Abastero, Asado Carnicero). Seleccionados y porcionados a tu gusto.",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBGUuARVAt2oupFtK1S5SpPxTlt1XoKsdlSLofnTdn9eu0j56tCjidBVNaNhwCabqv2fuAa7O_F4kDmGvFWVB0S1-I4enqa9-ssztLwtn6fborzYLGEcjV3timpNrjGsrV605hP-GrfFV4n1Pik4fLm8xeYa8h4sOAK8pc15924c3ovvm63PcXJSaVp4WzrrxZ2EBzmSsdKTwe9YDsRXjJ_V7YBTlnZYTc-6ROkVSjphAnjZCe5ggOcLEWkWtEgnnK0PlqikkqaWCI",
+        featured: false,
+        tag: "FRESCO AL DÍA",
+        visible: true
+      }
+    ];
+
+    const CATEGORY_LABELS = {
+      packs:     'Packs Convenientes',
+      cortes:    'Cortes & Especialidades',
+      vacuno:    'Vacuno',
+      cerdo:     'Cerdo',
+      pollo:     'Pollo',
+      embutidos: 'Embutidos',
+      ofertas:   'Ofertas',
+    };
+
+    let products = [];
+    let currentCategory = 'all';
+
+    // Carga productos desde localStorage; si está vacío usa los datos semilla
+    function loadProducts() {
+      try {
+        const stored = localStorage.getItem('chepita_products');
+        if (stored) {
+          products = JSON.parse(stored);
+        } else {
+          products = SEED_PRODUCTS;
+          localStorage.setItem('chepita_products', JSON.stringify(products));
+        }
+      } catch(e) {
+        products = SEED_PRODUCTS;
+      }
+    }
+
+    // Construye los botones de categoría dinámicamente según los productos visibles
+    function renderCategoryTabs() {
+      const cats = [...new Set(products.filter(p => p.visible !== false).map(p => p.category))];
+      const container = document.getElementById('cat-tabs');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const makeBtn = (cat, label, active) => {
+        const btn = document.createElement('button');
+        btn.id = `btn-cat-${cat}`;
+        btn.dataset.cat = cat;
+        btn.className = active
+          ? 'brutalist-btn bg-primary text-white px-5 py-2 rounded shrink-0'
+          : 'brutalist-btn bg-white text-on-background px-5 py-2 rounded shrink-0';
+        btn.textContent = label;
+        btn.onclick = () => filterCategory(cat);
+        return btn;
+      };
+
+      container.appendChild(makeBtn('all', 'Todos', true));
+      cats.forEach(cat => {
+        const label = CATEGORY_LABELS[cat] || (cat.charAt(0).toUpperCase() + cat.slice(1));
+        container.appendChild(makeBtn(cat, label, false));
+      });
+    }
+
+    // ── Cart State Management ──
+    let cart = [];
+
+    // Helper format numbers as CLP currency
+    function formatCLP(num) {
+      return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 }).format(num);
+    }
+
+    // ── Navigation progress bar ──
+    function runNavProgress() {
+      const bar = document.getElementById("nav-progress");
+      bar.className = "";
+      void bar.offsetWidth; // reflow para reiniciar transition
+      bar.classList.add("running");
+      setTimeout(() => {
+        bar.classList.remove("running");
+        bar.classList.add("done");
+        setTimeout(() => { bar.className = ""; }, 450);
+      }, 420);
+    }
+
+    // ── Section flash overlay ──
+    function flashSection() {
+      const flash = document.getElementById("section-flash");
+      flash.classList.add("show");
+      setTimeout(() => flash.classList.remove("show"), 150);
+    }
+
+    // Initialize Page Elements & Render Catalog
+    document.addEventListener("DOMContentLoaded", () => {
+      loadProducts();
+      renderCategoryTabs();
+      renderCatalog('all');
+      updateCartBadge();
+
+      // Interceptar todos los links de ancla para transición suave
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          const href = this.getAttribute("href");
+          if (href === "#") return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          runNavProgress();
+          flashSection();
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: "smooth" });
+          }, 100);
+        });
+      });
+
+      // ── Ember strip en la base del heading ──
+      (function initEmbers() {
+        const canvas = document.getElementById("ember-canvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        let W, H, rafId;
+
+        function resize() {
+          W = canvas.offsetWidth;
+          H = canvas.offsetHeight;
+          canvas.width  = W;
+          canvas.height = H;
+        }
+        resize();
+        window.addEventListener("resize", resize, { passive: true });
+
+        function mkEmber() {
+          return {
+            x:     Math.random() * W,
+            y:     H * (0.45 + Math.random() * 0.55), // solo mitad inferior
+            r:     0.8 + Math.random() * 2.4,
+            pulse: Math.random() * Math.PI * 2,
+            ps:    0.035 + Math.random() * 0.065,
+            alpha: 0.55 + Math.random() * 0.45,
+            temp:  0.25 + Math.random() * 0.75
+          };
+        }
+
+        function mkAsh() {
+          return {
+            x: Math.random() * W,
+            y: H + 2,
+            r: 0.5 + Math.random() * 1,
+            vy: 0.5 + Math.random() * 0.7,
+            vx: (Math.random() - 0.5) * 0.4,
+            alpha: 0.18 + Math.random() * 0.22
+          };
+        }
+
+        const embers = Array.from({ length: 48 }, mkEmber);
+        const ashes  = Array.from({ length: 18 }, () => {
+          const a = mkAsh(); a.y = Math.random() * H; return a;
+        });
+
+        function eColor(t, a) {
+          if (t > 0.8) return `rgba(255,252,200,${a})`;
+          if (t > 0.6) return `rgba(255,190,40,${a})`;
+          if (t > 0.4) return `rgba(255,105,12,${a})`;
+          if (t > 0.2) return `rgba(190,42,6,${a})`;
+          return             `rgba(85,15,2,${a})`;
+        }
+
+        function draw() {
+          // Fondo negro puro → con screen blend = completamente invisible
+          ctx.clearRect(0, 0, W, H);
+          ctx.fillStyle = "#000";
+          ctx.fillRect(0, 0, W, H);
+
+          // Glow difuso de calor en la franja inferior — se desvanece hacia arriba
+          const grd = ctx.createLinearGradient(0, H, 0, 0);
+          grd.addColorStop(0,    "rgba(230,85,10,0.55)");
+          grd.addColorStop(0.45, "rgba(160,40,5,0.18)");
+          grd.addColorStop(1,    "rgba(0,0,0,0)");
+          ctx.fillStyle = grd;
+          ctx.fillRect(0, 0, W, H);
+
+          // Cenizas subiendo
+          ashes.forEach((a, i) => {
+            ctx.beginPath();
+            ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(210,195,175,${a.alpha})`;
+            ctx.fill();
+            a.y -= a.vy; a.x += a.vx; a.alpha -= 0.004;
+            if (a.y < 0 || a.alpha <= 0) ashes[i] = mkAsh();
+          });
+
+          // Brasas pulsantes
+          embers.forEach((e, i) => {
+            e.pulse += e.ps;
+            const pf = 0.5 + 0.5 * Math.sin(e.pulse);
+            const ca = Math.min(1, e.alpha * pf);
+            const cr = e.r * (0.7 + 0.5 * Math.sin(e.pulse * 0.6));
+
+            // Halo radial — el negro del gradiente = invisible con screen
+            const g = ctx.createRadialGradient(e.x, e.y, 0, e.x, e.y, cr * 5);
+            g.addColorStop(0, eColor(e.temp, ca * 0.75));
+            g.addColorStop(1, "rgba(0,0,0,0)");
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, cr * 5, 0, Math.PI * 2);
+            ctx.fillStyle = g; ctx.fill();
+
+            // Núcleo
+            ctx.beginPath();
+            ctx.arc(e.x, e.y, cr, 0, Math.PI * 2);
+            ctx.fillStyle = eColor(e.temp, Math.min(1, ca * 1.7));
+            ctx.fill();
+
+            e.temp -= 0.00022;
+            if (e.temp < 0) { embers[i] = mkEmber(); embers[i].temp = Math.random() * 0.3; }
+          });
+
+          rafId = requestAnimationFrame(draw);
+        }
+
+        const obs = new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) { if (!rafId) draw(); }
+          else { cancelAnimationFrame(rafId); rafId = null; }
+        }, { threshold: 0.1 });
+        obs.observe(canvas);
+      })();
+
+      // Touch swipe para el carrusel de testimonios
+      const carouselOuter = document.getElementById("carousel-outer");
+      let touchStartX = 0;
+      carouselOuter.addEventListener("touchstart", e => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      carouselOuter.addEventListener("touchend", e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 48) dx < 0 ? nextSlide() : prevSlide();
+      }, { passive: true });
+    });
+
+    // Toggle Mobile Navigation
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobile-nav");
+      const icon = document.getElementById("menu-icon");
+      if (menu.classList.contains("-translate-y-[150%]")) {
+        menu.classList.remove("-translate-y-[150%]", "opacity-0", "pointer-events-none");
+        icon.innerText = "close";
+      } else {
+        menu.classList.add("-translate-y-[150%]", "opacity-0", "pointer-events-none");
+        icon.innerText = "menu";
+      }
+    }
+
+    // Render Catalog Items based on filter category
+    function renderCatalog(categoryFilter) {
+      const container = document.getElementById("catalog-container");
+      container.innerHTML = "";
+      
+      const filtered = products.filter(p =>
+        p.visible !== false && (categoryFilter === 'all' || p.category === categoryFilter)
+      );
+
+      filtered.forEach(p => {
+        const itemInCart = cart.find(item => item.id === p.id);
+        const qtyHtml = itemInCart
+          ? `<div class="flex items-center border-2 border-on-background rounded overflow-hidden shadow-[2px_2px_0px_0px_rgba(28,28,26,1)] bg-white text-sm">
+               <button onclick="decrementCartItem('${p.id}', event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">-</button>
+               <span class="px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
+               <button onclick="incrementCartItem('${p.id}', event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">+</button>
+             </div>`
+          : `<button onclick="addToCart('${p.id}', event)" class="brutalist-btn bg-primary text-white font-display text-base tracking-wider px-4 py-2.5 rounded flex items-center gap-1 uppercase min-h-[44px]">
+               <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Añadir
+             </button>`;
+
+        const card = document.createElement("article");
+        card.className = "brutalist-card bg-surface-container-lowest flex flex-col group h-full";
+        card.innerHTML = `
+          <div class="relative w-full aspect-square border-b-2 border-on-background overflow-hidden bg-surface-container select-none">
+            <img alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.image}" loading="lazy" decoding="async">
+            ${p.tag ? `<span class="absolute top-2 left-2 bg-secondary text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase">${p.tag}</span>` : ""}
+          </div>
+          <div class="p-4 flex flex-col flex-grow gap-2 relative">
+            <!-- Brutalist side bar accent -->
+            <div class="absolute left-0 top-0 bottom-0 w-[4px] ${['packs','ofertas'].includes(p.category) ? 'bg-primary' : p.category === 'pollo' ? 'bg-fresh-green' : 'bg-secondary'}"></div>
+            
+            <h3 class="font-display text-2xl text-on-background pl-2 leading-tight uppercase group-hover:text-primary transition-colors">${p.title}</h3>
+            <p class="text-on-background/70 font-sans text-xs pl-2 leading-relaxed flex-grow">${p.description}</p>
+            
+            <div class="cut-dashed-border pl-2 my-1"></div>
+
+            <div class="flex items-center justify-between pl-2 mt-auto pt-2 gap-2">
+              <div class="flex flex-col">
+                <span class="font-display text-2xl text-primary leading-none">${formatCLP(p.price)}</span>
+                <span class="font-sans text-[10px] text-on-background/60 mt-0.5 uppercase">POR ${p.unit}</span>
+              </div>
+              <div id="product-action-${p.id}">
+                ${qtyHtml}
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Filter categories tabs selection
+    function filterCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('#cat-tabs button').forEach(btn => {
+        btn.className = btn.dataset.cat === cat
+          ? 'brutalist-btn bg-primary text-white px-5 py-2 rounded shrink-0'
+          : 'brutalist-btn bg-white text-on-background px-5 py-2 rounded shrink-0';
+      });
+
+      const container = document.getElementById("catalog-container");
+      container.classList.add("fading");
+
+      setTimeout(() => {
+        renderCatalog(cat);
+        Array.from(container.children).forEach((card, i) => {
+          card.style.animationDelay = `${i * 55}ms`;
+          card.classList.add("card-enter");
+        });
+        container.classList.remove("fading");
+      }, 180);
+    }
+
+    // ── Cart Actions Logic ──
+
+    // Open/Close Cart Drawer
+    function toggleCart() {
+      const drawer = document.getElementById("cart-drawer");
+      const panel = document.getElementById("cart-panel");
+      
+      if (drawer.classList.contains("opacity-0")) {
+        // Open
+        drawer.classList.remove("opacity-0", "pointer-events-none");
+        setTimeout(() => {
+          panel.classList.remove("translate-x-full");
+        }, 50);
+        renderCart();
+      } else {
+        // Close
+        panel.classList.add("translate-x-full");
+        setTimeout(() => {
+          drawer.classList.add("opacity-0", "pointer-events-none");
+        }, 300);
+      }
+    }
+
+    // Update the Navbar indicator badge (header + mobile bar)
+    function updateCartBadge() {
+      const totalItems = cart.reduce((acc, curr) => acc + curr.qty, 0);
+      document.getElementById("cart-counter").innerText = totalItems;
+      const mobileCounter = document.getElementById("cart-counter-mobile");
+      if (mobileCounter) mobileCounter.innerText = totalItems;
+    }
+
+    // ── Helpers ──
+
+    function isCartOpen() {
+      return !document.getElementById("cart-drawer").classList.contains("opacity-0");
+    }
+
+    // Actualiza solo el botón de acción de UN producto (sin re-renderizar todo el catálogo)
+    function updateProductAction(productId) {
+      const wrap = document.getElementById(`product-action-${productId}`);
+      if (!wrap) return;
+      const itemInCart = cart.find(item => item.id === productId);
+      wrap.innerHTML = itemInCart
+        ? `<div class="flex items-center border-2 border-on-background rounded overflow-hidden shadow-[2px_2px_0px_0px_rgba(28,28,26,1)] bg-white text-sm">
+             <button onclick="decrementCartItem('${productId}',event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">-</button>
+             <span class="px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
+             <button onclick="incrementCartItem('${productId}',event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">+</button>
+           </div>`
+        : `<button onclick="addToCart('${productId}',event)" class="brutalist-btn bg-primary text-white font-display text-base tracking-wider px-4 py-2.5 rounded flex items-center gap-1 uppercase min-h-[44px]">
+             <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Añadir
+           </button>`;
+    }
+
+    // Llamitas de fuego en el punto de click
+    function spawnFireBurst(x, y) {
+      const colors = ["#ffd040","#ff9500","#ff5a00","#ff3d00","#ffb300","#ff6b00"];
+      for (let i = 0; i < 12; i++) {
+        const el  = document.createElement("div");
+        const sz  = 6 + Math.random() * 9;
+        const ang = (Math.random() - 0.5) * 1.6;
+        const d   = 28 + Math.random() * 55;
+        const fx  = Math.sin(ang) * d;
+        const fy  = -(Math.cos(ang) * d);
+        const dur = 0.85 + Math.random() * 0.6;
+
+        el.style.position   = "fixed";
+        el.style.left       = (x - sz / 2) + "px";
+        el.style.top        = (y - sz / 2) + "px";
+        el.style.width      = sz + "px";
+        el.style.height     = sz + "px";
+        el.style.borderRadius    = "50% 50% 30% 30%";
+        el.style.pointerEvents   = "none";
+        el.style.zIndex          = "99998";
+        el.style.background = `radial-gradient(circle at 40% 35%, rgba(255,255,180,.95) 0%, ${colors[i % colors.length]} 50%, transparent 100%)`;
+        el.style.animation  = `fireBurst ${dur}s cubic-bezier(0.2,0.8,0.4,1) forwards`;
+        el.style.setProperty("--fx", fx + "px");
+        el.style.setProperty("--fy", fy + "px");
+
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), dur * 1000 + 100);
+      }
+    }
+
+    // Add item to cart state
+    function addToCart(productId, event) {
+      if (event) event.stopPropagation();
+      const product = products.find(p => p.id === productId);
+      const existing = cart.find(item => item.id === productId);
+      if (existing) { existing.qty += 1; }
+      else { cart.push({ ...product, qty: 1 }); }
+
+      updateCartBadge();
+      updateProductAction(productId);
+      if (event) spawnFireBurst(event.clientX, event.clientY);
+      if (isCartOpen()) renderCart();
+    }
+
+    // Increase item qty in cart
+    function incrementCartItem(productId, event) {
+      if (event) event.stopPropagation();
+      const existing = cart.find(item => item.id === productId);
+      if (existing) existing.qty += 1;
+
+      updateCartBadge();
+      updateProductAction(productId);
+      if (event) spawnFireBurst(event.clientX, event.clientY);
+      if (isCartOpen()) renderCart();
+    }
+
+    // Decrease item qty in cart
+    function decrementCartItem(productId, event) {
+      if (event) event.stopPropagation();
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.qty -= 1;
+        if (existing.qty <= 0) cart = cart.filter(item => item.id !== productId);
+      }
+      updateCartBadge();
+      updateProductAction(productId);
+      if (isCartOpen()) renderCart();
+    }
+
+    // Remove item completely
+    function removeCartItem(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      updateCartBadge();
+      updateProductAction(productId);
+      renderCart();
+    }
+
+    // Render Cart items inside the drawer list
+    function renderCart() {
+      const container = document.getElementById("cart-items-container");
+      container.innerHTML = "";
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="flex-grow flex flex-col items-center justify-center text-center gap-4 py-16 opacity-75">
+            <span class="material-symbols-outlined text-[64px] text-silver-skin">shopping_cart</span>
+            <p class="font-display text-2xl uppercase text-on-background">Tu carrito está vacío</p>
+            <p class="font-sans text-xs text-on-background/70 max-w-xs leading-relaxed">Agrega productos desde nuestro catálogo para estructurar tu cotización.</p>
+          </div>
+        `;
+        document.getElementById("cart-subtotal").innerText = "$0";
+        document.getElementById("cart-total").innerText = "$0";
+        return;
+      }
+
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+
+        const row = document.createElement("div");
+        row.className = "border-2 border-on-background p-3.5 bg-white flex justify-between gap-3 relative shadow-[2px_2px_0px_0px_rgba(28,28,26,1)]";
+        row.innerHTML = `
+          <div class="absolute left-0 top-0 bottom-0 w-[3px] bg-primary"></div>
+          <div class="flex gap-3 items-center">
+            <div class="w-12 h-12 rounded border border-silver-skin overflow-hidden bg-surface-container shrink-0">
+              <img src="${item.image}" class="w-full h-full object-cover">
+            </div>
+            <div class="flex flex-col">
+              <h4 class="font-display text-lg tracking-wide uppercase leading-tight text-on-background pr-6">${item.title}</h4>
+              <span class="font-mono text-[10px] text-on-background/60">${formatCLP(item.price)} / ${item.unit}</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-end justify-between shrink-0">
+            <button onclick="removeCartItem('${item.id}')" class="text-on-background/40 hover:text-primary-light transition-colors p-1">
+              <span class="material-symbols-outlined text-[18px]">delete</span>
+            </button>
+            <div class="flex items-center gap-1.5 mt-2">
+              <div class="flex items-center border border-on-background rounded overflow-hidden text-xs bg-surface-container">
+                <button onclick="decrementCartItem('${item.id}')" class="px-2 py-0.5 hover:bg-surface-dim font-bold text-on-background">-</button>
+                <span class="px-2 py-0.5 font-mono font-bold text-on-background">${item.qty}</span>
+                <button onclick="incrementCartItem('${item.id}')" class="px-2 py-0.5 hover:bg-surface-dim font-bold text-on-background">+</button>
+              </div>
+              <span class="font-mono text-xs font-bold text-primary ml-1">${formatCLP(itemTotal)}</span>
+            </div>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+
+      document.getElementById("cart-subtotal").innerText = formatCLP(subtotal);
+      document.getElementById("cart-total").innerText = formatCLP(subtotal); // Free Shipping
+    }
+
+    // ── WhatsApp Order Compiler & City Router ──
+    function sendOrderToWhatsApp() {
+      if (cart.length === 0) {
+        alert("El carrito está vacío. Agrega algunos productos primero.");
+        return;
+      }
+
+      const clientName = document.getElementById("client-name").value.trim();
+      const clientAddress = document.getElementById("client-address").value.trim();
+      const clientCity = document.getElementById("client-city").value;
+
+      if (!clientName || !clientAddress || !clientCity) {
+        alert("Por favor completa todos los campos requeridos (*).");
+        return;
+      }
+
+      // WhatsApp city routing numbers:
+      // Curicó: +56 9 5486 9712
+      // Molina / Lontué: +56 9 3884 1626
+      let phoneNum = "";
+      if (clientCity === "Curicó") {
+        phoneNum = "56954869712";
+      } else {
+        phoneNum = "56938841626"; // Molina / Lontué
+      }
+
+      // Construct Order Message
+      let msg = `🥩 *PEDIDO DE CARNES LA CHEPITA* 🥩\n\n`;
+      msg += `👤 *Cliente:* ${clientName}\n`;
+      msg += `📍 *Dirección:* ${clientAddress}\n`;
+      msg += `🏙️ *Comuna:* ${clientCity}\n\n`;
+      msg += `🛒 *Detalle del Pedido:*\n`;
+
+      let total = 0;
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        msg += `• *${item.qty}* x ${item.title} (${formatCLP(item.price)}/${item.unit}) -> *${formatCLP(itemTotal)}*\n`;
+      });
+
+      msg += `\n💰 *Total Estimado:* *${formatCLP(total)}*\n`;
+      msg += `🚚 *Despacho:* ¡GRATIS!\n\n`;
+      msg += `💬 _Hola, me gustaría confirmar la facturación y el horario de entrega para este pedido por favor._`;
+
+      const encodedMsg = encodeURIComponent(msg);
+      const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNum}&text=${encodedMsg}`;
+
+      window.open(whatsappUrl, "_blank");
+    }
+
+    // ── Testimonials Slider Carousel Logic ──
+    let currentSlide = 0;
+
+    function renderSlide() {
+      const track = document.getElementById("carousel-track");
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function nextSlide() {
+      const totalSlides = document.querySelectorAll("#carousel-track > div").length;
+      currentSlide = (currentSlide + 1) % totalSlides;
+      renderSlide();
+    }
+
+    function prevSlide() {
+      const totalSlides = document.querySelectorAll("#carousel-track > div").length;
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      renderSlide();
+    }
+
+    // Auto rotate testimonials every 6 seconds
+    setInterval(nextSlide, 6000);
+  </script>
+</body>
+</html>

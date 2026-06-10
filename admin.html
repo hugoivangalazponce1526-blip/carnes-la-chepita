@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Admin — Carnes La Chepita</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary":        "#a5360d",
+            "primary-light":  "#d85a30",
+            "secondary":      "#855400",
+            "secondary-light":"#ef9f27",
+            "background":     "#fcf9f5",
+            "on-background":  "#1c1c1a",
+            "surface-dim":    "#dcdad6",
+            "surface-container": "#f0edea",
+            "outline":        "#8c7169",
+            "fresh-green":    "#0F6E56",
+          },
+          fontFamily: {
+            display: ["Bebas Neue", "sans-serif"],
+            body:    ["IBM Plex Sans", "sans-serif"],
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    * { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+    body { font-family: "IBM Plex Sans", sans-serif; background: #fcf9f5; }
+    .font-fill-1 { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+
+    .brutalist-card {
+      border: 2px solid #1c1c1a;
+      box-shadow: 4px 4px 0px 0px #1c1c1a;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; font-size: 0.8rem;
+      padding: 8px 14px; border-radius: 4px; cursor: pointer;
+      border: 2px solid #1c1c1a; box-shadow: 2px 2px 0 #1c1c1a;
+      transition: all .15s ease-out; white-space: nowrap;
+    }
+    .btn:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 #1c1c1a; }
+    .btn:active { transform: translate(1px,1px); box-shadow: 1px 1px 0 #1c1c1a; }
+
+    .btn-primary   { background:#a5360d; color:#fff; }
+    .btn-gold      { background:#ef9f27; color:#1c1c1a; }
+    .btn-white     { background:#fff; color:#1c1c1a; }
+    .btn-green     { background:#0F6E56; color:#fff; }
+    .btn-danger    { background:#fff; color:#a5360d; }
+    .btn-danger:hover { background:#a5360d; color:#fff; }
+    .btn-xl        { font-family:"Bebas Neue",sans-serif; font-size:1.25rem; letter-spacing:.06em; padding:12px 28px; }
+
+    .field {
+      width: 100%;
+      border: 2px solid #1c1c1a;
+      border-radius: 4px;
+      padding: 10px 12px;
+      font-size: .875rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      background: #fff;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .field:focus { border-color: #a5360d; }
+
+    /* ── Modal ── */
+    #modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(28,28,26,.7);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px 16px;
+      overflow-y: auto;
+    }
+    #modal-overlay.open { display: flex; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+      border: 2px solid #1c1c1a; box-shadow: 3px 3px 0 #1c1c1a;
+      padding: 12px 18px; border-radius: 4px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: .875rem; font-weight: 600; color: #fff;
+      transform: translateX(130%);
+      transition: transform .3s cubic-bezier(.16,1,.3,1);
+      max-width: 340px;
+    }
+    #toast.show { transform: translateX(0); }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #fcf9f5; }
+    ::-webkit-scrollbar-thumb { background: #8c7169; border-radius: 99px; border: 2px solid #fcf9f5; }
+    ::-webkit-scrollbar-thumb:hover { background: #a5360d; }
+
+    /* image preview */
+    #img-preview-box { width:80px; height:80px; border:2px dashed #8c7169; border-radius:4px;
+      overflow:hidden; background:#f0edea; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    #img-preview-box img { width:100%; height:100%; object-fit:cover; display:none; }
+
+    /* product card actions on small screens */
+    @media (max-width: 640px) {
+      .prod-actions { flex-wrap: wrap; gap: 6px; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-background text-on-background">
+
+  <!-- ══════════════════════════════════════════
+       PANTALLA DE LOGIN
+  ══════════════════════════════════════════ -->
+  <div id="login-screen" class="fixed inset-0 z-[300] bg-on-background flex items-center justify-center p-6">
+    <div class="brutalist-card bg-background p-8 sm:p-10 w-full max-w-sm flex flex-col gap-6">
+      <!-- Brand -->
+      <div class="text-center">
+        <div class="w-16 h-16 rounded-full bg-primary mx-auto mb-3 flex items-center justify-center overflow-hidden border-4 border-secondary-light shadow-[3px_3px_0_#1c1c1a]">
+          <img src="./assets/IMG_2599.jpg" alt="Logo" class="w-full h-full object-cover" onerror="this.style.display='none'">
+        </div>
+        <span class="font-display text-4xl text-primary block leading-none">LA CHEPITA</span>
+        <span class="font-body text-[10px] text-secondary font-bold uppercase tracking-widest block mt-1">Panel de Administración</span>
+      </div>
+
+      <!-- Form -->
+      <div class="flex flex-col gap-3">
+        <label class="text-xs font-bold uppercase tracking-widest">Contraseña</label>
+        <input id="login-pwd" type="password" class="field" placeholder="Ingresa tu contraseña"
+          onkeydown="if(event.key==='Enter') doLogin()">
+        <p id="login-error" class="hidden text-xs text-primary-light font-semibold text-center">
+          Contraseña incorrecta. Inténtalo de nuevo.
+        </p>
+      </div>
+
+      <button onclick="doLogin()" class="btn btn-primary btn-xl w-full justify-center">
+        ENTRAR
+      </button>
+
+      <p class="text-center text-[11px] text-on-background/50">
+        Contraseña por defecto: <span class="font-mono font-bold">chepita1990</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       PANEL PRINCIPAL
+  ══════════════════════════════════════════ -->
+  <div id="admin-app" class="hidden flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-40 bg-background border-b-2 border-on-background h-16 flex items-center gap-4 px-5">
+      <span class="font-display text-2xl text-primary tracking-tight shrink-0">CHEPITA ADMIN</span>
+      <span class="hidden md:block font-mono text-[10px] text-on-background/40 uppercase tracking-widest">// Catálogo &amp; Productos</span>
+      <div class="ml-auto flex items-center gap-2">
+        <a href="index.html" target="_blank" class="btn btn-white text-xs hidden sm:inline-flex">
+          <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+          Ver tienda
+        </a>
+        <button onclick="doLogout()" class="btn btn-white text-xs">
+          <span class="material-symbols-outlined text-[16px]">logout</span>
+          Salir
+        </button>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="flex-grow p-5 max-w-5xl mx-auto w-full">
+
+      <!-- ── Toolbar ── -->
+      <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-6 pt-2">
+        <div>
+          <h1 class="font-display text-4xl uppercase tracking-tight">Catálogo de Productos</h1>
+          <p id="prod-count" class="text-xs text-on-background/55 font-body mt-0.5"></p>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <select id="filter-cat" onchange="renderList()" class="field" style="width:auto;padding:8px 12px">
+            <option value="all">Todas las categorías</option>
+          </select>
+          <select id="filter-status" onchange="renderList()" class="field" style="width:auto;padding:8px 12px">
+            <option value="all">Todos los estados</option>
+            <option value="visible">Solo visibles</option>
+            <option value="hidden">Solo ocultos</option>
+          </select>
+          <button onclick="openForm(null)" class="btn btn-primary btn-xl">
+            <span class="material-symbols-outlined text-[20px]">add</span>
+            AGREGAR
+          </button>
+        </div>
+      </div>
+
+      <!-- ── Lista de productos ── -->
+      <div id="product-list" class="flex flex-col gap-3"></div>
+
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-20 text-on-background/50">
+        <span class="material-symbols-outlined text-[64px] block mb-3" style="color:#dcdad6">inventory_2</span>
+        <p class="font-display text-2xl uppercase tracking-wider">Sin productos</p>
+        <p class="text-sm mt-1 font-body">Agrega tu primer producto con el botón "AGREGAR".</p>
+      </div>
+
+      <!-- ── Exportar / Backup ── -->
+      <div class="mt-12 brutalist-card bg-surface-container p-6 max-w-lg">
+        <h2 class="font-display text-2xl uppercase tracking-tight mb-1">Exportar Catálogo</h2>
+        <p class="text-xs text-on-background/60 font-body mb-4 leading-relaxed">
+          Descarga los productos como archivo <strong>JSON</strong>. Útil como respaldo o para migrar a otro sistema.
+        </p>
+        <button onclick="exportJSON()" class="btn btn-white">
+          <span class="material-symbols-outlined text-[18px]">download</span>
+          Descargar products.json
+        </button>
+      </div>
+
+      <!-- ── Cambiar Contraseña ── -->
+      <div class="mt-6 brutalist-card bg-surface-container p-6 max-w-lg">
+        <h2 class="font-display text-2xl uppercase tracking-tight mb-1">Cambiar Contraseña</h2>
+        <p class="text-xs text-on-background/60 font-body mb-4">Solo se guarda en este navegador.</p>
+        <div class="flex flex-col gap-3">
+          <input id="new-pwd" type="password" class="field" placeholder="Nueva contraseña (mín. 6 caracteres)">
+          <input id="confirm-pwd" type="password" class="field" placeholder="Confirmar contraseña">
+          <button onclick="changePassword()" class="btn btn-white self-start">
+            <span class="material-symbols-outlined text-[17px]">lock</span>
+            Guardar contraseña
+          </button>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="border-t-2 border-on-background py-4 px-5 text-center font-mono text-[10px] text-on-background/40">
+      Los cambios se guardan automáticamente y se reflejan en la tienda al instante.
+    </footer>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       MODAL: FORMULARIO DE PRODUCTO
+  ══════════════════════════════════════════ -->
+  <div id="modal-overlay" onclick="onModalBackdrop(event)">
+    <div class="brutalist-card bg-background w-full max-w-lg my-auto">
+      <!-- Modal header -->
+      <div class="p-5 border-b-2 border-on-background flex justify-between items-center bg-surface-container">
+        <h2 id="modal-title" class="font-display text-3xl uppercase tracking-wider">Agregar Producto</h2>
+        <button onclick="closeForm()" class="btn btn-white" style="padding:8px">
+          <span class="material-symbols-outlined text-[22px]">close</span>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form id="product-form" onsubmit="saveProduct(event)">
+        <div class="p-5 flex flex-col gap-5 max-h-[72vh] overflow-y-auto">
+          <input type="hidden" id="form-id">
+
+          <!-- Nombre -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Nombre del Producto *</label>
+            <input id="form-name" type="text" required class="field" placeholder="Ej: Pack Parrillero Premium">
+          </div>
+
+          <!-- Precio + Unidad -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Precio (CLP) *</label>
+              <input id="form-price" type="number" required min="0" step="1" class="field" placeholder="Ej: 29990">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Unidad *</label>
+              <input id="form-unit" type="text" required class="field" placeholder="kg / pack / porción">
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Descripción</label>
+            <textarea id="form-desc" rows="3" class="field resize-none" placeholder="Describe el producto en pocas palabras..."></textarea>
+          </div>
+
+          <!-- Categoría -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Categoría *</label>
+            <select id="form-cat" required class="field">
+              <option value="">Seleccionar categoría...</option>
+              <option value="packs">Packs Convenientes</option>
+              <option value="cortes">Cortes &amp; Especialidades</option>
+              <option value="vacuno">Vacuno</option>
+              <option value="cerdo">Cerdo</option>
+              <option value="pollo">Pollo</option>
+              <option value="embutidos">Embutidos</option>
+              <option value="ofertas">Ofertas</option>
+            </select>
+          </div>
+
+          <!-- Imagen -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Imagen del Producto</label>
+            <div class="flex gap-3 items-start">
+              <div class="flex-grow flex flex-col gap-2">
+                <input id="form-img-url" type="url" class="field" placeholder="Pega aquí la URL de la imagen" oninput="previewFromUrl()">
+                <div class="flex items-center gap-2 text-[11px] text-on-background/50">
+                  <span class="material-symbols-outlined text-[14px]">info</span>
+                  <span>O sube una foto desde tu dispositivo:</span>
+                </div>
+                <input id="form-img-file" type="file" accept="image/*" class="text-xs font-body text-on-background file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-2 file:border-on-background file:font-bold file:text-xs file:bg-white file:cursor-pointer" onchange="loadImgFile(event)">
+                <p class="text-[10px] text-on-background/40 leading-relaxed">
+                  Para fotos desde Instagram, clic derecho → "Copiar dirección de imagen" y pégala arriba.
+                </p>
+              </div>
+              <!-- Preview -->
+              <div id="img-preview-box">
+                <img id="img-preview" src="" alt="Vista previa" onerror="this.style.display='none'">
+                <span class="material-symbols-outlined text-[32px] font-fill-1" id="img-placeholder" style="color:#8c7169;opacity:.5">image</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Etiqueta -->
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-widest mb-1.5">Etiqueta Destacada</label>
+            <input id="form-tag" type="text" class="field" placeholder='Ej: "OFERTA", "NUEVO", "MÁS VENDIDO"'>
+            <p class="text-[10px] text-on-background/50 mt-1">Aparece como badge sobre la imagen.</p>
+          </div>
+
+          <!-- Checkboxes -->
+          <div class="flex gap-6">
+            <label class="flex items-center gap-2 cursor-pointer text-sm font-medium select-none">
+              <input id="form-visible" type="checkbox" checked class="w-5 h-5 rounded border-2 border-on-background accent-primary cursor-pointer">
+              Visible en la tienda
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer text-sm font-medium select-none">
+              <input id="form-featured" type="checkbox" class="w-5 h-5 rounded border-2 border-on-background accent-primary cursor-pointer">
+              Destacado
+            </label>
+          </div>
+        </div>
+
+        <!-- Footer del modal -->
+        <div class="p-5 border-t-2 border-on-background flex gap-3">
+          <button type="button" onclick="closeForm()" class="btn btn-white flex-1 justify-center">Cancelar</button>
+          <button type="submit" class="btn btn-primary btn-xl flex-1 justify-center">GUARDAR</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast">
+    <span id="toast-icon" class="material-symbols-outlined text-[20px] font-fill-1">check_circle</span>
+    <span id="toast-msg">Guardado</span>
+  </div>
+
+  <script>
+    // ════════════════════════════════════════
+    //  CONSTANTES & ESTADO
+    // ════════════════════════════════════════
+    const LS_PRODUCTS = 'chepita_products';
+    const LS_PASSWORD = 'chepita_admin_pwd';
+    const LS_SESSION  = 'chepita_admin_session';
+    const DEFAULT_PWD = 'chepita1990';
+
+    const CAT_LABELS = {
+      packs:     'Packs Convenientes',
+      cortes:    'Cortes & Especialidades',
+      vacuno:    'Vacuno',
+      cerdo:     'Cerdo',
+      pollo:     'Pollo',
+      embutidos: 'Embutidos',
+      ofertas:   'Ofertas',
+    };
+
+    const PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Crect width='160' height='160' fill='%23f0edea'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%238c7169' font-size='12' font-family='sans-serif'%3ESin imagen%3C/text%3E%3C/svg%3E";
+
+    // Datos semilla (mismos que index.html) — se usan solo la primera vez
+    const SEED_PRODUCTS = [
+      { id:"pack-familiar",  title:"Pack Familiar Mensual",        category:"packs",  price:29990, unit:"pack",     description:"Solución integral de proteínas para el mes. Cortes seleccionados de vacuno de cocina, chuletas de cerdo y trutros de pollo.",                                                                                        image:"https://lh3.googleusercontent.com/aida-public/AB6AXuCMnAMTXqhWnvrntPT5QEWNO_1BisGFJ3KOnCwsCz91AdgjJBpgTKyHYGQWT641fMC9bTQViQn0E2KqWtZo3sn7CN65kRk-U4sJCJQkDY3nbr3wAZtI8W0YV4bsgsEVosxsJE-RMHn37TCchKsf8xx_M5msFn6XOz2I7BNtyJq572iedJAvhhV6M_Sy6YUG-JIUR2En7URi5WMIVOL8s_Dz2DoJlpR9qna1xglk4de365tVyojqH3X2pL7tCJSbPRhCPPwOT2kXzb8", featured:true,  tag:"OFERTA RECOMENDADA", visible:true },
+      { id:"pack-parrillero", title:"Pack Parrillero Premium",      category:"packs",  price:34990, unit:"pack",     description:"Diseñado para asados de 5 a 6 personas. Incluye Lomo Liso o Vetado, pechuga de pollo deshuesada, longanizas artesanales de Molina y carbón.",                                                                        image:"https://lh3.googleusercontent.com/aida-public/AB6AXuBb3joYehOPQfGhZoto1O4Ox0g91j43aTPnRoo1NaREFCez-xGsGjbidxE44Bb1UyKwrykQhBR8bKPwDNF3c4wRdrjw5xcp5j2RGlzoe4IGm3Uwi0E4tGny_DMLszMRE9url-GxFfiOvCG4ucRnwI-e1DikxD_GZ7wGyuKitRO_km6lmPwcN19zwiwWcGZamimtE49bYeDWE-h2WmqevXrpJ5ZVFf7v8FBQOg2SK_U6s3ZxbuR7flZzlGgTTZEMR6Kkw2Zm-t4MLYY", featured:true,  tag:"MÁS VENDIDO",        visible:true },
+      { id:"pack-pichanguero",title:"Pack Pichanguero Fútbol",      category:"packs",  price:19990, unit:"pack",     description:"Ideal para el picoteo y el tercer tiempo de fútbol amateur. Incluye chunchules listos para dorar, pulpa de cerdo picada y longanizones.",                                                                             image:"./assets/pichanguero.png",   featured:true,  tag:"TRADICIÓN CHILENA",  visible:true },
+      { id:"chunchules",      title:"Chunchules Frescos",           category:"cortes", price:12990, unit:"kg",       description:"La especialidad más famosa de La Chepita. Frescos, limpios y cortados listos para asar. Textura crujiente garantizada.",                                                                                           image:"https://lh3.googleusercontent.com/aida-public/AB6AXuCjczSGCo6HdYVhu7XGFWGQOOx2jRzibhQBStL6BoucAn87RDuqjRE-Wss83ApGbb9rr1hjl7PG2Oa3bGi1WDMJasJKu5PhrSKJ5TGRvk3w8GARlw3C0U_kvcrFTEu0AjYaxxecAAw5NyVCbWD-ft7z2zsg7nGt-oD38Qdg_-QstU6IMbD0OWSeBuIplaYWO-Qj-HDE4Bkdyf2XQ-1JPCJjgysFBAo-9YoZrZutrN6nlnECtLhAsoEXeCr0Y_C46kzqEYJxewe1uPg", featured:false, tag:"NUESTRA FIRMA",       visible:true },
+      { id:"carpaccio",       title:"Carpaccio de Vacuno",          category:"cortes", price:8990,  unit:"porción",  description:"Corte extrafino de lomo seleccionado. Listo para emplatar y aderezar al estilo tradicional gourmet.",                                                                                                             image:"./assets/carpaccio.png",    featured:false, tag:"EXCLUSIVO",           visible:true },
+      { id:"queso-cabeza",    title:"Queso de Cabeza Artesanal",   category:"cortes", price:5990,  unit:"500g",     description:"Receta tradicional de la casa con condimentos chilenos. Textura perfecta y sabor criollo tradicional.",                                                                                                            image:"./assets/queso_cabeza.png", featured:false, tag:"ARTESANAL",           visible:true },
+      { id:"hamburguesas",    title:"Hamburguesas Artesanales",     category:"cortes", price:7990,  unit:"pack (6u)",description:"Hamburguesas 100% de carne de vacuno Chepita, sazonadas en local. Gruesas, extra jugosas y envasadas al vacío.",                                                                                                  image:"https://lh3.googleusercontent.com/aida-public/AB6AXuAFnLoTB6PuhbE7Xfq0DZ2vpbfhO5gRHCTfVtdy6ZA3kloYZ4ayVYDgFYs_SDhID7SHx0VwLE2lcuYg-SVTvBhC_Bv05ZAB7MWREJamXQnI16y0ihUVK2D2Q7Lx2uE1wqi-9kbb1uw5vyuWi5-gxiFpx3RjqAR-cq8ZvhXXhXyR7MOdzylmsv-VzYIvtSnC57RreeenxO3C0n_Ow-fZNzvySf-V4IUteMX-EyTMnGOjyRFKqelh_Dk5DtJuHtfXOdOyb2fQwZBakhM", featured:false, tag:"LISTAS PARA LA PLANCHA",visible:true},
+      { id:"vacuno-kilo",     title:"Cortes de Vacuno al Kilo",    category:"cortes", price:11990, unit:"kg",       description:"Cortes a elección según disponibilidad (Lomo Vetado, Abastero, Asado Carnicero). Seleccionados y porcionados a tu gusto.",                                                                                        image:"https://lh3.googleusercontent.com/aida-public/AB6AXuBGUuARVAt2oupFtK1S5SpPxTlt1XoKsdlSLofnTdn9eu0j56tCjidBVNaNhwCabqv2fuAa7O_F4kDmGvFWVB0S1-I4enqa9-ssztLwtn6fborzYLGEcjV3timpNrjGsrV605hP-GrfFV4n1Pik4fLm8xeYa8h4sOAK8pc15924c3ovvm63PcXJSaVp4WzrrxZ2EBzmSsdKTwe9YDsRXjJ_V7YBTlnZYTc-6ROkVSjphAnjZCe5ggOcLEWkWtEgnnK0PlqikkqaWCI", featured:false, tag:"FRESCO AL DÍA",        visible:true },
+    ];
+
+    // ════════════════════════════════════════
+    //  AUTENTICACIÓN
+    // ════════════════════════════════════════
+    function getPwd() {
+      return localStorage.getItem(LS_PASSWORD) || DEFAULT_PWD;
+    }
+
+    function doLogin() {
+      const val = document.getElementById('login-pwd').value;
+      if (val === getPwd()) {
+        sessionStorage.setItem(LS_SESSION, '1');
+        document.getElementById('login-screen').classList.add('hidden');
+        const app = document.getElementById('admin-app');
+        app.classList.remove('hidden');
+        app.classList.add('flex', 'flex-col');
+        initApp();
+      } else {
+        document.getElementById('login-error').classList.remove('hidden');
+        document.getElementById('login-pwd').value = '';
+        document.getElementById('login-pwd').focus();
+      }
+    }
+
+    function doLogout() {
+      sessionStorage.removeItem(LS_SESSION);
+      location.reload();
+    }
+
+    function changePassword() {
+      const np = document.getElementById('new-pwd').value.trim();
+      const cp = document.getElementById('confirm-pwd').value.trim();
+      if (!np) { toast('Escribe una contraseña.', 'error'); return; }
+      if (np.length < 6) { toast('Mínimo 6 caracteres.', 'error'); return; }
+      if (np !== cp) { toast('Las contraseñas no coinciden.', 'error'); return; }
+      localStorage.setItem(LS_PASSWORD, np);
+      document.getElementById('new-pwd').value = '';
+      document.getElementById('confirm-pwd').value = '';
+      toast('Contraseña actualizada.');
+    }
+
+    // ════════════════════════════════════════
+    //  DATOS (localStorage)
+    // ════════════════════════════════════════
+    function getProducts() {
+      try { return JSON.parse(localStorage.getItem(LS_PRODUCTS)) || []; }
+      catch { return []; }
+    }
+
+    function setProducts(arr) {
+      localStorage.setItem(LS_PRODUCTS, JSON.stringify(arr));
+    }
+
+    function genId() {
+      return 'p' + Date.now() + Math.random().toString(36).slice(2, 6);
+    }
+
+    function formatCLP(n) {
+      return new Intl.NumberFormat('es-CL', { style: 'currency', currency: 'CLP', minimumFractionDigits: 0 }).format(n);
+    }
+
+    function esc(str) {
+      if (!str) return '';
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+
+    // ════════════════════════════════════════
+    //  INICIALIZACIÓN
+    // ════════════════════════════════════════
+    function initApp() {
+      // Inicializar con datos semilla si localStorage está vacío
+      if (!localStorage.getItem(LS_PRODUCTS)) {
+        setProducts(SEED_PRODUCTS);
+      }
+      rebuildCatFilter();
+      renderList();
+    }
+
+    function rebuildCatFilter() {
+      const prods = getProducts();
+      const cats  = [...new Set(prods.map(p => p.category).filter(Boolean))];
+      const sel   = document.getElementById('filter-cat');
+      const cur   = sel.value;
+      sel.innerHTML = '<option value="all">Todas las categorías</option>';
+      cats.forEach(c => {
+        const o = document.createElement('option');
+        o.value = c;
+        o.textContent = CAT_LABELS[c] || (c.charAt(0).toUpperCase() + c.slice(1));
+        if (c === cur) o.selected = true;
+        sel.appendChild(o);
+      });
+    }
+
+    // ════════════════════════════════════════
+    //  RENDER LISTA ADMIN
+    // ════════════════════════════════════════
+    function renderList() {
+      const prods  = getProducts();
+      const catF   = document.getElementById('filter-cat').value;
+      const statF  = document.getElementById('filter-status').value;
+
+      let items = prods;
+      if (catF !== 'all')         items = items.filter(p => p.category === catF);
+      if (statF === 'visible')    items = items.filter(p => p.visible !== false);
+      if (statF === 'hidden')     items = items.filter(p => p.visible === false);
+
+      const listEl  = document.getElementById('product-list');
+      const emptyEl = document.getElementById('empty-state');
+      const countEl = document.getElementById('prod-count');
+
+      const totalVisible = prods.filter(p => p.visible !== false).length;
+      countEl.textContent = `${prods.length} producto${prods.length !== 1 ? 's' : ''} en total · ${totalVisible} visible${totalVisible !== 1 ? 's' : ''} en la tienda`;
+
+      if (items.length === 0) {
+        listEl.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+      emptyEl.classList.add('hidden');
+
+      listEl.innerHTML = items.map(p => {
+        const hidden   = p.visible === false;
+        const img      = p.image || PLACEHOLDER_IMG;
+        const catLabel = CAT_LABELS[p.category] || p.category || '—';
+        const priceStr = p.price ? formatCLP(p.price) : '—';
+
+        return `
+        <div class="brutalist-card bg-white flex flex-col sm:flex-row gap-4 p-4 ${hidden ? 'opacity-55' : ''}">
+
+          <!-- Miniatura -->
+          <div class="w-16 h-16 rounded border-2 border-on-background overflow-hidden shrink-0 bg-surface-container">
+            <img src="${esc(img)}" alt="${esc(p.title)}" class="w-full h-full object-cover"
+              onerror="this.src='${PLACEHOLDER_IMG}'">
+          </div>
+
+          <!-- Info -->
+          <div class="flex-grow min-w-0">
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="font-display text-xl uppercase tracking-wide leading-tight">${esc(p.title)}</span>
+              ${hidden   ? '<span style="background:#f0edea;border:1px solid #8c7169;color:#8c7169" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase">Oculto</span>' : ''}
+              ${p.featured ? '<span style="background:#fff8e1;border:1px solid #855400;color:#855400" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase">Destacado</span>' : ''}
+              ${p.tag ? `<span style="background:#fdf0ed;border:1px solid #a5360d;color:#a5360d" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded uppercase">${esc(p.tag)}</span>` : ''}
+            </div>
+            <div class="flex gap-3 flex-wrap text-sm">
+              <span class="font-mono text-xs text-on-background/55">${catLabel}</span>
+              <span class="font-display text-base text-primary">${priceStr}</span>
+              <span class="text-xs text-on-background/50">/ ${esc(p.unit || '—')}</span>
+            </div>
+            ${p.description ? `<p class="text-xs text-on-background/50 mt-1 leading-relaxed line-clamp-1">${esc(p.description)}</p>` : ''}
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex gap-2 shrink-0 prod-actions">
+            <button onclick="openForm('${p.id}')" class="btn btn-gold text-xs">
+              <span class="material-symbols-outlined text-[16px]">edit</span>
+              Editar
+            </button>
+            <button onclick="toggleVisible('${p.id}')" class="btn ${hidden ? 'btn-green' : 'btn-white'} text-xs">
+              <span class="material-symbols-outlined text-[16px] font-fill-1">${hidden ? 'visibility' : 'visibility_off'}</span>
+              ${hidden ? 'Mostrar' : 'Ocultar'}
+            </button>
+            <button onclick="deleteProduct('${p.id}', \`${esc(p.title)}\`)" class="btn btn-danger text-xs">
+              <span class="material-symbols-outlined text-[16px]">delete</span>
+              Eliminar
+            </button>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // ════════════════════════════════════════
+    //  ACCIONES
+    // ════════════════════════════════════════
+    function toggleVisible(id) {
+      const prods = getProducts();
+      const p = prods.find(x => x.id === id);
+      if (!p) return;
+      p.visible = p.visible === false;
+      setProducts(prods);
+      renderList();
+      toast(p.visible ? 'Producto ahora visible en la tienda.' : 'Producto ocultado de la tienda.');
+    }
+
+    function deleteProduct(id, name) {
+      if (!confirm(`¿Seguro que quieres eliminar "${name}"?\n\nEsta acción no se puede deshacer.`)) return;
+      setProducts(getProducts().filter(p => p.id !== id));
+      rebuildCatFilter();
+      renderList();
+      toast('Producto eliminado.');
+    }
+
+    function exportJSON() {
+      const prods = getProducts();
+      const blob = new Blob([JSON.stringify(prods, null, 2)], { type: 'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href = url;
+      a.download = 'products.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      toast('Archivo products.json descargado.');
+    }
+
+    // ════════════════════════════════════════
+    //  FORMULARIO MODAL
+    // ════════════════════════════════════════
+    let _editingId = null;
+
+    function openForm(productId) {
+      _editingId = productId;
+      document.getElementById('modal-title').textContent = productId ? 'Editar Producto' : 'Agregar Producto';
+      document.getElementById('product-form').reset();
+      clearImgPreview();
+
+      if (productId) {
+        const p = getProducts().find(x => x.id === productId);
+        if (!p) return;
+        document.getElementById('form-id').value       = p.id;
+        document.getElementById('form-name').value     = p.title || '';
+        document.getElementById('form-price').value    = p.price || '';
+        document.getElementById('form-unit').value     = p.unit || '';
+        document.getElementById('form-desc').value     = p.description || '';
+        document.getElementById('form-cat').value      = p.category || '';
+        document.getElementById('form-tag').value      = p.tag || '';
+        document.getElementById('form-visible').checked  = p.visible !== false;
+        document.getElementById('form-featured').checked = !!p.featured;
+        // Imagen
+        if (p.image && !p.image.startsWith('data:')) {
+          document.getElementById('form-img-url').value = p.image;
+        }
+        setImgPreview(p.image || '');
+      } else {
+        document.getElementById('form-visible').checked = true;
+        document.getElementById('form-featured').checked = false;
+      }
+
+      document.getElementById('modal-overlay').classList.add('open');
+      setTimeout(() => document.getElementById('form-name').focus(), 50);
+    }
+
+    function closeForm() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      _editingId = null;
+    }
+
+    function onModalBackdrop(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeForm();
+    }
+
+    function saveProduct(e) {
+      e.preventDefault();
+      const title    = document.getElementById('form-name').value.trim();
+      const price    = parseInt(document.getElementById('form-price').value, 10);
+      const unit     = document.getElementById('form-unit').value.trim();
+      const desc     = document.getElementById('form-desc').value.trim();
+      const category = document.getElementById('form-cat').value;
+      const tag      = document.getElementById('form-tag').value.trim().toUpperCase();
+      const visible  = document.getElementById('form-visible').checked;
+      const featured = document.getElementById('form-featured').checked;
+
+      if (!title || !price || !unit || !category) {
+        toast('Completa los campos obligatorios (*).', 'error');
+        return;
+      }
+
+      // Imagen: base64 si subió archivo, si no, URL ingresada
+      const previewImg = document.getElementById('img-preview');
+      const b64  = previewImg.src && previewImg.src.startsWith('data:') ? previewImg.src : null;
+      const url  = document.getElementById('form-img-url').value.trim();
+      const image = b64 || url || PLACEHOLDER_IMG;
+
+      const id    = _editingId || genId();
+      const prods = getProducts();
+      const idx   = prods.findIndex(p => p.id === id);
+      const obj   = { id, title, category, price, unit, description: desc, image, visible, featured, tag };
+
+      if (idx >= 0) {
+        prods[idx] = obj;
+        toast('Producto actualizado correctamente.');
+      } else {
+        prods.push(obj);
+        toast('Producto agregado a la tienda.');
+      }
+
+      setProducts(prods);
+      closeForm();
+      rebuildCatFilter();
+      renderList();
+    }
+
+    // ════════════════════════════════════════
+    //  IMAGEN PREVIEW
+    // ════════════════════════════════════════
+    function setImgPreview(src) {
+      const img = document.getElementById('img-preview');
+      const ph  = document.getElementById('img-placeholder');
+      if (src) {
+        img.src = src;
+        img.style.display = 'block';
+        ph.style.display  = 'none';
+      } else {
+        clearImgPreview();
+      }
+    }
+
+    function clearImgPreview() {
+      const img = document.getElementById('img-preview');
+      const ph  = document.getElementById('img-placeholder');
+      img.src = '';
+      img.style.display = 'none';
+      ph.style.display  = 'block';
+    }
+
+    function previewFromUrl() {
+      setImgPreview(document.getElementById('form-img-url').value.trim());
+    }
+
+    function loadImgFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        toast('La imagen es muy grande (máx 2 MB). Usa una más pequeña o una URL.', 'error');
+        e.target.value = '';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = ev => {
+        setImgPreview(ev.target.result);
+        document.getElementById('form-img-url').value = '';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ════════════════════════════════════════
+    //  TOAST
+    // ════════════════════════════════════════
+    let _toastTimer;
+    function toast(msg, type = 'ok') {
+      const el   = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      el.style.background = type === 'error' ? '#a5360d' : '#1c1c1a';
+      icon.textContent    = type === 'error' ? 'error' : 'check_circle';
+      document.getElementById('toast-msg').textContent = msg;
+      el.classList.add('show');
+      clearTimeout(_toastTimer);
+      _toastTimer = setTimeout(() => el.classList.remove('show'), 3200);
+    }
+
+    // ════════════════════════════════════════
+    //  ARRANQUE
+    // ════════════════════════════════════════
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem(LS_SESSION) === '1') {
+        document.getElementById('login-screen').classList.add('hidden');
+        const app = document.getElementById('admin-app');
+        app.classList.remove('hidden');
+        app.classList.add('flex', 'flex-col');
+        initApp();
+      } else {
+        document.getElementById('login-pwd').focus();
+      }
+    });
+  </script>
+</body>
+</html>
