@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <script>
     tailwind.config = {
@@ -361,9 +362,17 @@
 
   <script>
     // ════════════════════════════════════════
+    //  SUPABASE
+    // ════════════════════════════════════════
+    const { createClient } = supabase;
+    const db = createClient(
+      'https://jbbxhuhgjoklgdkvebpe.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpiYnhodWhnam9rbGdka3ZlYnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk0MTgsImV4cCI6MjA5NTU5NTQxOH0.6BVl9C-nP96nISQZu9Z4iB7ntfYK3B5VEvnitY8WZWw'
+    );
+
+    // ════════════════════════════════════════
     //  CONSTANTES & ESTADO
     // ════════════════════════════════════════
-    const LS_PRODUCTS = 'chepita_products';
     const LS_PASSWORD = 'chepita_admin_pwd';
     const LS_SESSION  = 'chepita_admin_session';
     const DEFAULT_PWD = 'chepita1990';
@@ -399,7 +408,7 @@
       return localStorage.getItem(LS_PASSWORD) || DEFAULT_PWD;
     }
 
-    function doLogin() {
+    async function doLogin() {
       const val = document.getElementById('login-pwd').value;
       if (val === getPwd()) {
         sessionStorage.setItem(LS_SESSION, '1');
@@ -407,7 +416,7 @@
         const app = document.getElementById('admin-app');
         app.classList.remove('hidden');
         app.classList.add('flex', 'flex-col');
-        initApp();
+        await initApp();
       } else {
         document.getElementById('login-error').classList.remove('hidden');
         document.getElementById('login-pwd').value = '';
@@ -433,15 +442,30 @@
     }
 
     // ════════════════════════════════════════
-    //  DATOS (localStorage)
+    //  DATOS (Supabase)
     // ════════════════════════════════════════
-    function getProducts() {
-      try { return JSON.parse(localStorage.getItem(LS_PRODUCTS)) || []; }
-      catch { return []; }
+    async function getProducts() {
+      const { data, error } = await db
+        .from('products')
+        .select('*')
+        .order('sort_order', { ascending: true });
+      if (error) { toast('Error al cargar productos: ' + error.message, 'error'); return []; }
+      return data || [];
     }
 
-    function setProducts(arr) {
-      localStorage.setItem(LS_PRODUCTS, JSON.stringify(arr));
+    async function upsertProduct(obj) {
+      const { error } = await db.from('products').upsert(obj, { onConflict: 'id' });
+      if (error) throw error;
+    }
+
+    async function removeProduct(id) {
+      const { error } = await db.from('products').delete().eq('id', id);
+      if (error) throw error;
+    }
+
+    async function patchProduct(id, fields) {
+      const { error } = await db.from('products').update(fields).eq('id', id);
+      if (error) throw error;
     }
 
     function genId() {
@@ -460,17 +484,27 @@
     // ════════════════════════════════════════
     //  INICIALIZACIÓN
     // ════════════════════════════════════════
-    function initApp() {
-      // Inicializar con datos semilla si localStorage está vacío
-      if (!localStorage.getItem(LS_PRODUCTS)) {
-        setProducts(SEED_PRODUCTS);
+    async function initApp() {
+      setLoading(true);
+      const prods = await getProducts();
+      // Sembrar datos iniciales si la tabla está vacía
+      if (prods.length === 0) {
+        for (let i = 0; i < SEED_PRODUCTS.length; i++) {
+          await upsertProduct({ ...SEED_PRODUCTS[i], sort_order: i });
+        }
       }
-      rebuildCatFilter();
-      renderList();
+      setLoading(false);
+      rebuildCatFilter(await getProducts());
+      await renderList();
     }
 
-    function rebuildCatFilter() {
-      const prods = getProducts();
+    function setLoading(on) {
+      document.getElementById('product-list').innerHTML = on
+        ? '<p class="text-center text-on-background/50 py-12 font-body">Cargando productos...</p>'
+        : '';
+    }
+
+    function rebuildCatFilter(prods) {
       const cats  = [...new Set(prods.map(p => p.category).filter(Boolean))];
       const sel   = document.getElementById('filter-cat');
       const cur   = sel.value;
@@ -487,8 +521,8 @@
     // ════════════════════════════════════════
     //  RENDER LISTA ADMIN
     // ════════════════════════════════════════
-    function renderList() {
-      const prods  = getProducts();
+    async function renderList() {
+      const prods  = await getProducts();
       const catF   = document.getElementById('filter-cat').value;
       const statF  = document.getElementById('filter-status').value;
 
@@ -564,26 +598,35 @@
     // ════════════════════════════════════════
     //  ACCIONES
     // ════════════════════════════════════════
-    function toggleVisible(id) {
-      const prods = getProducts();
+    async function toggleVisible(id) {
+      const prods = await getProducts();
       const p = prods.find(x => x.id === id);
       if (!p) return;
-      p.visible = p.visible === false;
-      setProducts(prods);
-      renderList();
-      toast(p.visible ? 'Producto ahora visible en la tienda.' : 'Producto ocultado de la tienda.');
+      const newVal = p.visible === false;
+      try {
+        await patchProduct(id, { visible: newVal });
+        await renderList();
+        toast(newVal ? 'Producto ahora visible en la tienda.' : 'Producto ocultado de la tienda.');
+      } catch(e) {
+        toast('Error al actualizar: ' + e.message, 'error');
+      }
     }
 
-    function deleteProduct(id, name) {
+    async function deleteProduct(id, name) {
       if (!confirm(`¿Seguro que quieres eliminar "${name}"?\n\nEsta acción no se puede deshacer.`)) return;
-      setProducts(getProducts().filter(p => p.id !== id));
-      rebuildCatFilter();
-      renderList();
-      toast('Producto eliminado.');
+      try {
+        await removeProduct(id);
+        const prods = await getProducts();
+        rebuildCatFilter(prods);
+        await renderList();
+        toast('Producto eliminado.');
+      } catch(e) {
+        toast('Error al eliminar: ' + e.message, 'error');
+      }
     }
 
-    function exportJSON() {
-      const prods = getProducts();
+    async function exportJSON() {
+      const prods = await getProducts();
       const blob = new Blob([JSON.stringify(prods, null, 2)], { type: 'application/json' });
       const url  = URL.createObjectURL(blob);
       const a    = document.createElement('a');
@@ -640,7 +683,7 @@
       if (e.target === document.getElementById('modal-overlay')) closeForm();
     }
 
-    function saveProduct(e) {
+    async function saveProduct(e) {
       e.preventDefault();
       const title    = document.getElementById('form-name').value.trim();
       const price    = parseInt(document.getElementById('form-price').value, 10);
@@ -659,26 +702,23 @@
       // Imagen: base64 si subió archivo, si no, URL ingresada
       const previewImg = document.getElementById('img-preview');
       const b64  = previewImg.src && previewImg.src.startsWith('data:') ? previewImg.src : null;
-      const url  = document.getElementById('form-img-url').value.trim();
-      const image = b64 || url || PLACEHOLDER_IMG;
+      const imgUrl = document.getElementById('form-img-url').value.trim();
+      const image  = b64 || imgUrl || PLACEHOLDER_IMG;
 
+      const isNew = !_editingId;
       const id    = _editingId || genId();
-      const prods = getProducts();
-      const idx   = prods.findIndex(p => p.id === id);
       const obj   = { id, title, category, price, unit, description: desc, image, visible, featured, tag };
 
-      if (idx >= 0) {
-        prods[idx] = obj;
-        toast('Producto actualizado correctamente.');
-      } else {
-        prods.push(obj);
-        toast('Producto agregado a la tienda.');
+      try {
+        await upsertProduct(obj);
+        closeForm();
+        const prods = await getProducts();
+        rebuildCatFilter(prods);
+        await renderList();
+        toast(isNew ? 'Producto agregado a la tienda.' : 'Producto actualizado correctamente.');
+      } catch(e) {
+        toast('Error al guardar: ' + e.message, 'error');
       }
-
-      setProducts(prods);
-      closeForm();
-      rebuildCatFilter();
-      renderList();
     }
 
     // ════════════════════════════════════════
@@ -742,13 +782,13 @@
     // ════════════════════════════════════════
     //  ARRANQUE
     // ════════════════════════════════════════
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('DOMContentLoaded', async () => {
       if (sessionStorage.getItem(LS_SESSION) === '1') {
         document.getElementById('login-screen').classList.add('hidden');
         const app = document.getElementById('admin-app');
         app.classList.remove('hidden');
         app.classList.add('flex', 'flex-col');
-        initApp();
+        await initApp();
       } else {
         document.getElementById('login-pwd').focus();
       }

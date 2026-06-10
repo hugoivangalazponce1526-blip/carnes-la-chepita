@@ -984,6 +984,7 @@
   </svg>
 
   <!-- Main JavaScript File -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script>
     // ── Fire Intro Splash ──
     (function () {
@@ -1060,6 +1061,13 @@
         }, 460);
       }, 2000);
     })();
+
+    // ── Supabase ──────────────────────────────────────────────
+    const { createClient } = supabase;
+    const db = createClient(
+      'https://jbbxhuhgjoklgdkvebpe.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpiYnhodWhnam9rbGdka3ZlYnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk0MTgsImV4cCI6MjA5NTU5NTQxOH0.6BVl9C-nP96nISQZu9Z4iB7ntfYK3B5VEvnitY8WZWw'
+    );
 
     // ── Catalog Definition (datos semilla — migrados al administrador en admin.html) ──
     const SEED_PRODUCTS = [
@@ -1174,16 +1182,15 @@
     let products = [];
     let currentCategory = 'all';
 
-    // Carga productos desde localStorage; si está vacío usa los datos semilla
-    function loadProducts() {
+    // Carga productos desde Supabase; fallback a datos semilla si falla o está vacío
+    async function loadProducts() {
       try {
-        const stored = localStorage.getItem('chepita_products');
-        if (stored) {
-          products = JSON.parse(stored);
-        } else {
-          products = SEED_PRODUCTS;
-          localStorage.setItem('chepita_products', JSON.stringify(products));
-        }
+        const { data, error } = await db
+          .from('products')
+          .select('*')
+          .order('sort_order', { ascending: true });
+        if (error) throw error;
+        products = (data && data.length > 0) ? data : SEED_PRODUCTS;
       } catch(e) {
         products = SEED_PRODUCTS;
       }
@@ -1244,8 +1251,8 @@
     }
 
     // Initialize Page Elements & Render Catalog
-    document.addEventListener("DOMContentLoaded", () => {
-      loadProducts();
+    document.addEventListener("DOMContentLoaded", async () => {
+      await loadProducts();
       renderCategoryTabs();
       renderCatalog('all');
       updateCartBadge();
