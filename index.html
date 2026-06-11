@@ -311,6 +311,27 @@
       transform: translateY(6px);
     }
 
+    /* ── Mobile: 2 columnas deslizables horizontalmente ── */
+    @media (max-width: 639px) {
+      #catalog-container {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding-bottom: 16px;
+        scrollbar-width: none;
+      }
+      #catalog-container::-webkit-scrollbar { display: none; }
+      #catalog-container > article {
+        flex: 0 0 calc(50vw - 26px);
+        width: calc(50vw - 26px);
+        min-width: 148px;
+        scroll-snap-align: start;
+      }
+    }
+
     /* ── Transition: card stagger entrance ── */
     @keyframes cardEnter {
       from {
@@ -542,6 +563,10 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="catalog-container">
         <!-- Products will be generated dynamically by JavaScript -->
       </div>
+      <!-- Swipe hint — solo visible en móvil -->
+      <p class="sm:hidden text-center text-[11px] text-on-background/40 font-mono mt-3 tracking-widest uppercase select-none">
+        ← desliza para ver más →
+      </p>
     </section>
 
     <!-- Banner "Diferenciadores" (Informational Bento) -->
@@ -1421,13 +1446,14 @@
       filtered.forEach(p => {
         const itemInCart = cart.find(item => item.id === p.id);
         const qtyHtml = itemInCart
-          ? `<div class="flex items-center border-2 border-on-background rounded overflow-hidden shadow-[2px_2px_0px_0px_rgba(28,28,26,1)] bg-white text-sm">
-               <button onclick="decrementCartItem('${p.id}', event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">-</button>
-               <span class="px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
-               <button onclick="incrementCartItem('${p.id}', event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">+</button>
+          ? `<div class="flex items-center border-2 border-on-background rounded overflow-hidden shadow-[2px_2px_0px_0px_rgba(28,28,26,1)] bg-white text-sm w-full justify-between">
+               <button onclick="decrementCartItem('${p.id}', event)" class="px-2 sm:px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[32px] sm:min-w-[36px]">-</button>
+               <span class="px-2 sm:px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
+               <button onclick="incrementCartItem('${p.id}', event)" class="px-2 sm:px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[32px] sm:min-w-[36px]">+</button>
              </div>`
-          : `<button onclick="addToCart('${p.id}', event)" class="brutalist-btn bg-primary text-white font-display text-base tracking-wider px-4 py-2.5 rounded flex items-center gap-1 uppercase min-h-[44px]">
-               <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Añadir
+          : `<button onclick="addToCart('${p.id}', event)" class="brutalist-btn bg-primary text-white font-display tracking-wider rounded flex items-center justify-center gap-1 uppercase w-full text-sm sm:text-base px-2 sm:px-4 py-2 sm:py-2.5 min-h-[40px]">
+               <span class="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
+               <span>Añadir</span>
              </button>`;
 
         const card = document.createElement("article");
@@ -1435,21 +1461,20 @@
         card.innerHTML = `
           <div class="relative w-full aspect-square border-b-2 border-on-background overflow-hidden bg-surface-container select-none">
             <img alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.image}" loading="lazy" decoding="async">
-            ${p.tag ? `<span class="absolute top-2 left-2 bg-secondary text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase">${p.tag}</span>` : ""}
+            ${p.tag ? `<span class="absolute top-2 left-2 bg-secondary text-white font-mono text-[9px] font-bold px-1.5 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase leading-tight">${p.tag}</span>` : ""}
           </div>
-          <div class="p-4 flex flex-col flex-grow gap-2 relative">
-            <!-- Brutalist side bar accent -->
+          <div class="p-2 sm:p-4 flex flex-col flex-grow gap-1 sm:gap-2 relative">
             <div class="absolute left-0 top-0 bottom-0 w-[4px] ${['packs','ofertas'].includes(p.category) ? 'bg-primary' : p.category === 'pollo' ? 'bg-fresh-green' : 'bg-secondary'}"></div>
-            
-            <h3 class="font-display text-2xl text-on-background pl-2 leading-tight uppercase group-hover:text-primary transition-colors">${p.title}</h3>
-            <p class="text-on-background/70 font-sans text-xs pl-2 leading-relaxed flex-grow">${p.description}</p>
-            
-            <div class="cut-dashed-border pl-2 my-1"></div>
 
-            <div class="flex items-center justify-between pl-2 mt-auto pt-2 gap-2">
+            <h3 class="font-display text-base sm:text-2xl text-on-background pl-2 leading-tight uppercase group-hover:text-primary transition-colors line-clamp-2">${p.title}</h3>
+            <p class="hidden sm:block text-on-background/70 font-sans text-xs pl-2 leading-relaxed flex-grow">${p.description}</p>
+
+            <div class="cut-dashed-border pl-2 my-0.5 sm:my-1"></div>
+
+            <div class="pl-2 mt-auto pt-1 sm:pt-2 flex flex-col gap-1.5">
               <div class="flex flex-col">
-                <span class="font-display text-2xl text-primary leading-none">${formatCLP(p.price)}</span>
-                <span class="font-sans text-[10px] text-on-background/60 mt-0.5 uppercase">POR ${p.unit}</span>
+                <span class="font-display text-lg sm:text-2xl text-primary leading-none">${formatCLP(p.price)}</span>
+                <span class="font-sans text-[9px] sm:text-[10px] text-on-background/60 uppercase">POR ${p.unit}</span>
               </div>
               <div id="product-action-${p.id}">
                 ${qtyHtml}
@@ -1526,13 +1551,14 @@
       if (!wrap) return;
       const itemInCart = cart.find(item => item.id === productId);
       wrap.innerHTML = itemInCart
-        ? `<div class="flex items-center border-2 border-on-background rounded overflow-hidden shadow-[2px_2px_0px_0px_rgba(28,28,26,1)] bg-white text-sm">
-             <button onclick="decrementCartItem('${productId}',event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">-</button>
-             <span class="px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
-             <button onclick="incrementCartItem('${productId}',event)" class="px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[36px]">+</button>
+        ? `<div class="flex items-center border-2 border-on-background rounded overflow-hidden shadow-[2px_2px_0px_0px_rgba(28,28,26,1)] bg-white text-sm w-full justify-between">
+             <button onclick="decrementCartItem('${productId}',event)" class="px-2 sm:px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[32px] sm:min-w-[36px]">-</button>
+             <span class="px-2 sm:px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
+             <button onclick="incrementCartItem('${productId}',event)" class="px-2 sm:px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[32px] sm:min-w-[36px]">+</button>
            </div>`
-        : `<button onclick="addToCart('${productId}',event)" class="brutalist-btn bg-primary text-white font-display text-base tracking-wider px-4 py-2.5 rounded flex items-center gap-1 uppercase min-h-[44px]">
-             <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span> Añadir
+        : `<button onclick="addToCart('${productId}',event)" class="brutalist-btn bg-primary text-white font-display tracking-wider rounded flex items-center justify-center gap-1 uppercase w-full text-sm sm:text-base px-2 sm:px-4 py-2 sm:py-2.5 min-h-[40px]">
+             <span class="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
+             <span>Añadir</span>
            </button>`;
     }
 
