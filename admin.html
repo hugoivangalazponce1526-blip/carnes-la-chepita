@@ -152,6 +152,9 @@
       <p class="text-center text-[11px] text-on-background/50">
         Contraseña por defecto: <span class="font-mono font-bold">chepita1990</span>
       </p>
+      <button onclick="resetToDefaultPwd()" class="text-center text-[11px] text-on-background/40 underline hover:text-primary transition-colors w-full">
+        ¿Olvidaste tu contraseña? Restablecer al valor por defecto
+      </button>
     </div>
   </div>
 
@@ -178,6 +181,16 @@
 
     <!-- Content -->
     <main class="flex-grow p-5 max-w-5xl mx-auto w-full">
+
+      <!-- ── Banner error BD ── -->
+      <div id="db-error-banner" class="hidden mb-4 border-2 border-primary bg-red-50 p-4 rounded flex gap-3 items-start">
+        <span class="material-symbols-outlined text-primary text-[22px] shrink-0 font-fill-1">warning</span>
+        <div>
+          <p class="font-bold text-primary text-sm">Error de conexión con la base de datos</p>
+          <p id="db-error-msg" class="text-xs text-on-background/70 mt-0.5 leading-relaxed"></p>
+          <p class="text-xs text-on-background/60 mt-2">Verifica que la tabla <code class="font-mono bg-surface-dim px-1 rounded">products</code> exista en Supabase y que las políticas RLS permitan acceso anónimo.</p>
+        </div>
+      </div>
 
       <!-- ── Toolbar ── -->
       <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between mb-6 pt-2">
@@ -362,13 +375,22 @@
 
   <script>
     // ════════════════════════════════════════
-    //  SUPABASE
+    //  SUPABASE — init defensivo
     // ════════════════════════════════════════
-    const { createClient } = supabase;
-    const db = createClient(
-      'https://jbbxhuhgjoklgdkvebpe.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpiYnhodWhnam9rbGdka3ZlYnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk0MTgsImV4cCI6MjA5NTU5NTQxOH0.6BVl9C-nP96nISQZu9Z4iB7ntfYK3B5VEvnitY8WZWw'
-    );
+    let db = null;
+    let _dbError = null;
+    try {
+      if (typeof supabase !== 'undefined' && supabase.createClient) {
+        db = supabase.createClient(
+          'https://jbbxhuhgjoklgdkvebpe.supabase.co',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpiYnhodWhnam9rbGdka3ZlYnBlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwMTk0MTgsImV4cCI6MjA5NTU5NTQxOH0.6BVl9C-nP96nISQZu9Z4iB7ntfYK3B5VEvnitY8WZWw'
+        );
+      } else {
+        _dbError = 'Librería Supabase no disponible. Revisa tu conexión a internet.';
+      }
+    } catch(e) {
+      _dbError = 'Error al inicializar Supabase: ' + e.message;
+    }
 
     // ════════════════════════════════════════
     //  CONSTANTES & ESTADO
@@ -429,6 +451,16 @@
       location.reload();
     }
 
+    function resetToDefaultPwd() {
+      if (confirm('¿Restablecer la contraseña al valor por defecto "chepita1990"?')) {
+        localStorage.removeItem(LS_PASSWORD);
+        document.getElementById('login-error').classList.add('hidden');
+        document.getElementById('login-pwd').value = '';
+        document.getElementById('login-pwd').focus();
+        alert('Contraseña restablecida. Ingresa con: chepita1990');
+      }
+    }
+
     function changePassword() {
       const np = document.getElementById('new-pwd').value.trim();
       const cp = document.getElementById('confirm-pwd').value.trim();
@@ -444,26 +476,41 @@
     // ════════════════════════════════════════
     //  DATOS (Supabase)
     // ════════════════════════════════════════
+    function showDbError(msg) {
+      const banner = document.getElementById('db-error-banner');
+      if (!banner) return;
+      document.getElementById('db-error-msg').textContent = msg;
+      banner.classList.remove('hidden');
+    }
+
     async function getProducts() {
+      if (!db) { showDbError(_dbError || 'Sin conexión a base de datos.'); return []; }
       const { data, error } = await db
         .from('products')
         .select('*')
         .order('sort_order', { ascending: true });
-      if (error) { toast('Error al cargar productos: ' + error.message, 'error'); return []; }
+      if (error) {
+        showDbError(error.message);
+        toast('Error al cargar productos: ' + error.message, 'error');
+        return [];
+      }
       return data || [];
     }
 
     async function upsertProduct(obj) {
+      if (!db) throw new Error(_dbError || 'Sin conexión a base de datos.');
       const { error } = await db.from('products').upsert(obj, { onConflict: 'id' });
       if (error) throw error;
     }
 
     async function removeProduct(id) {
+      if (!db) throw new Error(_dbError || 'Sin conexión a base de datos.');
       const { error } = await db.from('products').delete().eq('id', id);
       if (error) throw error;
     }
 
     async function patchProduct(id, fields) {
+      if (!db) throw new Error(_dbError || 'Sin conexión a base de datos.');
       const { error } = await db.from('products').update(fields).eq('id', id);
       if (error) throw error;
     }
