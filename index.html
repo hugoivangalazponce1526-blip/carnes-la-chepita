@@ -78,6 +78,8 @@
             "primary-light": "#d85a30",  // Rojo Vibrante
             "secondary": "#855400",      // Amarillo Mostaza/Bronce
             "secondary-light": "#ef9f27",// Amarillo Brillo
+            "gold": "#C9A227",           // Dorado Premium (acento)
+            "gold-light": "#E8C766",     // Dorado Brillo
             "background": "#fcf9f5",     // Bone White
             "on-background": "#1c1c1a",  // Slate Charcoal
             "outline": "#8c7169",
@@ -237,6 +239,18 @@
     @media (min-width: 768px) {
       #mobile-cart-bar { display: none; }
     }
+
+    /* ── Floating WhatsApp button ── */
+    #wa-fab { position: fixed; right: 20px; bottom: 24px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+    @media (max-width: 767px) { #wa-fab { bottom: 84px; right: 16px; } }
+    #wa-fab-btn { width: 60px; height: 60px; border-radius: 9999px; background: #25D366; border: 2px solid #1c1c1a; box-shadow: 0 6px 18px rgba(0,0,0,0.28); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    #wa-fab-btn:hover { transform: scale(1.06); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+    #wa-fab-btn svg { width: 32px; height: 32px; fill: #fff; }
+    #wa-fab-menu { display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(12px) scale(0.96); pointer-events: none; transition: all 0.22s cubic-bezier(0.2, 0.8, 0.4, 1); }
+    #wa-fab.open #wa-fab-menu { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+    .wa-zone { display: flex; align-items: center; gap: 10px; background: #1c1c1a; color: #fff; border: 1.5px solid #25D366; padding: 10px 16px; border-radius: 9999px; font-family: "Bebas Neue", sans-serif; font-size: 1.15rem; letter-spacing: 0.04em; text-decoration: none; box-shadow: 0 4px 14px rgba(0,0,0,0.25); white-space: nowrap; transition: background 0.15s ease; }
+    .wa-zone:hover { background: #25D366; color: #1c1c1a; }
+    .wa-zone small { font-family: "IBM Plex Sans", sans-serif; font-size: 0.7rem; opacity: 0.75; letter-spacing: 0; }
 
     /* ── Fire burst on product click ── */
     @keyframes fireBurst {
@@ -517,13 +531,13 @@
 
       <!-- Main Headline Content -->
       <div class="relative z-10 flex flex-col items-center text-center max-w-4xl px-margin-mobile md:px-margin-desktop gap-6">
-        <div class="inline-flex items-center gap-2 bg-primary/20 border border-primary-light/40 px-4 py-1.5 rounded-full backdrop-blur-md animate-custom-pulse">
-          <span class="material-symbols-outlined text-primary-light text-[18px] shrink-0 font-fill-1">local_fire_department</span>
-          <span class="font-mono text-xs text-white uppercase tracking-widest font-semibold">TRADICIÓN Y CALIDAD DESDE 1990</span>
+        <div class="inline-flex items-center gap-2 bg-black/40 border border-gold/60 px-4 py-1.5 rounded-full backdrop-blur-md animate-custom-pulse">
+          <span class="material-symbols-outlined text-gold-light text-[18px] shrink-0 font-fill-1">workspace_premium</span>
+          <span class="font-mono text-xs text-gold-light uppercase tracking-widest font-semibold">TRADICIÓN Y CALIDAD DESDE 1990 · 35 AÑOS</span>
         </div>
         
         <h1 class="font-display text-[2rem] sm:text-5xl md:text-8xl text-white uppercase tracking-tight leading-none">
-          LA MEJOR CARNE DEL MAULE,<br><span class="text-secondary-light">DIRECTO A TU PUERTA</span>
+          LA MEJOR CARNE DEL MAULE,<br><span class="text-gold-light">DIRECTO A TU PUERTA</span>
         </h1>
         
         <p class="text-white/80 font-sans text-base md:text-xl max-w-2xl leading-relaxed font-light">
@@ -532,7 +546,7 @@
 
         <div class="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
           <a class="brutalist-card bg-primary text-white font-display text-xl md:text-2xl tracking-wider px-6 md:px-10 py-3 md:py-4 hover:bg-primary-light text-center" href="#productos">
-            VER EL CATÁLOGO
+            COMPRAR AHORA
           </a>
           <a class="brutalist-card bg-transparent text-white border-2 border-white font-display text-xl md:text-2xl tracking-wider px-6 md:px-10 py-3 md:py-4 hover:bg-white/10 text-center" href="#zonas">
             ZONAS DE DELIVERY
@@ -613,7 +627,7 @@
           <div class="w-24 h-1.5 bg-primary rounded-full"></div>
           
           <p class="font-sans text-base md:text-lg leading-relaxed text-on-background/80">
-            Fundada en 1990 en la Región del Maule, **Carnes La Chepita** nació como una pequeña carnicería familiar dedicada a ofrecer cortes frescos y un trato cercano. Con el paso de las décadas, nos hemos consolidado como el punto de referencia parrillero en Curicó, Molina y Lontué.
+            Fundada en 1990 en la Región del Maule, <strong class="font-semibold text-on-background">Carnes La Chepita</strong> nació como una pequeña carnicería familiar dedicada a ofrecer cortes frescos y un trato cercano. Con el paso de las décadas, nos hemos consolidado como el punto de referencia parrillero en Curicó, Molina y Lontué.
           </p>
           
           <div class="border-l-4 border-on-background pl-6 py-2 my-2 italic text-on-background/95 bg-surface-container/50 font-medium rounded-r">
@@ -621,7 +635,7 @@
           </div>
 
           <p class="font-sans text-base md:text-lg leading-relaxed text-on-background/80">
-            Hoy en día, combinamos nuestra atención de siempre en local con un sistema de delivery moderno y personalizado. Nuestra simpática mascota, **"La Vaquita"**, representa la alegría, el sabor y el cariño que ponemos en cada asado o cena familiar de nuestros vecinos.
+            Hoy en día, combinamos nuestra atención de siempre en local con un sistema de delivery moderno y personalizado. Nuestra simpática mascota, <strong class="font-semibold text-on-background">"La Vaquita"</strong>, representa la alegría, el sabor y el cariño que ponemos en cada asado o cena familiar de nuestros vecinos.
           </p>
         </div>
 
@@ -641,6 +655,50 @@
                 Síguenos en nuestro Instagram <a href="https://instagram.com/carneslachepita" target="_blank" class="text-primary-light font-bold hover:underline">@carneslachepita</a> para ver a nuestra vaquita en reels, recetas e imperdibles ofertas semanales.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ¿Por qué elegir La Chepita? (Autoridad / Confianza) -->
+    <section class="py-16 md:py-24 bg-on-background text-white border-y-2 border-on-background scroll-mt-20" id="porque">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="flex flex-col items-center text-center gap-4 mb-12 md:mb-16">
+          <span class="font-mono text-xs text-gold font-bold uppercase tracking-widest block">// LA DIFERENCIA CHEPITA</span>
+          <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight text-white">¿Por qué elegir La Chepita?</h2>
+          <div class="w-24 h-1.5 bg-gold rounded-full"></div>
+          <p class="font-sans text-base md:text-lg text-white/70 max-w-2xl leading-relaxed">No somos una cadena más. Somos la carnicería del barrio que se ganó la confianza del Maule a punta de calidad, cortes de verdad y trato de vecino.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
+            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">history_edu</span>
+            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">35 años de trayectoria</h3>
+            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Desde 1990 llevando calidad a la mesa de miles de familias del Maule. Experiencia que ninguna cadena puede igualar.</p>
+          </div>
+          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
+            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">verified</span>
+            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Cortes seleccionados</h3>
+            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Nada de carne procesada de cadena. Trabajamos cortes frescos, limpios y preparados artesanalmente, pedido por pedido.</p>
+          </div>
+          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
+            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">local_shipping</span>
+            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Delivery propio</h3>
+            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Somos la única carnicería local con reparto propio en Curicó, Molina y Lontué. Tu asado llega fresco y a la hora.</p>
+          </div>
+          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
+            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">diversity_3</span>
+            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Atención personalizada</h3>
+            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Te atendemos por WhatsApp como se atiende a un vecino: directo, cercano y sin robots de por medio.</p>
+          </div>
+          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
+            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">storefront</span>
+            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Mayorista y minorista</h3>
+            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Le vendemos igual a la familia que arma el asado del domingo como al restaurante que necesita stock constante.</p>
+          </div>
+          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
+            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">workspace_premium</span>
+            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Calidad garantizada</h3>
+            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Miles de clientes satisfechos y productos únicos en la zona: chunchules frescos, carpaccio y queso de cabeza.</p>
           </div>
         </div>
       </div>
@@ -749,7 +807,7 @@
                   <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
                 </div>
                 <blockquote class="text-on-background font-sans text-base md:text-xl leading-relaxed mb-6 font-light">
-                  "El **Pack Familiar** salvó las comidas de nuestro mes completo. Las carnes son súper frescas, vienen muy bien selladas y el delivery llegó a la hora acordada en Curicó. Definitivamente volveremos a comprar."
+                  "El <strong class="font-semibold text-on-background">Pack Familiar</strong> salvó las comidas de nuestro mes completo. Las carnes son súper frescas, vienen muy bien selladas y el delivery llegó a la hora acordada en Curicó. Definitivamente volveremos a comprar."
                 </blockquote>
                 <div class="flex items-center gap-4 border-t-2 border-silver-skin/30 pt-6">
                   <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center font-display text-xl text-primary font-bold">
@@ -775,7 +833,7 @@
                   <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
                 </div>
                 <blockquote class="text-on-background font-sans text-base md:text-xl leading-relaxed mb-6 font-light">
-                  "Los **Chunchules Frescos** de La Chepita son espectaculares. En serio, no hay carnicería ni supermercado en la zona que los entregue tan limpios y listos para tirar a la parrilla. Un siete la atención."
+                  "Los <strong class="font-semibold text-on-background">Chunchules Frescos</strong> de La Chepita son espectaculares. En serio, no hay carnicería ni supermercado en la zona que los entregue tan limpios y listos para tirar a la parrilla. Un siete la atención."
                 </blockquote>
                 <div class="flex items-center gap-4 border-t-2 border-silver-skin/30 pt-6">
                   <div class="w-12 h-12 bg-secondary/10 border border-secondary/20 rounded-full flex items-center justify-center font-display text-xl text-secondary font-bold">
@@ -801,7 +859,7 @@
                   <span class="material-symbols-outlined text-[24px] font-fill-1">star</span>
                 </div>
                 <blockquote class="text-on-background font-sans text-base md:text-xl leading-relaxed mb-6 font-light">
-                  "Siempre armamos el tercer tiempo de la liga amateur con el **Pack Pichanguero**. Trae de todo para el picoteo después de jugar. Además, es un orgullo comprarle a una marca del Maule con tanta historia."
+                  "Siempre armamos el tercer tiempo de la liga amateur con el <strong class="font-semibold text-on-background">Pack Pichanguero</strong>. Trae de todo para el picoteo después de jugar. Además, es un orgullo comprarle a una marca del Maule con tanta historia."
                 </blockquote>
                 <div class="flex items-center gap-4 border-t-2 border-silver-skin/30 pt-6">
                   <div class="w-12 h-12 bg-primary-light/10 border border-primary-light/20 rounded-full flex items-center justify-center font-display text-xl text-primary-light font-bold">
@@ -906,6 +964,23 @@
       <p>Diseño Web &amp; Conversión por <a href="https://hg-growthlab.cl" target="_blank" class="text-white/75 hover:text-white underline">HG Growth Lab</a></p>
     </div>
   </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <div id="wa-fab">
+    <div id="wa-fab-menu">
+      <a class="wa-zone" href="https://wa.me/56954869712?text=%C2%A1Hola%20La%20Chepita!%20Quiero%20hacer%20un%20pedido%20%F0%9F%A5%A9" target="_blank" rel="noopener">
+        <span class="material-symbols-outlined text-[20px]">location_on</span>
+        <span>Curicó<br><small>+56 9 5486 9712</small></span>
+      </a>
+      <a class="wa-zone" href="https://wa.me/56938841626?text=%C2%A1Hola%20La%20Chepita!%20Quiero%20hacer%20un%20pedido%20%F0%9F%A5%A9" target="_blank" rel="noopener">
+        <span class="material-symbols-outlined text-[20px]">location_on</span>
+        <span>Molina / Lontué<br><small>+56 9 3884 1626</small></span>
+      </a>
+    </div>
+    <button id="wa-fab-btn" onclick="toggleWaFab()" aria-label="Contactar por WhatsApp">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.599 5.393l-.999 3.648 3.79-.99zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </button>
+  </div>
 
   <!-- Mobile Floating Cart Bar -->
   <div id="mobile-cart-bar">
@@ -1422,6 +1497,16 @@
     });
 
     // Toggle Mobile Navigation
+    function toggleWaFab() {
+      document.getElementById("wa-fab").classList.toggle("open");
+    }
+    document.addEventListener("click", function(e) {
+      const fab = document.getElementById("wa-fab");
+      if (fab && fab.classList.contains("open") && !fab.contains(e.target)) {
+        fab.classList.remove("open");
+      }
+    });
+
     function toggleMobileMenu() {
       const menu = document.getElementById("mobile-nav");
       const icon = document.getElementById("menu-icon");
