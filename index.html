@@ -1394,7 +1394,7 @@
       );
     }
 
-    // Carga productos desde Supabase; fallback a datos semilla si falla o está vacío
+    // Carga productos desde Supabase; mezcla con SEED para incluir productos locales
     async function loadProducts() {
       try {
         const { data, error } = await db
@@ -1402,7 +1402,13 @@
           .select('*')
           .order('sort_order', { ascending: true });
         if (error) throw error;
-        products = applyZonaExclusivaFlag((data && data.length > 0) ? data : SEED_PRODUCTS);
+        if (data && data.length > 0) {
+          const supabaseIds = new Set(data.map(p => p.id));
+          const seedExtras = SEED_PRODUCTS.filter(p => !supabaseIds.has(p.id));
+          products = applyZonaExclusivaFlag([...data, ...seedExtras]);
+        } else {
+          products = applyZonaExclusivaFlag(SEED_PRODUCTS);
+        }
       } catch(e) {
         products = applyZonaExclusivaFlag(SEED_PRODUCTS);
       }
