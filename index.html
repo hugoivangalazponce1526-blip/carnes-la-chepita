@@ -485,6 +485,7 @@
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#hero">Inicio</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#productos">Catálogo</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#nosotros">Nosotros</a>
+        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#historia">Historia</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#zonas">Delivery</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#testimonios">Clientes</a>
       </nav>
@@ -512,6 +513,7 @@
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#hero">INICIO</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#productos">PRODUCTOS</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#nosotros">NOSOTROS</a>
+    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#historia">HISTORIA</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#zonas">DELIVERY</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#testimonios">TESTIMONIOS</a>
   </div>
@@ -654,6 +656,110 @@
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════════════
+         Nuestra Historia — Timeline Zig-Zag
+    ════════════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-surface-container border-y-2 border-on-background scroll-mt-20" id="historia">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+
+        <!-- Encabezado de sección -->
+        <div class="flex flex-col items-center text-center mb-16 md:mb-24">
+          <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest block mb-3">// NUESTRA HISTORIA</span>
+          <h2 class="font-display text-5xl md:text-7xl uppercase tracking-tight text-on-background">El camino recorrido</h2>
+          <div class="w-24 h-1.5 bg-primary rounded-full mt-5"></div>
+          <p class="mt-6 font-sans text-base text-on-background/60 max-w-xl">35 años de trabajo, familia y dedicación que hicieron a La Chepita lo que es hoy.</p>
+        </div>
+
+        <!-- Contenedor Timeline -->
+        <div class="relative flex flex-col gap-16 md:gap-28">
+
+          <!-- Línea vertical central (solo escritorio) -->
+          <div class="hidden md:block absolute left-1/2 inset-y-0 w-[2px] bg-on-background/15 -translate-x-1/2 z-0"></div>
+
+          <!-- ─── HITO 1: Imagen izquierda · Texto derecha ─── -->
+          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
+            <!-- Imagen placeholder -->
+            <div class="brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
+              <img src="" alt="Origen de La Chepita en 1990" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <span class="font-display text-[7rem] text-on-background/[0.06] select-none leading-none pointer-events-none">1990</span>
+            </div>
+            <!-- Punto central con año (solo escritorio) -->
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
+              <span class="font-display text-white text-sm leading-none">1990</span>
+            </div>
+            <!-- Texto -->
+            <div class="flex flex-col gap-4">
+              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 01</span>
+              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">1990: El origen y el bautizo de "La Chepita"</h3>
+              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
+              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
+                Nuestra historia comenzó en un local muy pequeñito de la mano de don Arturo González. Al llegar a arrendar ese espacio, se instaló justo al lado de un famoso minimarket de la zona llamado "La Chepita". Fue la propia dueña de ese almacén quien, con esa confianza de barrio, le dijo a don Arturo: <em>"Póngale a la carnicería La Chepita"</em>. Y así quedó. Con cautela, pero con un trabajo incansable, don Arturo forjó un negocio estable que le dio tranquilidad a su familia y se ganó el cariño de los primeros clientes.
+              </p>
+            </div>
+          </div>
+
+          <!-- ─── HITO 2: Texto izquierda · Imagen derecha ─── -->
+          <!-- DOM: imagen primero (mobile: arriba) → desktop: se va a la derecha con md:order-2 -->
+          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
+            <div class="order-1 md:order-2 brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
+              <img src="" alt="Nueva generación en Lontué — 2000" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <span class="font-display text-[7rem] text-on-background/[0.06] select-none leading-none pointer-events-none">2000</span>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
+              <span class="font-display text-white text-sm leading-none">2000</span>
+            </div>
+            <div class="order-2 md:order-1 flex flex-col gap-4">
+              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 02</span>
+              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">2000: La nueva generación llega a Lontué</h3>
+              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
+              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
+                La vocación por la carnicería corría por las venas. Con apenas 17 años, y apoyado firmemente por su padre don Arturo, la nueva generación decidió tomar las riendas y abrir nuestra sucursal en Lontué. Aunque el local era arrendado y eso limitaba poder invertir todo el capital soñado, suplimos eso con pura dedicación. Fuimos mejorando día a día, haciéndonos un espacio en la comuna a puro esfuerzo y buena atención.
+              </p>
+            </div>
+          </div>
+
+          <!-- ─── HITO 3: Imagen izquierda · Texto derecha ─── -->
+          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
+            <div class="brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
+              <img src="" alt="Inicio del Delivery — La Chepita en pandemia" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <span class="font-display text-[4.5rem] text-on-background/[0.06] select-none leading-none text-center px-6 pointer-events-none">DELIVERY</span>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
+              <span class="font-display text-white text-sm leading-none">2020</span>
+            </div>
+            <div class="flex flex-col gap-4">
+              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 03</span>
+              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">El gran salto: Del mostrador a tu puerta</h3>
+              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
+              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
+                La llegada de la pandemia nos obligó a todos a cambiar, y nosotros no fuimos la excepción. Para seguir acompañando a nuestros clientes, el Delivery se transformó en nuestro día a día. Lo que empezó como una necesidad, terminó siendo el gran impulso del negocio: nuestras ventas dieron un salto enorme porque muchísimas familias nuevas pudieron probar la calidad de nuestros cortes, llevándolos directo desde nuestra tabla a la puerta de sus casas.
+              </p>
+            </div>
+          </div>
+
+          <!-- ─── HITO 4: Texto izquierda · Imagen derecha ─── -->
+          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
+            <div class="order-1 md:order-2 brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
+              <img src="" alt="Nuevo local propio y La Vaquita — Hoy" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
+              <span class="font-display text-[7rem] text-on-background/[0.06] select-none leading-none pointer-events-none">HOY</span>
+            </div>
+            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
+              <span class="font-display text-white text-xs leading-none text-center">HOY</span>
+            </div>
+            <div class="order-2 md:order-1 flex flex-col gap-4">
+              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 04</span>
+              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">Hoy: La Vaquita y nuestro nuevo local propio</h3>
+              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
+              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
+                Hace un par de años quisimos sumarle aún más alegría a la marca y nació nuestra querida mascota, <strong class="font-semibold text-on-background">"La Vaquita"</strong>, que con su corpóreo se ha robado el corazón de todos y ha sido un éxito total. Y hoy, todo el camino recorrido rinde sus mejores frutos: ¡estamos abriendo nuestro nuevo local! Un espacio propio, completamente nuevo y full implementado. Es el premio a más de 30 años de tradición familiar y el mejor lugar para seguir ofreciéndote la calidad de siempre.
+              </p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
