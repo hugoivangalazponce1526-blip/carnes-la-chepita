@@ -420,6 +420,8 @@
       { id:"carpaccio",       title:"Carpaccio de Vacuno",          category:"cortes", price:8990,  unit:"porción",  description:"Corte extrafino de lomo seleccionado. Listo para emplatar y aderezar al estilo tradicional gourmet.",                                                                                                             image:"./assets/carpaccio.png",    featured:false, tag:"EXCLUSIVO",           visible:true },
       { id:"queso-cabeza",    title:"Queso de Cabeza Artesanal",   category:"cortes", price:5990,  unit:"500g",     description:"Receta tradicional de la casa con condimentos chilenos. Textura perfecta y sabor criollo tradicional.",                                                                                                            image:"./assets/queso_cabeza.png", featured:false, tag:"ARTESANAL",           visible:true },
       { id:"hamburguesas",    title:"Hamburguesas Artesanales",     category:"cortes", price:7990,  unit:"pack (6u)",description:"Hamburguesas 100% de carne de vacuno Chepita, sazonadas en local. Gruesas, extra jugosas y envasadas al vacío.",                                                                                                  image:"https://lh3.googleusercontent.com/aida-public/AB6AXuAFnLoTB6PuhbE7Xfq0DZ2vpbfhO5gRHCTfVtdy6ZA3kloYZ4ayVYDgFYs_SDhID7SHx0VwLE2lcuYg-SVTvBhC_Bv05ZAB7MWREJamXQnI16y0ihUVK2D2Q7Lx2uE1wqi-9kbb1uw5vyuWi5-gxiFpx3RjqAR-cq8ZvhXXhXyR7MOdzylmsv-VzYIvtSnC57RreeenxO3C0n_Ow-fZNzvySf-V4IUteMX-EyTMnGOjyRFKqelh_Dk5DtJuHtfXOdOyb2fQwZBakhM", featured:false, tag:"LISTAS PARA LA PLANCHA",visible:true},
+            { id:"lomo-laminado",     title:"Lomo Laminado",        category:"cortes", price:9990,  unit:"kg",       description:"Lomo de vacuno laminado fino, ideal para churrascas y sándwiches gourmet. Producción propia, cortado al momento en nuestra planta de Curicó.", image:"https://lh3.googleusercontent.com/aida-public/AB6AXuBGUuARVAt2oupFtK1S5SpPxTlt1XoKsdlSLofnTdn9eu0j56tCjidBVNaNhwCabqv2fuAa7O_F4kDmGvFWVB0S1-I4enqa9-ssztLwtn6fborzYLGEcjV3timpNrjGsrV605hP-GrfFV4n1Pik4fLm8xeYa8h4sOAK8pc15924c3ovvm63PcXJSaVp4WzrrxZ2EBzmSsdKTwe9YDsRXjJ_V7YBTlnZYTc-6ROkVSjphAnjZCe5ggOcLEWkWtEgnnK0PlqikkqaWCI", featured:false, tag:"EXCLUSIVO CURICÓ",      visible:true },
+      { id:"churrasco-laminado",title:"Churrasco Laminado",   category:"cortes", price:8990,  unit:"kg",       description:"Vacuno laminado especial para churrasco, jugoso y tierno. Elaborado en nuestra planta de Curicó con cortes seleccionados del día.", image:"https://lh3.googleusercontent.com/aida-public/AB6AXuBGUuARVAt2oupFtK1S5SpPxTlt1XoKsdlSLofnTdn9eu0j56tCjidBVNaNhwCabqv2fuAa7O_F4kDmGvFWVB0S1-I4enqa9-ssztLwtn6fborzYLGEcjV3timpNrjGsrV605hP-GrfFV4n1Pik4fLm8xeYa8h4sOAK8pc15924c3ovvm63PcXJSaVp4WzrrxZ2EBzmSsdKTwe9YDsRXjJ_V7YBTlnZYTc-6ROkVSjphAnjZCe5ggOcLEWkWtEgnnK0PlqikkqaWCI", featured:false, tag:"EXCLUSIVO CURICÓ",      visible:true },
       { id:"vacuno-kilo",     title:"Cortes de Vacuno al Kilo",    category:"cortes", price:11990, unit:"kg",       description:"Cortes a elección según disponibilidad (Lomo Vetado, Abastero, Asado Carnicero). Seleccionados y porcionados a tu gusto.",                                                                                        image:"https://lh3.googleusercontent.com/aida-public/AB6AXuBGUuARVAt2oupFtK1S5SpPxTlt1XoKsdlSLofnTdn9eu0j56tCjidBVNaNhwCabqv2fuAa7O_F4kDmGvFWVB0S1-I4enqa9-ssztLwtn6fborzYLGEcjV3timpNrjGsrV605hP-GrfFV4n1Pik4fLm8xeYa8h4sOAK8pc15924c3ovvm63PcXJSaVp4WzrrxZ2EBzmSsdKTwe9YDsRXjJ_V7YBTlnZYTc-6ROkVSjphAnjZCe5ggOcLEWkWtEgnnK0PlqikkqaWCI", featured:false, tag:"FRESCO AL DÍA",        visible:true },
     ];
 
@@ -534,10 +536,17 @@
     async function initApp() {
       setLoading(true);
       const prods = await getProducts();
-      // Sembrar datos iniciales si la tabla está vacía
       if (prods.length === 0) {
+        // Tabla vacía: sembrar todo el SEED
         for (let i = 0; i < SEED_PRODUCTS.length; i++) {
           await upsertProduct({ ...SEED_PRODUCTS[i], sort_order: i });
+        }
+      } else {
+        // Insertar en Supabase cualquier producto del SEED que no exista todavía
+        const existingIds = new Set(prods.map(p => p.id));
+        const missing = SEED_PRODUCTS.filter(p => !existingIds.has(p.id));
+        for (let i = 0; i < missing.length; i++) {
+          await upsertProduct({ ...missing[i], sort_order: prods.length + i });
         }
       }
       setLoading(false);
