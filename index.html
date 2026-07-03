@@ -1327,6 +1327,7 @@
         image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAFnLoTB6PuhbE7Xfq0DZ2vpbfhO5gRHCTfVtdy6ZA3kloYZ4ayVYDgFYs_SDhID7SHx0VwLE2lcuYg-SVTvBhC_Bv05ZAB7MWREJamXQnI16y0ihUVK2D2Q7Lx2uE1wqi-9kbb1uw5vyuWi5-gxiFpx3RjqAR-cq8ZvhXXhXyR7MOdzylmsv-VzYIvtSnC57RreeenxO3C0n_Ow-fZNzvySf-V4IUteMX-EyTMnGOjyRFKqelh_Dk5DtJuHtfXOdOyb2fQwZBakhM",
         featured: false,
         tag: "LISTAS PARA LA PLANCHA",
+        zonaExclusiva: "curico",
         visible: true
       },
       {
@@ -1356,6 +1357,17 @@
     let products = [];
     let currentCategory = 'all';
 
+    // Títulos que son exclusivos de producción Curicó (match insensible a mayúsculas)
+    const CURICO_EXCLUSIVOS = ["lomo laminado", "churrasco laminado", "hamburguesas artesanales"];
+
+    function applyZonaExclusivaFlag(list) {
+      return list.map(p =>
+        CURICO_EXCLUSIVOS.some(t => (p.title || "").toLowerCase().includes(t))
+          ? { ...p, zonaExclusiva: "curico" }
+          : p
+      );
+    }
+
     // Carga productos desde Supabase; fallback a datos semilla si falla o está vacío
     async function loadProducts() {
       try {
@@ -1364,9 +1376,9 @@
           .select('*')
           .order('sort_order', { ascending: true });
         if (error) throw error;
-        products = (data && data.length > 0) ? data : SEED_PRODUCTS;
+        products = applyZonaExclusivaFlag((data && data.length > 0) ? data : SEED_PRODUCTS);
       } catch(e) {
-        products = SEED_PRODUCTS;
+        products = applyZonaExclusivaFlag(SEED_PRODUCTS);
       }
     }
 
@@ -1621,6 +1633,7 @@
           <div class="relative w-full aspect-square border-b-2 border-on-background overflow-hidden bg-surface-container select-none">
             <img alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.image}" loading="lazy" decoding="async">
             ${p.tag ? `<span class="absolute top-2 left-2 bg-secondary text-white font-mono text-[9px] font-bold px-1.5 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase leading-tight">${p.tag}</span>` : ""}
+            ${p.zonaExclusiva === 'curico' ? `<span class="absolute bottom-2 right-2 bg-secondary-light text-on-background font-mono text-[9px] font-bold px-2 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase leading-tight flex items-center gap-1"><span>📍</span>Solo Curicó</span>` : ""}
           </div>
           <div class="p-2 sm:p-4 flex flex-col flex-grow gap-1 sm:gap-2 relative">
             <div class="absolute left-0 top-0 bottom-0 w-[4px] ${['packs','ofertas'].includes(p.category) ? 'bg-primary' : p.category === 'pollo' ? 'bg-fresh-green' : 'bg-secondary'}"></div>
@@ -1873,11 +1886,17 @@
         return;
       }
 
+      // Si el pedido incluye productos exclusivos de Curicó → forzar sucursal Curicó
+      const hasExclusivoCurico = cart.some(item => {
+        const prod = products.find(p => p.id === item.id);
+        return prod && prod.zonaExclusiva === 'curico';
+      });
+
       // WhatsApp city routing numbers:
       // Curicó: +56 9 5486 9712
       // Molina / Lontué: +56 9 3884 1626
       let phoneNum = "";
-      if (clientCity === "Curicó") {
+      if (hasExclusivoCurico || clientCity === "Curicó") {
         phoneNum = "56954869712";
       } else {
         phoneNum = "56938841626"; // Molina / Lontué
@@ -1900,6 +1919,10 @@
       msg += `\n💰 *Total Estimado:* *${formatCLP(total)}*\n`;
       msg += `🚚 *Despacho:* ¡GRATIS!\n\n`;
       msg += `💬 _Hola, me gustaría confirmar la facturación y el horario de entrega para este pedido por favor._`;
+
+      if (hasExclusivoCurico && clientCity !== "Curicó") {
+        msg += `\n\n⚠️ *Este pedido incluye productos de producción Curicó, por lo que se envía siempre a esa sucursal.*`;
+      }
 
       const encodedMsg = encodeURIComponent(msg);
       const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNum}&text=${encodedMsg}`;
