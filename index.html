@@ -24,7 +24,7 @@
 
   <!-- Fonts & Material Symbols -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Quattrocento+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -74,26 +74,27 @@
       theme: {
         extend: {
           colors: {
-            "primary": "#a5360d",        // Rojo Cárnico
-            "primary-light": "#d85a30",  // Rojo Vibrante
-            "secondary": "#855400",      // Amarillo Mostaza/Bronce
-            "secondary-light": "#ef9f27",// Amarillo Brillo
-            "gold": "#C9A227",           // Dorado Premium (acento)
-            "gold-light": "#E8C766",     // Dorado Brillo
-            "background": "#fcf9f5",     // Bone White
-            "on-background": "#1c1c1a",  // Slate Charcoal
-            "outline": "#8c7169",
-            "outline-variant": "#e0c0b6",
-            "silver-skin": "#D3D1C7",
-            "slate-gray": "#2C2C2A",
-            "fresh-green": "#0F6E56",    // Éxito / Stock
-            "surface-dim": "#dcdad6",
-            "surface-container": "#f0edea",
-            "surface-container-lowest": "#ffffff"
+            "primary":         "#A20D0D",   // Rojo vino de marca
+            "primary-light":   "#AE1E1E",   // Rojo hover
+            "secondary":       "#888682",   // Texto cuerpo gris cálido
+            "secondary-light": "#ACAFAD",   // Texto secundario
+            "gold":            "#B98D58",   // Beige/dorado puntual (acento mínimo)
+            "gold-light":      "#C9A86C",
+            "background":      "#FFFFFF",   // Fondo principal blanco
+            "on-background":   "#333333",   // Ink — titulares y texto fuerte
+            "outline":         "#E5E7EB",   // Bordes sutiles
+            "outline-variant": "#F3F4F6",
+            "silver-skin":     "#D3D1C7",
+            "slate-gray":      "#1F242E",   // Fondo etiquetas oscuras
+            "fresh-green":     "#0F6E56",   // Éxito / Stock
+            "surface-dim":     "#ACAFAD",
+            "surface-container":        "#F9F9F9",  // Secciones alternas
+            "surface-container-lowest": "#FFFFFF"
           },
           fontFamily: {
             display: ["Bebas Neue", "sans-serif"],
-            body: ["IBM Plex Sans", "sans-serif"]
+            body:    ["Quattrocento Sans", "sans-serif"],
+            sans:    ["Quattrocento Sans", "sans-serif"],
           },
           borderRadius: {
             "DEFAULT": "0.25rem",
@@ -119,24 +120,26 @@
     }
     
     body {
-      background-color: #fcf9f5;
+      background-color: #FFFFFF;
+      font-size: 17px;
+      font-family: "Quattrocento Sans", sans-serif;
     }
 
     /* Customize scrollbar */
     ::-webkit-scrollbar {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #fcf9f5;
+      background: #F9F9F9;
     }
     ::-webkit-scrollbar-thumb {
-      background: #8c7169;
-      border: 3px solid #fcf9f5;
+      background: #ACAFAD;
+      border: 2px solid #F9F9F9;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #a5360d;
+      background: #A20D0D;
     }
 
     /* Brutalist solid borders and offset shadow style */
@@ -170,7 +173,21 @@
 
     /* Half-dashed separator lines */
     .cut-dashed-border {
-      border-bottom: 2px dashed #8c7169;
+      border-bottom: 1px dashed #E5E7EB;
+    }
+
+    /* Product catalog card — clean editorial style */
+    .product-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
     }
 
     /* Subtle texture overlays */
@@ -231,7 +248,7 @@
       right: 0;
       z-index: 50;
       padding: 12px 20px;
-      background: rgba(252, 249, 245, 0.96);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(8px);
       border-top: 2px solid #1c1c1a;
       box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
@@ -449,7 +466,7 @@
   </div>
 
   <!-- Header Section (Sticky) -->
-  <header class="fixed top-0 w-full z-40 bg-background/90 backdrop-blur-md border-b-2 border-on-background h-20 md:h-24 flex items-center transition-all duration-300">
+  <header class="fixed top-0 w-full z-40 bg-background/95 backdrop-blur-md border-b border-outline h-20 md:h-24 flex items-center transition-all duration-300 shadow-sm">
     <div class="max-w-7xl mx-auto w-full flex justify-between items-center px-margin-mobile md:px-margin-desktop">
       
       <!-- Logo Container -->
@@ -492,7 +509,7 @@
       <!-- Cart Button & Mobile Hamburger -->
       <div class="flex items-center gap-3">
         <!-- Floating Shopping Cart Trigger -->
-        <button onclick="toggleCart()" class="brutalist-btn bg-secondary-light text-on-background px-4 py-2.5 rounded font-display tracking-wider text-base flex items-center gap-2 relative">
+        <button onclick="toggleCart()" class="brutalist-btn bg-primary text-white px-5 py-2.5 rounded-full font-display tracking-wider text-base flex items-center gap-2 relative">
           <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
           <span class="hidden sm:inline">MI PEDIDO</span>
           <span id="cart-counter" class="bg-primary text-white text-xs font-sans font-bold w-5 h-5 rounded-full flex items-center justify-center border border-on-background">0</span>
@@ -508,7 +525,7 @@
   </header>
 
   <!-- Mobile Dropdown Navigation Menu -->
-  <div id="mobile-nav" class="fixed top-20 left-0 w-full bg-background border-b-2 border-on-background z-[35] flex flex-col items-center gap-4 py-6 shadow-[0_4px_10px_rgba(0,0,0,0.08)] md:hidden transition-all duration-300 -translate-y-[150%] opacity-0 pointer-events-none">
+  <div id="mobile-nav" class="fixed top-20 left-0 w-full bg-background border-b border-outline z-[35] flex flex-col items-center gap-4 py-6 shadow-[0_4px_10px_rgba(0,0,0,0.06)] md:hidden transition-all duration-300 -translate-y-[150%] opacity-0 pointer-events-none">
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#hero">INICIO</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#productos">PRODUCTOS</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#historia">HISTORIA</a>
@@ -520,36 +537,61 @@
   <main class="pt-20 md:pt-24 pb-24 md:pb-0">
 
     <!-- Hero Section -->
-    <section class="relative w-full h-[600px] md:h-[680px] flex items-center justify-center bg-on-background overflow-hidden" id="hero">
-      <!-- Background Image -->
-      <div class="absolute inset-0 z-0">
-        <img alt="Logo Carnes La Chepita" class="w-full h-full object-contain opacity-20" src="./assets/logo.jpg" loading="eager" fetchpriority="high" decoding="async">
-      </div>
-      <div class="absolute inset-0 bg-gradient-to-t from-on-background via-on-background/60 to-transparent z-0"></div>
+    <section class="relative w-full min-h-[580px] md:min-h-[640px] flex items-center bg-background border-b border-outline overflow-hidden" id="hero">
+      <!-- Fondo sutil -->
+      <div class="absolute inset-0 bg-surface-container opacity-40 pointer-events-none"></div>
 
-      <!-- Main Headline Content -->
-      <div class="relative z-10 flex flex-col items-center text-center max-w-4xl px-margin-mobile md:px-margin-desktop gap-6">
-        <div class="inline-flex items-center gap-2 bg-black/40 border border-gold/60 px-4 py-1.5 rounded-full backdrop-blur-md animate-custom-pulse">
-          <span class="material-symbols-outlined text-gold-light text-[18px] shrink-0 font-fill-1">workspace_premium</span>
-          <span class="font-mono text-xs text-gold-light uppercase tracking-widest font-semibold">TRADICIÓN Y CALIDAD DESDE 1990 · 35 AÑOS</span>
-        </div>
-        
-        <h1 class="font-display text-[2rem] sm:text-5xl md:text-8xl text-white uppercase tracking-tight leading-none">
-          LA MEJOR CARNE DEL MAULE,<br><span class="text-gold-light">DIRECTO A TU PUERTA</span>
-        </h1>
-        
-        <p class="text-white/80 font-sans text-base md:text-xl max-w-2xl leading-relaxed font-light">
-          Más de 35 años de tradición familiar. Elige tus cortes favoritos o packs parrilleros mensuales y los llevamos listos para cocinar en Curicó y Molina/Lontué.
-        </p>
+      <div class="relative z-10 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center py-14 md:py-0">
 
-        <div class="flex flex-col sm:flex-row gap-4 mt-6 w-full sm:w-auto">
-          <a class="brutalist-card bg-primary text-white font-display text-xl md:text-2xl tracking-wider px-6 md:px-10 py-3 md:py-4 hover:bg-primary-light text-center" href="#productos">
-            COMPRAR AHORA
-          </a>
-          <a class="brutalist-card bg-transparent text-white border-2 border-white font-display text-xl md:text-2xl tracking-wider px-6 md:px-10 py-3 md:py-4 hover:bg-white/10 text-center" href="#zonas">
-            ZONAS DE DELIVERY
-          </a>
+        <!-- Columna izquierda: texto editorial -->
+        <div class="flex flex-col gap-5">
+          <!-- Overline / subtítulo tipo Corte Criollo -->
+          <span class="font-body text-[17px] font-semibold text-on-background leading-snug">Carnicería familiar · Región del Maule</span>
+
+          <!-- H1 -->
+          <h1 class="font-display text-[2.6rem] sm:text-5xl md:text-6xl text-on-background uppercase tracking-tight leading-[0.95]">
+            LA MEJOR CARNE DEL MAULE,<br><span class="text-primary"> DIRECTO A TU PUERTA</span>
+          </h1>
+
+          <div class="w-16 h-[3px] bg-primary"></div>
+
+          <p class="font-body text-secondary text-base leading-relaxed max-w-lg">
+            Más de 35 años de tradición familiar. Elige tus cortes favoritos o packs parrilleros mensuales y los llevamos listos en Curicó y Molina/Lontué.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-3 mt-1">
+            <a class="brutalist-btn bg-primary text-white font-display text-xl tracking-wider px-8 py-3 text-center rounded-full hover:bg-primary-light" href="#productos">
+              COMPRAR AHORA
+            </a>
+            <a class="brutalist-btn bg-transparent text-primary font-display text-xl tracking-wider px-8 py-3 text-center rounded-full" style="border-color:#A20D0D" href="#zonas">
+              VER ZONAS DE DELIVERY
+            </a>
+          </div>
+
+          <!-- Sellos de confianza -->
+          <div class="flex items-center gap-6 mt-2 flex-wrap">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-primary text-[18px] font-fill-1">verified</span>
+              <span class="font-body text-xs text-secondary uppercase tracking-wide font-bold">Producción propia</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-primary text-[18px] font-fill-1">local_shipping</span>
+              <span class="font-body text-xs text-secondary uppercase tracking-wide font-bold">Delivery gratis</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-primary text-[18px] font-fill-1">history</span>
+              <span class="font-body text-xs text-secondary uppercase tracking-wide font-bold">35+ años</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Columna derecha: mascota -->
+        <div class="hidden md:flex justify-center items-end pt-8">
+          <img src="./assets/mascotaofi.png" alt="La Vaquita — Mascota La Chepita"
+               class="w-72 lg:w-96 h-auto drop-shadow-xl" loading="eager" fetchpriority="high" decoding="async">
+        </div>
+
       </div>
     </section>
 
@@ -1654,31 +1696,31 @@
                <span class="px-2 sm:px-3 py-2 font-mono font-bold text-primary">${itemInCart.qty}</span>
                <button onclick="incrementCartItem('${p.id}', event)" class="px-2 sm:px-3 py-2 hover:bg-surface-dim font-bold text-on-background min-w-[32px] sm:min-w-[36px]">+</button>
              </div>`
-          : `<button onclick="addToCart('${p.id}', event)" class="brutalist-btn bg-primary text-white font-display tracking-wider rounded flex items-center justify-center gap-1 uppercase w-full text-sm sm:text-base px-2 sm:px-4 py-2 sm:py-2.5 min-h-[40px]">
+          : `<button onclick="addToCart('${p.id}', event)" class="brutalist-btn bg-primary text-white font-display tracking-wider rounded-full flex items-center justify-center gap-1 uppercase w-full text-sm sm:text-base px-2 sm:px-4 py-2 sm:py-2.5 min-h-[40px]">
                <span class="material-symbols-outlined text-[16px] sm:text-[18px]">add_shopping_cart</span>
                <span>Añadir</span>
              </button>`;
 
         const card = document.createElement("article");
-        card.className = "brutalist-card bg-surface-container-lowest flex flex-col group h-full";
+        card.className = "product-card flex flex-col group h-full";
         card.innerHTML = `
-          <div class="relative w-full aspect-square border-b-2 border-on-background overflow-hidden bg-surface-container select-none">
+          <div class="relative w-full aspect-square overflow-hidden bg-surface-container select-none rounded-t-lg">
             <img alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${p.image}" loading="lazy" decoding="async">
-            ${p.tag ? `<span class="absolute top-2 left-2 bg-secondary text-white font-mono text-[9px] font-bold px-1.5 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase leading-tight">${p.tag}</span>` : ""}
-            ${p.zonaExclusiva === 'curico' ? `<span class="absolute bottom-2 right-2 bg-secondary-light text-on-background font-mono text-[9px] font-bold px-2 py-0.5 rounded border border-on-background shadow-[1px_1px_0px_0px_rgba(28,28,26,1)] uppercase leading-tight flex items-center gap-1"><span>📍</span>Solo Curicó</span>` : ""}
+            ${p.tag ? `<span class="absolute top-2 left-2 bg-slate-gray text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full uppercase leading-tight tracking-wide">${p.tag}</span>` : ""}
+            ${p.zonaExclusiva === 'curico' ? `<span class="absolute bottom-2 right-2 bg-primary text-white font-mono text-[9px] font-bold px-2 py-0.5 rounded-full uppercase leading-tight flex items-center gap-1"><span>📍</span>Solo Curicó</span>` : ""}
           </div>
-          <div class="p-2 sm:p-4 flex flex-col flex-grow gap-1 sm:gap-2 relative">
-            <div class="absolute left-0 top-0 bottom-0 w-[4px] ${['packs','ofertas'].includes(p.category) ? 'bg-primary' : p.category === 'pollo' ? 'bg-fresh-green' : 'bg-secondary'}"></div>
+          <div class="p-3 sm:p-4 flex flex-col flex-grow gap-1.5 sm:gap-2 relative">
+            <div class="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-lg ${['packs','ofertas'].includes(p.category) ? 'bg-primary' : p.category === 'pollo' ? 'bg-fresh-green' : 'bg-outline'}"></div>
 
-            <h3 class="font-display text-base sm:text-2xl text-on-background pl-2 leading-tight uppercase group-hover:text-primary transition-colors line-clamp-2">${p.title}</h3>
-            <p class="hidden sm:block text-on-background/70 font-sans text-xs pl-2 leading-relaxed flex-grow">${p.description}</p>
+            <h3 class="font-display text-base sm:text-xl text-on-background pl-2 leading-tight uppercase group-hover:text-primary transition-colors line-clamp-2">${p.title}</h3>
+            <p class="hidden sm:block text-secondary font-body text-xs pl-2 leading-relaxed flex-grow">${p.description}</p>
 
-            <div class="cut-dashed-border pl-2 my-0.5 sm:my-1"></div>
+            <div class="cut-dashed-border my-0.5 sm:my-1"></div>
 
-            <div class="pl-2 mt-auto pt-1 sm:pt-2 flex flex-col gap-1.5">
-              <div class="flex flex-col">
-                <span class="font-display text-lg sm:text-2xl text-primary leading-none">${formatCLP(p.price)}</span>
-                <span class="font-sans text-[9px] sm:text-[10px] text-on-background/60 uppercase">POR ${p.unit}</span>
+            <div class="mt-auto pt-1 sm:pt-2 flex flex-col gap-2">
+              <div class="flex items-baseline gap-1.5">
+                <span class="font-display text-xl sm:text-2xl text-primary leading-none">${formatCLP(p.price)}</span>
+                <span class="font-body text-[10px] text-secondary-light uppercase">/ ${p.unit}</span>
               </div>
               <div id="product-action-${p.id}">
                 ${qtyHtml}
