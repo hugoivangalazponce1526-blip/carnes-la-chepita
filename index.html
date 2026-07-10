@@ -525,25 +525,27 @@
   <main class="pt-20 md:pt-24 pb-24 md:pb-0">
 
     <!-- Hero Section -->
-    <section class="relative w-full min-h-[580px] md:min-h-[640px] flex items-center bg-background border-b border-outline overflow-hidden" id="hero">
-      <!-- Fondo sutil -->
-      <div class="absolute inset-0 bg-surface-container opacity-40 pointer-events-none"></div>
+    <section class="relative w-full min-h-[580px] md:min-h-[640px] flex items-center border-b border-outline overflow-hidden"
+             id="hero"
+             style="background-image: url('./assets/portada.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+      <!-- Overlay oscuro para contraste del texto -->
+      <div class="absolute inset-0 bg-gradient-to-r from-black/65 via-black/45 to-black/20 pointer-events-none"></div>
 
-      <div class="relative z-10 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center py-14 md:py-0">
+      <div class="relative z-10 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop w-full py-16 md:py-20">
 
-        <!-- Columna izquierda: texto editorial -->
-        <div class="flex flex-col gap-5">
-          <!-- Overline / subtítulo tipo Corte Criollo -->
-          <span class="font-body text-[17px] font-semibold text-on-background leading-snug">Carnicería familiar · Región del Maule</span>
+        <!-- Texto superpuesto — ancho completo con max-width para legibilidad -->
+        <div class="flex flex-col gap-5 max-w-xl">
+          <!-- Overline -->
+          <span class="font-body text-[15px] font-semibold text-white/80 leading-snug uppercase tracking-widest">Carnicería familiar · Región del Maule</span>
 
           <!-- H1 -->
-          <h1 class="font-display text-[2.6rem] sm:text-5xl md:text-6xl text-on-background uppercase tracking-tight leading-[0.95]">
+          <h1 class="font-display text-[2.6rem] sm:text-5xl md:text-6xl text-white uppercase tracking-tight leading-[0.95]">
             LA MEJOR CARNE DEL MAULE,<br><span class="text-primary"> DIRECTO A TU PUERTA</span>
           </h1>
 
           <div class="w-16 h-[3px] bg-primary"></div>
 
-          <p class="font-body text-secondary text-base leading-relaxed max-w-lg">
+          <p class="font-body text-white/75 text-base leading-relaxed">
             Más de 35 años de tradición familiar. Elige tus cortes favoritos o packs parrilleros mensuales y los llevamos listos en Curicó y Molina/Lontué.
           </p>
 
@@ -552,7 +554,7 @@
             <a class="brutalist-btn bg-primary text-white font-display text-xl tracking-wider px-8 py-3 text-center rounded-full hover:bg-primary-light" href="#productos">
               COMPRAR AHORA
             </a>
-            <a class="brutalist-btn bg-transparent text-primary font-display text-xl tracking-wider px-8 py-3 text-center rounded-full border border-primary hover:bg-primary hover:text-white hover:opacity-100" href="#zonas">
+            <a class="brutalist-btn bg-transparent text-white font-display text-xl tracking-wider px-8 py-3 text-center rounded-full border border-white hover:bg-white hover:text-on-background hover:opacity-100" href="#zonas">
               VER ZONAS DE DELIVERY
             </a>
           </div>
@@ -560,24 +562,18 @@
           <!-- Sellos de confianza -->
           <div class="flex items-center gap-6 mt-2 flex-wrap">
             <div class="flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-primary text-[18px] font-fill-1">verified</span>
-              <span class="font-body text-xs text-secondary uppercase tracking-wide font-bold">Producción propia</span>
+              <span class="material-symbols-outlined text-white text-[18px] font-fill-1">verified</span>
+              <span class="font-body text-xs text-white/70 uppercase tracking-wide font-bold">Producción propia</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-primary text-[18px] font-fill-1">local_shipping</span>
-              <span class="font-body text-xs text-secondary uppercase tracking-wide font-bold">Delivery gratis</span>
+              <span class="material-symbols-outlined text-white text-[18px] font-fill-1">local_shipping</span>
+              <span class="font-body text-xs text-white/70 uppercase tracking-wide font-bold">Delivery gratis</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <span class="material-symbols-outlined text-primary text-[18px] font-fill-1">history</span>
-              <span class="font-body text-xs text-secondary uppercase tracking-wide font-bold">35+ años</span>
+              <span class="material-symbols-outlined text-white text-[18px] font-fill-1">history</span>
+              <span class="font-body text-xs text-white/70 uppercase tracking-wide font-bold">35+ años</span>
             </div>
           </div>
-        </div>
-
-        <!-- Columna derecha: mascota -->
-        <div class="hidden md:flex justify-center items-end pt-8">
-          <img src="./assets/mascotaofi.png" alt="La Vaquita — Mascota La Chepita"
-               class="w-72 lg:w-96 h-auto drop-shadow-xl" loading="eager" fetchpriority="high" decoding="async">
         </div>
 
       </div>
