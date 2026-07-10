@@ -142,33 +142,32 @@
       background: #A20D0D;
     }
 
-    /* Brutalist solid borders and offset shadow style */
+    /* Cards — clean, flat editorial style */
     .brutalist-card {
-      border: 2px solid #1c1c1a;
-      box-shadow: 4px 4px 0px 0px #1c1c1a;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid #E5E7EB;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: box-shadow 0.2s ease, transform 0.2s ease;
     }
     .brutalist-card:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0px 0px #1c1c1a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.09);
     }
     .brutalist-card:active {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0px 0px #1c1c1a;
+      transform: translateY(0);
     }
 
+    /* Buttons — completely flat, no shadow, no hard border */
     .brutalist-btn {
-      border: 2px solid #1c1c1a;
-      box-shadow: 3px 3px 0px 0px #1c1c1a;
-      transition: all 0.15s ease-out;
+      border: 1px solid transparent;
+      box-shadow: none;
+      transition: opacity 0.15s ease-out, transform 0.1s ease-out;
     }
     .brutalist-btn:hover {
-      transform: translate(-1px, -1px);
-      box-shadow: 4px 4px 0px 0px #1c1c1a;
+      opacity: 0.85;
     }
     .brutalist-btn:active {
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px 0px 0px #1c1c1a;
+      transform: scale(0.97);
+      opacity: 1;
     }
 
     /* Half-dashed separator lines */
@@ -472,21 +471,12 @@
       <!-- Logo Container -->
       <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo({top:0, behavior:'smooth'})">
 
-        <!-- Circular brand logo: anillo rojo → anillo dorado → imagen -->
-        <div class="relative shrink-0 w-16 h-16 md:w-[4.75rem] md:h-[4.75rem] rounded-full
-                    shadow-[3px_3px_0px_0px_rgba(28,28,26,1)]
-                    group-hover:shadow-[4px_4px_0px_0px_rgba(28,28,26,1)]
-                    group-hover:scale-105
-                    transition-all duration-300">
-          <!-- Anillo exterior rojo -->
-          <div class="absolute inset-0 rounded-full bg-primary"></div>
-          <!-- Círculo negro + logo oficial -->
-          <div class="absolute inset-[3px] rounded-full overflow-hidden bg-black">
-            <img src="./assets/logo.jpg" alt="Logo La Chepita"
-                 class="w-full h-full object-cover"
-                 style="object-position: center center"
-                 loading="eager" fetchpriority="high">
-          </div>
+        <!-- Logo oficial sin aro -->
+        <div class="shrink-0 w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden group-hover:scale-105 transition-transform duration-300">
+          <img src="./assets/logo.jpg" alt="Logo La Chepita"
+               class="w-full h-full object-cover"
+               style="object-position: center center"
+               loading="eager" fetchpriority="high">
         </div>
 
         <!-- Texto de marca -->
@@ -501,7 +491,6 @@
       <nav class="hidden md:flex gap-8 items-center font-display text-lg tracking-wider">
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#hero">Inicio</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#productos">Catálogo</a>
-        <a class="nav-link text-on-background hover:text-primary transition-colors" href="#historia">Historia</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#zonas">Delivery</a>
         <a class="nav-link text-on-background hover:text-primary transition-colors" href="#testimonios">Clientes</a>
       </nav>
@@ -516,7 +505,7 @@
         </button>
 
         <!-- Mobile Drawer Menu Trigger -->
-        <button onclick="toggleMobileMenu()" class="md:hidden brutalist-btn bg-white text-on-background p-2.5 rounded flex items-center justify-center">
+        <button onclick="toggleMobileMenu()" class="md:hidden brutalist-btn bg-white text-on-background p-2.5 rounded-full border border-outline flex items-center justify-center">
           <span id="menu-icon" class="material-symbols-outlined text-[24px]">menu</span>
         </button>
       </div>
@@ -528,7 +517,6 @@
   <div id="mobile-nav" class="fixed top-20 left-0 w-full bg-background border-b border-outline z-[35] flex flex-col items-center gap-4 py-6 shadow-[0_4px_10px_rgba(0,0,0,0.06)] md:hidden transition-all duration-300 -translate-y-[150%] opacity-0 pointer-events-none">
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#hero">INICIO</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#productos">PRODUCTOS</a>
-    <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#historia">HISTORIA</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#zonas">DELIVERY</a>
     <a onclick="toggleMobileMenu()" class="font-display text-xl tracking-wider text-on-background hover:text-primary" href="#testimonios">TESTIMONIOS</a>
   </div>
@@ -564,7 +552,7 @@
             <a class="brutalist-btn bg-primary text-white font-display text-xl tracking-wider px-8 py-3 text-center rounded-full hover:bg-primary-light" href="#productos">
               COMPRAR AHORA
             </a>
-            <a class="brutalist-btn bg-transparent text-primary font-display text-xl tracking-wider px-8 py-3 text-center rounded-full" style="border-color:#A20D0D" href="#zonas">
+            <a class="brutalist-btn bg-transparent text-primary font-display text-xl tracking-wider px-8 py-3 text-center rounded-full border border-primary hover:bg-primary hover:text-white hover:opacity-100" href="#zonas">
               VER ZONAS DE DELIVERY
             </a>
           </div>
@@ -592,6 +580,36 @@
                class="w-72 lg:w-96 h-auto drop-shadow-xl" loading="eager" fetchpriority="high" decoding="async">
         </div>
 
+      </div>
+    </section>
+
+    <!-- Galería editorial full-bleed -->
+    <section class="w-full overflow-hidden">
+      <!-- Fila 1: 2/3 + 1/3 -->
+      <div class="flex h-[340px] md:h-[500px]">
+        <div class="relative overflow-hidden" style="flex:2">
+          <img src="./assets/carnes crudas.jpg" alt="Cortes frescos La Chepita"
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="relative overflow-hidden" style="flex:1">
+          <img src="./assets/carne romero.jpg" alt="Carne con romero La Chepita"
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+               loading="lazy" decoding="async">
+        </div>
+      </div>
+      <!-- Fila 2: 1/2 + 1/2 -->
+      <div class="flex h-[240px] md:h-[380px]">
+        <div class="relative overflow-hidden" style="flex:1">
+          <img src="./assets/asado listo.jpg" alt="Asado listo La Chepita"
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+               loading="lazy" decoding="async">
+        </div>
+        <div class="relative overflow-hidden" style="flex:1">
+          <img src="./assets/carne aire.jpg" alt="Carne al aire La Chepita"
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+               loading="lazy" decoding="async">
+        </div>
       </div>
     </section>
 
@@ -657,124 +675,6 @@
       </div>
     </section>
 
-
-    <!-- Mascota oficial — intro antes del Timeline -->
-    <div class="bg-background py-12 border-b-2 border-on-background flex flex-col items-center gap-3">
-      <img src="./assets/mascotaofi.png" alt="La Vaquita — Mascota oficial de La Chepita"
-           class="w-64 md:w-80 h-auto drop-shadow-2xl" loading="lazy" decoding="async">
-      <p class="font-mono text-xs font-bold uppercase tracking-widest text-on-background/50">Mascota oficial La Chepita</p>
-    </div>
-
-    <!-- ════════════════════════════════════════════════
-         Nuestra Historia — Timeline Zig-Zag
-    ════════════════════════════════════════════════ -->
-    <section class="py-16 md:py-24 bg-surface-container border-y-2 border-on-background scroll-mt-20" id="historia">
-      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
-
-        <!-- Encabezado de sección -->
-        <div class="flex flex-col items-center text-center mb-16 md:mb-24">
-          <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest block mb-3">// NUESTRA HISTORIA</span>
-          <h2 class="font-display text-5xl md:text-7xl uppercase tracking-tight text-on-background">El camino recorrido</h2>
-          <div class="w-24 h-1.5 bg-primary rounded-full mt-5"></div>
-          <!-- Badge "35 años" -->
-          <div class="mt-8 inline-flex items-center gap-4 brutalist-card bg-primary px-8 py-4">
-            <span class="font-display text-6xl text-white leading-none">35+</span>
-            <div class="flex flex-col text-left">
-              <span class="font-display text-xl text-white uppercase leading-tight">Años de</span>
-              <span class="font-display text-xl text-secondary-light uppercase leading-tight">Tradición</span>
-            </div>
-          </div>
-          <p class="mt-6 font-sans text-sm text-on-background/55 max-w-md">Trabajo, familia y dedicación desde 1990 que hicieron a La Chepita lo que es hoy.</p>
-        </div>
-
-        <!-- Contenedor Timeline -->
-        <div class="relative flex flex-col gap-16 md:gap-28">
-
-          <!-- Línea vertical central (solo escritorio) -->
-          <div class="hidden md:block absolute left-1/2 inset-y-0 w-[2px] bg-on-background/15 -translate-x-1/2 z-0"></div>
-
-          <!-- ─── HITO 1: Imagen izquierda · Texto derecha ─── -->
-          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
-            <!-- Imagen placeholder -->
-            <div class="brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
-              <img src="" alt="Origen de La Chepita en 1990" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-              <span class="font-display text-[7rem] text-on-background/[0.06] select-none leading-none pointer-events-none">1990</span>
-            </div>
-            <!-- Punto central con año (solo escritorio) -->
-            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
-              <span class="font-display text-white text-sm leading-none">1990</span>
-            </div>
-            <!-- Texto -->
-            <div class="flex flex-col gap-4">
-              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 01</span>
-              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">1990: El origen y el bautizo de "La Chepita"</h3>
-              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
-              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
-                Nuestra historia comenzó en un local muy pequeñito de la mano de don Arturo González. Al llegar a arrendar ese espacio, se instaló justo al lado de un famoso minimarket de la zona llamado "La Chepita". Fue la propia dueña de ese almacén quien, con esa confianza de barrio, le dijo a don Arturo: <em>"Póngale a la carnicería La Chepita"</em>. Y así quedó. Con cautela, pero con un trabajo incansable, don Arturo forjó un negocio estable que le dio tranquilidad a su familia y se ganó el cariño de los primeros clientes.
-              </p>
-            </div>
-          </div>
-
-          <!-- ─── HITO 2: Texto izquierda · Imagen derecha ─── -->
-          <!-- DOM: imagen primero (mobile: arriba) → desktop: se va a la derecha con md:order-2 -->
-          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
-            <div class="order-1 md:order-2 brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
-              <img src="" alt="Nueva generación en Lontué — 2000" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-              <span class="font-display text-[7rem] text-on-background/[0.06] select-none leading-none pointer-events-none">2000</span>
-            </div>
-            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
-              <span class="font-display text-white text-sm leading-none">2000</span>
-            </div>
-            <div class="order-2 md:order-1 flex flex-col gap-4">
-              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 02</span>
-              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">2000: La nueva generación llega a Lontué</h3>
-              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
-              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
-                La vocación por la carnicería corría por las venas. Con apenas 17 años, y apoyado firmemente por su padre don Arturo, la nueva generación decidió tomar las riendas y abrir nuestra sucursal en Lontué. Aunque el local era arrendado y eso limitaba poder invertir todo el capital soñado, suplimos eso con pura dedicación. Fuimos mejorando día a día, haciéndonos un espacio en la comuna a puro esfuerzo y buena atención.
-              </p>
-            </div>
-          </div>
-
-          <!-- ─── HITO 3: Imagen izquierda · Texto derecha ─── -->
-          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
-            <div class="brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5 flex items-center justify-center">
-              <img src="" alt="Inicio del Delivery — La Chepita en pandemia" class="absolute inset-0 w-full h-full object-cover" loading="lazy">
-              <span class="font-display text-[4.5rem] text-on-background/[0.06] select-none leading-none text-center px-6 pointer-events-none">DELIVERY</span>
-            </div>
-            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
-              <span class="font-display text-white text-sm leading-none">2020</span>
-            </div>
-            <div class="flex flex-col gap-4">
-              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 03</span>
-              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">El gran salto: Del mostrador a tu puerta</h3>
-              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
-              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
-                La llegada de la pandemia nos obligó a todos a cambiar, y nosotros no fuimos la excepción. Para seguir acompañando a nuestros clientes, el Delivery se transformó en nuestro día a día. Lo que empezó como una necesidad, terminó siendo el gran impulso del negocio: nuestras ventas dieron un salto enorme porque muchísimas familias nuevas pudieron probar la calidad de nuestros cortes, llevándolos directo desde nuestra tabla a la puerta de sus casas.
-              </p>
-            </div>
-          </div>
-
-          <!-- ─── HITO 4: Texto izquierda · Imagen derecha ─── -->
-          <div class="relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
-            <div class="order-1 md:order-2 brutalist-card overflow-hidden relative aspect-[4/3] bg-on-background/5">
-              <img src="./assets/chepitaactual.JPG" alt="Nuevo local propio de La Chepita" class="w-full h-full object-cover" style="object-position: center 30%" loading="lazy">
-            </div>
-            <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 rounded-full bg-primary border-[3px] border-on-background shadow-[3px_3px_0_#1c1c1a] items-center justify-center">
-              <span class="font-display text-white text-xs leading-none text-center">HOY</span>
-            </div>
-            <div class="order-2 md:order-1 flex flex-col gap-4">
-              <span class="font-mono text-[10px] text-primary font-bold uppercase tracking-widest">Hito 04</span>
-              <h3 class="font-display text-3xl md:text-[2.5rem] uppercase tracking-tight text-on-background leading-tight">Hoy: La Vaquita y nuestro nuevo local propio</h3>
-              <div class="w-12 h-[3px] bg-primary rounded-full"></div>
-              <p class="font-sans text-sm md:text-base text-on-background/75 leading-relaxed">
-                Hace un par de años quisimos sumarle aún más alegría a la marca y nació nuestra querida mascota, <strong class="font-semibold text-on-background">"La Vaquita"</strong>, que con su corpóreo se ha robado el corazón de todos y ha sido un éxito total. Y hoy, todo el camino recorrido rinde sus mejores frutos: ¡estamos abriendo nuestro nuevo local! Un espacio propio, completamente nuevo y full implementado. Es el premio a más de 30 años de tradición familiar y el mejor lugar para seguir ofreciéndote la calidad de siempre.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
 
     <!-- ¿Por qué elegir La Chepita? (Autoridad / Confianza) -->
     <section class="py-16 md:py-24 bg-on-background text-white border-y-2 border-on-background scroll-mt-20" id="porque">
