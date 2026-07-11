@@ -268,6 +268,16 @@
     .wa-zone:hover { background: #25D366; color: #1c1c1a; }
     .wa-zone small { font-family: "Quattrocento Sans", sans-serif; font-size: 0.7rem; opacity: 0.75; letter-spacing: 0; }
 
+    /* ── Hero mobile: mapa de Chile visible completo ── */
+    @media (max-width: 767px) {
+      #hero {
+        background-size: contain !important;
+        background-color: #111010 !important;
+        background-position: center 30% !important;
+        min-height: 560px !important;
+      }
+    }
+
     /* ── Fire burst on product click ── */
     @keyframes fireBurst {
       0%   { transform: translate(0, 0) scale(1); opacity: 1; }
