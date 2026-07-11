@@ -708,45 +708,86 @@
     </section>
 
     <!-- ¿Por qué elegir La Chepita? (Autoridad / Confianza) -->
-    <section class="py-16 md:py-24 bg-on-background text-white border-y-2 border-on-background scroll-mt-20" id="porque">
+    <section class="py-16 md:py-24 bg-background scroll-mt-20" id="porque">
       <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+
+        <!-- Encabezado -->
         <div class="flex flex-col items-center text-center gap-4 mb-12 md:mb-16">
-          <span class="font-mono text-xs text-gold font-bold uppercase tracking-widest block">// LA DIFERENCIA CHEPITA</span>
-          <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight text-white">¿Por qué elegir La Chepita?</h2>
-          <div class="w-24 h-1.5 bg-gold rounded-full"></div>
-          <p class="font-sans text-base md:text-lg text-white/70 max-w-2xl leading-relaxed">No somos una cadena más. Somos la carnicería del barrio que se ganó la confianza del Maule a punta de calidad, cortes de verdad y trato de vecino.</p>
+          <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest">// LA DIFERENCIA CHEPITA</span>
+          <h2 class="font-display text-4xl md:text-6xl uppercase tracking-tight text-on-background">¿Por qué elegir La Chepita?</h2>
+          <div class="w-20 h-[3px] bg-primary"></div>
+          <p class="font-body text-base md:text-lg text-secondary max-w-2xl leading-relaxed">No somos una cadena más. Somos la carnicería del barrio que se ganó la confianza del Maule a punta de calidad, cortes de verdad y trato de vecino.</p>
         </div>
+
+        <!-- Grid de tarjetas -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
-            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">history_edu</span>
-            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">35 años de trayectoria</h3>
-            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Desde 1990 llevando calidad a la mesa de miles de familias del Maule. Experiencia que ninguna cadena puede igualar.</p>
+
+          <!-- 1 -->
+          <div class="product-card p-6 md:p-7 flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-lg bg-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-white text-[22px] font-fill-1">history_edu</span>
+            </div>
+            <div>
+              <h3 class="font-display text-[1.55rem] uppercase tracking-wide text-on-background mb-1.5">35 años de trayectoria</h3>
+              <p class="font-body text-[15px] text-secondary leading-relaxed">Desde 1990 llevando calidad a la mesa de miles de familias del Maule. Experiencia que ninguna cadena puede igualar.</p>
+            </div>
           </div>
-          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
-            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">verified</span>
-            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Cortes seleccionados</h3>
-            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Nada de carne procesada de cadena. Trabajamos cortes frescos, limpios y preparados artesanalmente, pedido por pedido.</p>
+
+          <!-- 2 -->
+          <div class="product-card p-6 md:p-7 flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-lg bg-gold flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-white text-[22px] font-fill-1">verified</span>
+            </div>
+            <div>
+              <h3 class="font-display text-[1.55rem] uppercase tracking-wide text-on-background mb-1.5">Cortes seleccionados</h3>
+              <p class="font-body text-[15px] text-secondary leading-relaxed">Nada de carne procesada de cadena. Trabajamos cortes frescos, limpios y preparados artesanalmente, pedido por pedido.</p>
+            </div>
           </div>
-          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
-            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">local_shipping</span>
-            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Delivery propio</h3>
-            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Somos la única carnicería local con reparto propio en Curicó, Molina y Lontué. Tu asado llega fresco y a la hora.</p>
+
+          <!-- 3 -->
+          <div class="product-card p-6 md:p-7 flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-lg bg-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-white text-[22px] font-fill-1">local_shipping</span>
+            </div>
+            <div>
+              <h3 class="font-display text-[1.55rem] uppercase tracking-wide text-on-background mb-1.5">Delivery propio</h3>
+              <p class="font-body text-[15px] text-secondary leading-relaxed">Somos la única carnicería local con reparto propio en Curicó, Molina y Lontué. Tu asado llega fresco y a la hora.</p>
+            </div>
           </div>
-          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
-            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">diversity_3</span>
-            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Atención personalizada</h3>
-            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Te atendemos por WhatsApp como se atiende a un vecino: directo, cercano y sin robots de por medio.</p>
+
+          <!-- 4 -->
+          <div class="product-card p-6 md:p-7 flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-lg bg-gold flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-white text-[22px] font-fill-1">diversity_3</span>
+            </div>
+            <div>
+              <h3 class="font-display text-[1.55rem] uppercase tracking-wide text-on-background mb-1.5">Atención personalizada</h3>
+              <p class="font-body text-[15px] text-secondary leading-relaxed">Te atendemos por WhatsApp como se atiende a un vecino: directo, cercano y sin robots de por medio.</p>
+            </div>
           </div>
-          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
-            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">storefront</span>
-            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Mayorista y minorista</h3>
-            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Le vendemos igual a la familia que arma el asado del domingo como al restaurante que necesita stock constante.</p>
+
+          <!-- 5 -->
+          <div class="product-card p-6 md:p-7 flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-lg bg-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-white text-[22px] font-fill-1">storefront</span>
+            </div>
+            <div>
+              <h3 class="font-display text-[1.55rem] uppercase tracking-wide text-on-background mb-1.5">Mayorista y minorista</h3>
+              <p class="font-body text-[15px] text-secondary leading-relaxed">Le vendemos igual a la familia que arma el asado del domingo como al restaurante que necesita stock constante.</p>
+            </div>
           </div>
-          <div class="brutalist-card bg-slate-gray border-gold/30 p-6 md:p-7 flex flex-col gap-3">
-            <span class="material-symbols-outlined text-gold text-[36px] font-fill-1">workspace_premium</span>
-            <h3 class="font-display text-2xl md:text-3xl uppercase tracking-wide text-white">Calidad garantizada</h3>
-            <p class="font-sans text-sm md:text-base text-white/70 leading-relaxed">Miles de clientes satisfechos y productos únicos en la zona: chunchules frescos, carpaccio y queso de cabeza.</p>
+
+          <!-- 6 -->
+          <div class="product-card p-6 md:p-7 flex flex-col gap-4">
+            <div class="w-11 h-11 rounded-lg bg-gold flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-white text-[22px] font-fill-1">workspace_premium</span>
+            </div>
+            <div>
+              <h3 class="font-display text-[1.55rem] uppercase tracking-wide text-on-background mb-1.5">Calidad garantizada</h3>
+              <p class="font-body text-[15px] text-secondary leading-relaxed">Miles de clientes satisfechos y productos únicos en la zona: chunchules frescos, carpaccio y queso de cabeza.</p>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
