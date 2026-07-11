@@ -601,9 +601,21 @@
 
     <!-- Galería editorial full-bleed -->
     <section class="w-full overflow-hidden">
-      <!-- Fila 1: 2/3 + 1/3 -->
-      <div class="flex h-[340px] md:h-[500px]">
-        <div class="relative overflow-hidden" style="flex:2">
+      <div class="grid grid-cols-3 grid-rows-2 gap-[2px] h-[420px] md:h-[680px]">
+
+        <!-- Cordillera — columna izquierda, doble alto -->
+        <div class="col-span-1 row-span-2 relative overflow-hidden">
+          <img src="./assets/cordillera.jpg" alt="Cordillera desde La Chepita"
+               class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+               loading="lazy" decoding="async">
+          <div class="absolute bottom-0 left-0 bg-black/60 text-white px-4 py-2">
+            <p class="font-display text-xl uppercase leading-tight">Cordillera</p>
+            <p class="font-body text-sm text-white/80">A las brasas, con vista al sur</p>
+          </div>
+        </div>
+
+        <!-- Carne Fresca -->
+        <div class="col-span-1 row-span-1 relative overflow-hidden">
           <img src="./assets/carnes crudas.jpg" alt="Cortes frescos La Chepita"
                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                loading="lazy" decoding="async">
@@ -612,7 +624,9 @@
             <p class="font-body text-sm text-white/80">Selección diaria</p>
           </div>
         </div>
-        <div class="relative overflow-hidden" style="flex:1">
+
+        <!-- Asado a la Parrilla -->
+        <div class="col-span-1 row-span-1 relative overflow-hidden">
           <img src="./assets/carne romero.jpg" alt="Carne con romero La Chepita"
                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                loading="lazy" decoding="async">
@@ -621,10 +635,9 @@
             <p class="font-body text-sm text-white/80">Término perfecto</p>
           </div>
         </div>
-      </div>
-      <!-- Fila 2: 1/2 + 1/2 -->
-      <div class="flex h-[240px] md:h-[380px]">
-        <div class="relative overflow-hidden" style="flex:1">
+
+        <!-- A las Brasas -->
+        <div class="col-span-1 row-span-1 relative overflow-hidden">
           <img src="./assets/asado listo.jpg" alt="Asado listo La Chepita"
                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                loading="lazy" decoding="async">
@@ -633,7 +646,9 @@
             <p class="font-body text-sm text-white/80">Sabor ahumado</p>
           </div>
         </div>
-        <div class="relative overflow-hidden" style="flex:1">
+
+        <!-- Carne al Punto -->
+        <div class="col-span-1 row-span-1 relative overflow-hidden">
           <img src="./assets/carne aire.jpg" alt="Carne al aire La Chepita"
                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                loading="lazy" decoding="async">
@@ -642,6 +657,7 @@
             <p class="font-body text-sm text-white/80">Jugosa y sabrosa</p>
           </div>
         </div>
+
       </div>
     </section>
 
