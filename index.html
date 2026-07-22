@@ -628,7 +628,7 @@
 
         <!-- Columna central: video autoplay loop -->
         <div class="relative overflow-hidden h-[400px] md:h-auto">
-          <video class="w-full h-full object-cover" autoplay loop muted playsinline preload="auto">
+          <video id="gallery-video" class="w-full h-full object-cover" autoplay loop muted playsinline preload="auto">
             <source src="./assets/0722.mp4" type="video/mp4">
           </video>
         </div>
@@ -2169,6 +2169,19 @@
 
     // Auto rotate testimonials every 6 seconds
     setInterval(nextSlide, 6000);
+
+  // ── Autoplay forzado galería video ──────────────────────────────────────
+  (function () {
+    const vid = document.getElementById('gallery-video');
+    if (!vid) return;
+    vid.muted = true;
+    const tryPlay = () => vid.play().catch(() => {});
+    if (document.readyState === 'complete') { tryPlay(); }
+    else { window.addEventListener('load', tryPlay); }
+    document.addEventListener('click', tryPlay, { once: true });
+    document.addEventListener('touchstart', tryPlay, { once: true });
+  })();
+  // ────────────────────────────────────────────────────────────────────────
 
   // ── Recomendador de cortes ──────────────────────────────────────────────
   const REC_DATA = {
