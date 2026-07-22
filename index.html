@@ -759,6 +759,54 @@
       </div>
     </section>
 
+    <!-- Recomendador interactivo de cortes -->
+    <section class="py-16 md:py-24 bg-surface-container border-y-2 border-on-background" id="recomendador">
+      <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop">
+
+        <!-- Encabezado -->
+        <div class="text-center mb-10 md:mb-14">
+          <span class="font-body text-xs text-primary font-bold uppercase tracking-widest block mb-2">// ELIGE TU PREPARACIÓN</span>
+          <h2 class="font-display text-4xl md:text-5xl uppercase tracking-tight text-on-background">¿Qué vas a preparar hoy?</h2>
+          <div class="w-20 h-[3px] bg-primary mx-auto mt-3"></div>
+          <p class="font-body text-[15px] text-secondary mt-4 max-w-xl mx-auto">Selecciona tu tipo de preparación y te recomendamos el corte ideal de La Chepita.</p>
+        </div>
+
+        <!-- Botones de preparación -->
+        <div class="flex flex-wrap justify-center gap-3 mb-10" id="rec-btns">
+          <button onclick="recomendar('asado')"     class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🔥 Asado a la parrilla</button>
+          <button onclick="recomendar('cazuela')"   class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🍲 Cazuela</button>
+          <button onclick="recomendar('horno')"     class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🫕 Al horno</button>
+          <button onclick="recomendar('sarten')"    class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🍳 A la sartén</button>
+          <button onclick="recomendar('estofado')"  class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🥘 Estofado / guiso</button>
+          <button onclick="recomendar('picada')"    class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🫙 Relleno / picado</button>
+          <button onclick="recomendar('especial')"  class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">⭐ Corte especial</button>
+        </div>
+
+        <!-- Resultado -->
+        <div id="rec-result" class="hidden">
+          <div class="product-card p-7 md:p-10 flex flex-col gap-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-white text-[26px] font-fill-1">recommend</span>
+              </div>
+              <div>
+                <p class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-1">Nuestra recomendación</p>
+                <h3 id="rec-titulo" class="font-display text-2xl md:text-3xl uppercase tracking-wide text-on-background"></h3>
+              </div>
+            </div>
+            <p id="rec-desc" class="font-body text-[16px] text-secondary leading-relaxed"></p>
+            <div class="flex flex-wrap gap-2" id="rec-tags"></div>
+            <a id="rec-wa" href="#" target="_blank"
+               class="inline-flex items-center gap-2 self-start bg-primary text-white font-body font-bold text-sm px-6 py-3 rounded-full hover:bg-primary-light transition-colors duration-200">
+              <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
+              Pedir por WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ¿Por qué elegir La Chepita? (Autoridad / Confianza) -->
     <section class="py-16 md:py-24 bg-background scroll-mt-20" id="porque">
       <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
@@ -2151,6 +2199,76 @@
 
     // Auto rotate testimonials every 6 seconds
     setInterval(nextSlide, 6000);
+
+  // ── Recomendador de cortes ──────────────────────────────────────────────
+  const REC_DATA = {
+    asado: {
+      titulo: 'Asado de tira, lomo vetado o costillar',
+      desc: 'Para la parrilla no hay nada mejor que un buen asado de tira con hueso, un lomo vetado jugoso o un costillar bien sellado. Cortes con grasa infiltrada que aguantan el fuego lento y quedan en su punto.',
+      tags: ['Asado de tira', 'Lomo vetado', 'Costillar', 'Entraña'],
+    },
+    cazuela: {
+      titulo: 'Plateada, osobuco o asado carnicero',
+      desc: 'La cazuela necesita un corte que se ablande con cocción larga. La plateada desmenuzada, el osobuco con tuétano y el asado carnicero son los reyes de la olla con mucho sabor y caldo.',
+      tags: ['Plateada', 'Osobuco', 'Asado carnicero', 'Posta negra'],
+    },
+    horno: {
+      titulo: 'Lomo liso, pierna de cerdo o pollo entero',
+      desc: 'El horno potencia los jugos internos. Un lomo liso con hierbas, una pierna de cerdo marinada o un pollo entero relleno son elecciones que nunca fallan y quedan dorados y tiernos.',
+      tags: ['Lomo liso', 'Pierna de cerdo', 'Pollo entero', 'Plateada al horno'],
+    },
+    sarten: {
+      titulo: 'Filete, lomo liso o pechuga',
+      desc: 'Para la sartén lo que manda es la rapidez y el dorado. Un filete sellado vuelta y vuelta, un lomo liso en medallones o una pechuga abierta a la plancha son perfectos para una comida rápida y sabrosa.',
+      tags: ['Filete', 'Lomo liso', 'Pechuga', 'Escalopa de cerdo'],
+    },
+    estofado: {
+      titulo: 'Posta negra, tapapecho o osobuco',
+      desc: 'Los estofados y guisos piden cortes con colágeno que se deshagan con cocción lenta. La posta negra en trozos, el tapapecho deshebrado o el osobuco en salsa son ideales para platos contundentes.',
+      tags: ['Posta negra', 'Tapapecho', 'Osobuco', 'Osobuco de cerdo'],
+    },
+    picada: {
+      titulo: 'Carne molida especial o picada a cuchillo',
+      desc: 'Para rellenos, empanadas, pastel de choclo o crudo, nada supera una carne molida fresca del día o una picada a cuchillo. Pedimos el corte que prefieras y lo preparamos al momento.',
+      tags: ['Carne molida', 'Picada a cuchillo', 'Crudo', 'Mezcla cerdo/vacuno'],
+    },
+    especial: {
+      titulo: 'Chunchules, carpaccio o queso de cabeza',
+      desc: 'Nuestras especialidades son únicas en la zona. Chunchules frescos y bien limpios, carpaccio de vacuno de primer nivel y queso de cabeza artesanal — cortes que no encontrarás en ninguna cadena.',
+      tags: ['Chunchules frescos', 'Carpaccio', 'Queso de cabeza', 'Packs especiales'],
+    },
+  };
+
+  const WA_CURICO = '+56954869712';
+
+  function recomendar(tipo) {
+    const data = REC_DATA[tipo];
+    if (!data) return;
+
+    // Highlight active button
+    document.querySelectorAll('.rec-btn').forEach(b => {
+      b.classList.remove('bg-primary', 'border-primary', 'text-white');
+    });
+    event.currentTarget.classList.add('bg-primary', 'border-primary', 'text-white');
+
+    // Fill result
+    document.getElementById('rec-titulo').textContent = data.titulo;
+    document.getElementById('rec-desc').textContent   = data.desc;
+
+    const tagsEl = document.getElementById('rec-tags');
+    tagsEl.innerHTML = data.tags.map(t =>
+      `<span class="font-body text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full bg-on-background text-white">${t}</span>`
+    ).join('');
+
+    const msg = encodeURIComponent(`Hola! Me recomendaron ${data.tags[0]} para ${tipo}. ¿Tienen disponible?`);
+    document.getElementById('rec-wa').href = `https://wa.me/${WA_CURICO}?text=${msg}`;
+
+    const result = document.getElementById('rec-result');
+    result.classList.remove('hidden');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  // ── Fin recomendador ────────────────────────────────────────────────────
+
   </script>
 </body>
 </html>
