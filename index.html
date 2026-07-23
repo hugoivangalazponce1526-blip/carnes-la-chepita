@@ -455,6 +455,23 @@
       from { transform: scale(1);    filter: brightness(1); }
       to   { transform: scale(1.02); filter: brightness(1.15); }
     }
+    /* ── Recomendador radial ── */
+    @keyframes recPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(174,30,30,.45); }
+      50%      { box-shadow: 0 0 0 16px rgba(174,30,30,0); }
+    }
+    @keyframes recCenterIn {
+      from { opacity:0; transform:translate(-50%,-50%) scale(.5); }
+      to   { opacity:1; transform:translate(-50%,-50%) scale(1); }
+    }
+    @keyframes recCardIn {
+      from { opacity:0; transform:translate(-50%,-50%) scale(.65); }
+      to   { opacity:1; transform:translate(-50%,-50%) scale(1); }
+    }
+    @keyframes recFadeUp {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
   </style>
 </head>
 <body class="bg-background text-on-background font-body antialiased overflow-x-hidden">
@@ -731,47 +748,26 @@
 
     <!-- Recomendador interactivo de cortes -->
     <section class="py-16 md:py-24 bg-surface-container border-y-2 border-on-background" id="recomendador">
-      <div class="max-w-4xl mx-auto px-margin-mobile md:px-margin-desktop">
+      <div class="max-w-5xl mx-auto px-margin-mobile md:px-margin-desktop">
 
-        <!-- Encabezado -->
         <div class="text-center mb-10 md:mb-14">
           <span class="font-body text-xs text-primary font-bold uppercase tracking-widest block mb-2">// ELIGE TU PREPARACIÓN</span>
           <h2 class="font-display text-4xl md:text-5xl uppercase tracking-tight text-on-background">¿Qué vas a preparar hoy?</h2>
           <div class="w-20 h-[3px] bg-primary mx-auto mt-3"></div>
-          <p class="font-body text-[15px] text-secondary mt-4 max-w-xl mx-auto">Selecciona tu tipo de preparación y te recomendamos el corte ideal de La Chepita.</p>
+          <p class="font-body text-[15px] text-secondary mt-4 max-w-xl mx-auto">Selecciona tu tipo de preparación y te recomendamos el corte ideal.</p>
         </div>
 
-        <!-- Botones de preparación -->
-        <div class="flex flex-wrap justify-center gap-3 mb-10" id="rec-btns">
-          <button onclick="recomendar('asado')"     class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🔥 Asado a la parrilla</button>
-          <button onclick="recomendar('cazuela')"   class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🍲 Cazuela</button>
-          <button onclick="recomendar('horno')"     class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🫕 Al horno</button>
-          <button onclick="recomendar('sarten')"    class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🍳 A la sartén</button>
-          <button onclick="recomendar('estofado')"  class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🥘 Estofado / guiso</button>
-          <button onclick="recomendar('especial')"  class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">⭐ Corte especial</button>
+        <div class="flex flex-wrap justify-center gap-3 mb-8" id="rec-btns">
+          <button onclick="recomendar(this,'parrilla')" class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🔥 Parrilla</button>
+          <button onclick="recomendar(this,'cazuela')"  class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🍲 Cazuela</button>
+          <button onclick="recomendar(this,'horno')"    class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🫕 Al horno</button>
+          <button onclick="recomendar(this,'sarten')"   class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🍳 A la sartén</button>
+          <button onclick="recomendar(this,'estofado')" class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">🥘 Estofado</button>
+          <button onclick="recomendar(this,'especial')" class="rec-btn font-body font-semibold text-sm px-5 py-3 rounded-full border-2 border-on-background text-on-background hover:bg-primary hover:border-primary hover:text-white transition-all duration-200">⭐ Especial</button>
         </div>
 
-        <!-- Resultado -->
-        <div id="rec-result" class="hidden">
-          <div class="product-card p-7 md:p-10 flex flex-col gap-6">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-white text-[26px] font-fill-1">recommend</span>
-              </div>
-              <div>
-                <p class="font-body text-xs text-primary font-bold uppercase tracking-widest mb-1">Nuestra recomendación</p>
-                <h3 id="rec-titulo" class="font-display text-2xl md:text-3xl uppercase tracking-wide text-on-background"></h3>
-              </div>
-            </div>
-            <p id="rec-desc" class="font-body text-[16px] text-secondary leading-relaxed"></p>
-            <div class="flex flex-wrap gap-2" id="rec-tags"></div>
-            <a id="rec-wa" href="#" target="_blank"
-               class="inline-flex items-center gap-2 self-start bg-primary text-white font-body font-bold text-sm px-6 py-3 rounded-full hover:bg-primary-light transition-colors duration-200">
-              <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
-              Pedir por WhatsApp
-            </a>
-          </div>
-        </div>
+        <!-- Diagrama generado por JS -->
+        <div id="rec-diagram" class="hidden"></div>
 
       </div>
     </section>
@@ -2182,72 +2178,215 @@
   })();
   // ────────────────────────────────────────────────────────────────────────
 
-  // ── Recomendador de cortes ──────────────────────────────────────────────
+  // ── Recomendador de cortes (diagrama radial) ───────────────────────────
   const REC_DATA = {
-    asado: {
-      titulo: 'Asado de tira, lomo vetado o costillar',
-      desc: 'Para la parrilla no hay nada mejor que un buen asado de tira con hueso, un lomo vetado jugoso o un costillar bien sellado. Cortes con grasa infiltrada que aguantan el fuego lento y quedan en su punto.',
-      tags: ['Asado de tira', 'Lomo vetado', 'Costillar', 'Entraña'],
+    parrilla: {
+      emoji: '🔥', label: 'Parrilla', color: '#AE1E1E',
+      cuts: [
+        { name: 'Asado de tira',   desc: 'Con hueso, sabor profundo e intenso' },
+        { name: 'Lomo vetado',     desc: 'Grasa infiltrada, jugoso al punto' },
+        { name: 'Costillar',       desc: 'Fuego lento, resultado irresistible' },
+        { name: 'Entraña',         desc: 'El favorito: fino y muy sabroso' },
+      ]
     },
     cazuela: {
-      titulo: 'Plateada, osobuco o asado carnicero',
-      desc: 'La cazuela necesita un corte que se ablande con cocción larga. La plateada desmenuzada, el osobuco con tuétano y el asado carnicero son los reyes de la olla con mucho sabor y caldo.',
-      tags: ['Plateada', 'Osobuco', 'Asado carnicero', 'Posta negra'],
+      emoji: '🍲', label: 'Cazuela', color: '#B98D58',
+      cuts: [
+        { name: 'Plateada',        desc: 'Se deshace tras cocción larga' },
+        { name: 'Osobuco',         desc: 'Tuétano y sabor profundo' },
+        { name: 'Asado carnicero', desc: 'Caldo con mucho cuerpo y sabor' },
+        { name: 'Posta negra',     desc: 'Tierna y llena de sabor' },
+      ]
     },
     horno: {
-      titulo: 'Lomo liso, pierna de cerdo o pollo entero',
-      desc: 'El horno potencia los jugos internos. Un lomo liso con hierbas, una pierna de cerdo marinada o un pollo entero relleno son elecciones que nunca fallan y quedan dorados y tiernos.',
-      tags: ['Lomo liso', 'Pierna de cerdo', 'Pollo entero', 'Plateada al horno'],
+      emoji: '🫕', label: 'Al horno', color: '#AE1E1E',
+      cuts: [
+        { name: 'Lomo liso',       desc: 'Marinado con hierbas, dorado perfecto' },
+        { name: 'Pierna de cerdo', desc: 'Jugosa por dentro, crocante por fuera' },
+        { name: 'Pollo entero',    desc: 'Relleno o simple, siempre tierno' },
+        { name: 'Plateada',        desc: 'Al horno lento, se desmecha sola' },
+      ]
     },
     sarten: {
-      titulo: 'Filete, lomo liso o pechuga',
-      desc: 'Para la sartén lo que manda es la rapidez y el dorado. Un filete sellado vuelta y vuelta, un lomo liso en medallones o una pechuga abierta a la plancha son perfectos para una comida rápida y sabrosa.',
-      tags: ['Filete', 'Lomo liso', 'Pechuga', 'Escalopa de cerdo'],
+      emoji: '🍳', label: 'A la sartén', color: '#B98D58',
+      cuts: [
+        { name: 'Filete',          desc: 'Sellado vuelta y vuelta, rápido' },
+        { name: 'Lomo liso',       desc: 'En medallones, dorado y jugoso' },
+        { name: 'Pechuga',         desc: 'A la plancha, tierna y rápida' },
+        { name: 'Escalopa cerdo',  desc: 'Fina, rápida y muy sabrosa' },
+      ]
     },
     estofado: {
-      titulo: 'Posta negra, tapapecho o osobuco',
-      desc: 'Los estofados y guisos piden cortes con colágeno que se deshagan con cocción lenta. La posta negra en trozos, el tapapecho deshebrado o el osobuco en salsa son ideales para platos contundentes.',
-      tags: ['Posta negra', 'Tapapecho', 'Osobuco', 'Osobuco de cerdo'],
-    },
-    picada: {
-      titulo: 'Carne molida especial o picada a cuchillo',
-      desc: 'Para rellenos, empanadas, pastel de choclo o crudo, nada supera una carne molida fresca del día o una picada a cuchillo. Pedimos el corte que prefieras y lo preparamos al momento.',
-      tags: ['Carne molida', 'Picada a cuchillo', 'Crudo', 'Mezcla cerdo/vacuno'],
+      emoji: '🥘', label: 'Estofado', color: '#AE1E1E',
+      cuts: [
+        { name: 'Posta negra',     desc: 'En trozos, perfecta en salsa' },
+        { name: 'Tapapecho',       desc: 'Deshebrado, cae solo' },
+        { name: 'Osobuco',         desc: 'Colágeno que enriquece el caldo' },
+        { name: 'Osobuco cerdo',   desc: 'Más suave, ideal para guiso' },
+      ]
     },
     especial: {
-      titulo: 'Chunchules, carpaccio o queso de cabeza',
-      desc: 'Nuestras especialidades son únicas en la zona. Chunchules frescos y bien limpios, carpaccio de vacuno de primer nivel y queso de cabeza artesanal — cortes que no encontrarás en ninguna cadena.',
-      tags: ['Chunchules frescos', 'Carpaccio', 'Queso de cabeza', 'Packs especiales'],
+      emoji: '⭐', label: 'Especial', color: '#B98D58',
+      cuts: [
+        { name: 'Chunchules',      desc: 'Frescos, limpios, únicos en la zona' },
+        { name: 'Carpaccio',       desc: 'De vacuno, de primer nivel' },
+        { name: 'Queso de cabeza', desc: 'Artesanal, sabor incomparable' },
+        { name: 'Pack parrillero', desc: 'Todo para el asado completo' },
+      ]
     },
   };
 
-  const WA_CURICO = '+56954869712';
-
-  function recomendar(tipo) {
+  function recomendar(btn, tipo) {
     const data = REC_DATA[tipo];
     if (!data) return;
+    document.querySelectorAll('.rec-btn').forEach(b =>
+      b.classList.remove('bg-primary','border-primary','text-white','bg-gold','border-gold')
+    );
+    btn.classList.add('bg-primary','border-primary','text-white');
+    renderDiagram(tipo);
+  }
 
-    // Highlight active button
-    document.querySelectorAll('.rec-btn').forEach(b => {
-      b.classList.remove('bg-primary', 'border-primary', 'text-white');
+  function renderDiagram(tipo) {
+    const data   = REC_DATA[tipo];
+    const wrap   = document.getElementById('rec-diagram');
+    wrap.classList.remove('hidden');
+    wrap.innerHTML = '';
+    const mobile = window.innerWidth < 768;
+    mobile ? renderMobile(wrap, data) : renderDesktop(wrap, data);
+    setTimeout(() => wrap.scrollIntoView({ behavior:'smooth', block:'nearest' }), 60);
+  }
+
+  function renderDesktop(wrap, data) {
+    const W = wrap.offsetWidth || 800;
+    const H = 540;
+    wrap.style.cssText = `position:relative;height:${H + 72}px;`;
+
+    const cx = W / 2, cy = H / 2;
+    const n  = data.cuts.length;
+    const R  = Math.min(W * 0.29, 195);
+
+    // SVG layer for connecting lines
+    const NS  = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+    svg.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;overflow:visible;';
+    wrap.appendChild(svg);
+
+    // Central node
+    const center = document.createElement('div');
+    center.style.cssText = `position:absolute;left:${cx}px;top:${cy}px;text-align:center;z-index:3;
+      animation:recCenterIn .45s cubic-bezier(.34,1.56,.64,1) forwards;`;
+    center.innerHTML = `
+      <div style="width:96px;height:96px;border-radius:50%;background:${data.color};
+        display:flex;align-items:center;justify-content:center;font-size:44px;
+        margin:0 auto;box-shadow:0 6px 24px ${data.color}66;
+        animation:recPulse 2.5s ease-in-out infinite;">
+        ${data.emoji}
+      </div>
+      <p style="font-family:'Bebas Neue',sans-serif;font-size:1.15rem;letter-spacing:.1em;
+        margin-top:7px;color:#1F242E;">${data.label.toUpperCase()}</p>`;
+    wrap.appendChild(center);
+
+    data.cuts.forEach((cut, i) => {
+      const angle  = (2 * Math.PI * i / n) - Math.PI / 2;
+      const x      = cx + R * Math.cos(angle);
+      const y      = cy + R * Math.sin(angle);
+      const delay  = i * 0.1 + 0.3;
+      const len    = R - 50;
+
+      // Line from center edge to card
+      const x1 = cx + 50 * Math.cos(angle);
+      const y1 = cy + 50 * Math.sin(angle);
+
+      const line = document.createElementNS(NS, 'line');
+      line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+      line.setAttribute('x2', x);  line.setAttribute('y2', y);
+      line.setAttribute('stroke', data.color);
+      line.setAttribute('stroke-width', '2');
+      line.setAttribute('stroke-linecap', 'round');
+      line.style.cssText = `stroke-dasharray:${len};stroke-dashoffset:${len};
+        transition:stroke-dashoffset .55s ease ${delay}s;`;
+      svg.appendChild(line);
+
+      // Dot at card end
+      const dot = document.createElementNS(NS, 'circle');
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', '5');
+      dot.setAttribute('fill', data.color);
+      dot.style.cssText = `opacity:0;transition:opacity .2s ease ${delay + .5}s;`;
+      svg.appendChild(dot);
+
+      // Cut card
+      const card = document.createElement('div');
+      card.style.cssText = `position:absolute;left:${x}px;top:${y}px;width:152px;
+        background:#fff;border:2.5px solid ${data.color};border-radius:14px;
+        padding:13px 14px;text-align:center;z-index:2;
+        box-shadow:0 4px 16px rgba(0,0,0,.09);
+        animation:recCardIn .4s cubic-bezier(.34,1.4,.64,1) ${delay + .15}s both;`;
+      card.innerHTML = `
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:.05em;
+          line-height:1.2;color:#1F242E;">${cut.name}</p>
+        <p style="font-family:'Quattrocento Sans',sans-serif;font-size:.69rem;
+          color:#888682;margin-top:5px;line-height:1.35;">${cut.desc}</p>`;
+      wrap.appendChild(card);
+
+      // Trigger line animation
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        line.style.strokeDashoffset = '0';
+        dot.style.opacity = '1';
+      }));
     });
-    event.currentTarget.classList.add('bg-primary', 'border-primary', 'text-white');
 
-    // Fill result
-    document.getElementById('rec-titulo').textContent = data.titulo;
-    document.getElementById('rec-desc').textContent   = data.desc;
+    // WhatsApp CTA below diagram
+    const wa = document.createElement('div');
+    wa.style.cssText = `position:absolute;left:0;right:0;top:${H + 12}px;
+      text-align:center;animation:recFadeUp .4s ease ${0.7 + n * 0.1}s both;`;
+    wa.innerHTML = `
+      <a href="https://wa.me/56954869712?text=${encodeURIComponent('Hola! Quiero consultar por cortes de La Chepita')}"
+         target="_blank"
+         style="display:inline-flex;align-items:center;gap:8px;background:#AE1E1E;color:#fff;
+           font-family:'Quattrocento Sans',sans-serif;font-weight:700;font-size:.875rem;
+           padding:13px 26px;border-radius:9999px;text-decoration:none;
+           box-shadow:0 4px 14px rgba(174,30,30,.35);">
+        <span class="material-symbols-outlined" style="font-size:18px;">shopping_cart</span>
+        Pedir por WhatsApp
+      </a>`;
+    wrap.appendChild(wa);
+  }
 
-    const tagsEl = document.getElementById('rec-tags');
-    tagsEl.innerHTML = data.tags.map(t =>
-      `<span class="font-body text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded-full bg-on-background text-white">${t}</span>`
-    ).join('');
-
-    const msg = encodeURIComponent(`Hola! Me recomendaron ${data.tags[0]} para ${tipo}. ¿Tienen disponible?`);
-    document.getElementById('rec-wa').href = `https://wa.me/${WA_CURICO}?text=${msg}`;
-
-    const result = document.getElementById('rec-result');
-    result.classList.remove('hidden');
-    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  function renderMobile(wrap, data) {
+    wrap.style.cssText = '';
+    wrap.innerHTML = `
+      <div style="text-align:center;margin-bottom:22px;">
+        <div style="width:84px;height:84px;border-radius:50%;background:${data.color};
+          display:inline-flex;align-items:center;justify-content:center;font-size:40px;
+          box-shadow:0 6px 22px ${data.color}66;animation:recPulse 2.5s ease-in-out infinite;">
+          ${data.emoji}
+        </div>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:.1em;
+          margin-top:8px;color:#1F242E;">${data.label.toUpperCase()}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+        ${data.cuts.map((cut, i) => `
+          <div style="background:#fff;border:2.5px solid ${data.color};border-radius:14px;
+            padding:13px 11px;text-align:center;
+            box-shadow:0 3px 10px rgba(0,0,0,.07);
+            animation:recFadeUp .38s ease ${i * 0.08 + 0.1}s both;">
+            <p style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.05em;
+              line-height:1.2;color:#1F242E;">${cut.name}</p>
+            <p style="font-family:'Quattrocento Sans',sans-serif;font-size:.68rem;
+              color:#888682;margin-top:4px;line-height:1.3;">${cut.desc}</p>
+          </div>`).join('')}
+      </div>
+      <div style="text-align:center;">
+        <a href="https://wa.me/56954869712?text=${encodeURIComponent('Hola! Quiero consultar por cortes de La Chepita')}"
+           target="_blank"
+           style="display:inline-flex;align-items:center;gap:8px;background:#AE1E1E;color:#fff;
+             font-family:'Quattrocento Sans',sans-serif;font-weight:700;font-size:.875rem;
+             padding:13px 26px;border-radius:9999px;text-decoration:none;">
+          <span class="material-symbols-outlined" style="font-size:18px;">shopping_cart</span>
+          Pedir por WhatsApp
+        </a>
+      </div>`;
   }
   // ── Fin recomendador ────────────────────────────────────────────────────
 
